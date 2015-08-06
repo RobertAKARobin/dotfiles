@@ -79,7 +79,7 @@ gh(){
   rmdir starter
   mv ./*.md ./readme.md
   params='{"name":"'$1'", "description":"'$2'"}'
-  curl --user 'robertakarobin:$GH_PASSWORD!' -d "$params" https://api.github.com/orgs/ga-dc/repos
+  curl --user 'robertakarobin:$GH_PASSWORD' -d "$params" https://api.github.com/orgs/ga-dc/repos
   git init
   git add .
   git rm -r --cached solution
