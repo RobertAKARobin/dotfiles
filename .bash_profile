@@ -1,17 +1,30 @@
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+source ~/.git-completion.bash
 
-alias vimrc="vim ~/.vimrc"
-alias profile="vim ~/.bash_profile"
-alias desk="cd ~/Desktop"
-alias reload="exec bash -l"
-alias gl='git log --all --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
-alias rspec='rspec -f d'
-alias geminstall='gem install --no-document'
+desk="/Users/robertthomas/Desktop"
+w="/Applications/XAMPP/xamppfiles/htdocs"
+
 alias bx='bundle exec'
+alias geminstall='gem install --no-document'
 alias gito='git remote add origin '
 alias gitrm='git rm --cached -r '
+alias gl='git log --all --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
+alias iscripts='cd /Applications/Adobe\ Illustrator\ CS6/Presets.localized/en_US/Scripts'
+alias openscad='cd /ZDocs/OPENSCAD/'
+alias profile="vim ~/.bash_profile"
+alias psql="'/Applications/Postgres.app/Contents/Versions/9.4/bin'/psql -p5432"
 alias rdm='mv ./*.md ./readme.md'
-alias remigrate='rake db:drop && rake db:create && rake db:migrate && rake db:schema:dump'
+alias reload="exec bash -l"
+alias remigrate='rake db:drop && rake db:create && rake db:migrate && rake db:schema:dump && rake db:seed'
+alias rspec='rspec -f d'
+alias rubz="cd ~/Programming/ruby"
+alias vimrc="vim ~/.vimrc"
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
+GIT_PS1_SHOWDIRTYSTATE=1 # display the unstaged (*) and staged (+) indicators
 
 l(){
   echo ""
@@ -24,19 +37,6 @@ l(){
 search(){
   grep -nrilS $1 .
 }
-
-###
-###
-###
-
-source ~/.git-completion.bash
-
-w="/Applications/XAMPP/xamppfiles/htdocs"
-
-alias psql="'/Applications/Postgres.app/Contents/Versions/9.4/bin'/psql -p5432"
-alias rubz="cd ~/Programming/ruby"
-alias iscripts='cd /Applications/Adobe\ Illustrator\ CS6/Presets.localized/en_US/Scripts'
-alias openscad='cd /ZDocs/OPENSCAD/'
 
 happ(){
   for app in $(heroku apps)
@@ -117,4 +117,4 @@ EOF
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-export PS1="\W $ "
+export PS1="\W\$(__git_ps1)$ "
