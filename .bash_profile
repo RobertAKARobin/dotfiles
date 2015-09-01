@@ -74,6 +74,14 @@ html(){
   vim index.html
 }
 
+letter(){
+  FILENAME="$(date +%y%m%d)_$1.html"
+  cp $w/lib/letter.html "$w/letters/$FILENAME"
+  cd $w/letters
+  chrome $FILENAME
+  vim $FILENAME
+}
+
 gh(){
   mv starter/* .
   rmdir starter

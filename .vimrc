@@ -23,12 +23,12 @@ set hlsearch
 set showcmd
 set laststatus=2
 set cmdheight=2
-set autoindent
 
 set paste
 set expandtab
 set shiftwidth=2
 set softtabstop=2
+set autoindent
 
 set backspace=2
 
