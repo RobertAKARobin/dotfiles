@@ -1,0 +1,10 @@
+.DS_Store
+*.swp
+/node_modules/*
+/tmp/*
+.bundle
+.gitignore
+secrets.*
+*.sqlite
+.sass-cache/
+*.css.map
