@@ -1,5 +1,7 @@
+#!/bin/bash
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 source ~/.git-completion.bash
+source ~/.bash_secrets.sh
 
 desk="/Users/robertthomas/Desktop"
 w="/Applications/XAMPP/xamppfiles/htdocs"
@@ -21,11 +23,17 @@ alias rubz='cd ~/Programming/ruby'
 alias vimrc='vim ~/.vimrc'
 alias pyserv='python -m SimpleHTTPServer'
 
+useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36"
+
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=1 # display the unstaged (*) and staged (+) indicators
+
+only(){
+  rm -rf !($1)
+}
 
 l(){
   echo ""
@@ -43,14 +51,6 @@ happ(){
   for app in $(heroku apps)
     do heroku apps:destroy --app $app --confirm $app
   done
-}
-
-gitmorning(){
-  webz
-  cd ga
-  cd half2
-  git checkout master
-  git pull
 }
 
 chrome(){
@@ -83,26 +83,24 @@ letter(){
   vim $FILENAME
 }
 
-gh(){
-  mv starter/* .
-  rmdir starter
-  mv ./*.md ./readme.md
-  params='{"name":"'$1'", "description":"'$2'"}'
-  curl --user 'robertakarobin:$GH_PASSWORD' -d "$params" https://api.github.com/orgs/ga-dc/repos
+nougat(){
+  # Because it's like "new git"
+  url="https://api.github.com/"
+  if [ "$1" == "ga" ]; then
+    url+="orgs/ga-dc"
+    acct="ga-dc"
+  elif [ "$1" == "me" ]; then
+    url+="user"
+    acct="robertakarobin"
+  else
+    echo "Indicate 'me' or 'ga', dummy."
+    return
+  fi
+  url+="/repos"
+  params='{"name":"'$2'", "description":"'$3'"}'
+  curl -vvvv --include --user robertakarobin:"$GH_ACCESS" -A "$useragent" "https://api.github.com/user/repos" -d "$params"
   git init
-  git add .
-  git rm -r --cached solution
-  git commit -m "Initial commit"
-  git checkout -b solution
-  rm -rf !(solution)
-  mv solution/* .
-  rmdir solution
-  mv ./*.md ./readme.md
-  git add .
-  git commit -m "Added solution"
-  git remote add origin "git@github.com:ga-dc/$1.git"
-  git push origin master
-  git push origin solution
+  git remote add origin "git@github.com:$acct/$1.git"
 }
 
 cleardb(){
@@ -122,10 +120,6 @@ EOF
     fi
   done < ~/$tfile
   rm ~/$tfile
-}
-
-only(){
-  rm -rf !($1)
 }
 
 ### Added by the Heroku Toolbelt
