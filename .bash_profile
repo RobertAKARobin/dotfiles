@@ -31,11 +31,11 @@ fi
 source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=1 # display the unstaged (*) and staged (+) indicators
 
-only(){
+function only(){
   rm -rf !($1)
 }
 
-l(){
+function l(){
   echo ""
   echo "----------"
   ls -AF1
@@ -43,17 +43,17 @@ l(){
   echo ""
 }
 
-search(){
+function search(){
   grep -nrilS $1 .
 }
 
-happ(){
+function happ(){
   for app in $(heroku apps)
     do heroku apps:destroy --app $app --confirm $app
   done
 }
 
-chrome(){
+function chrome(){
   REGEX='s/[a-zA-Z\/]*htdocs\///g'
   PWD=$(echo "$(pwd)" | sed -e $REGEX)
   if [[ $(pwd) != *"htdocs"* ]]
@@ -67,7 +67,7 @@ chrome(){
   fi
 }
 
-html(){
+function html(){
   cp -pR $w/lib/default_html $1
   cd $1
   git init
@@ -83,7 +83,7 @@ letter(){
   vim $FILENAME
 }
 
-nougat(){
+function nougat(){
   # Because it's like "new git"
   url="https://api.github.com/"
   if [ "$1" == "ga" ]; then
@@ -98,12 +98,12 @@ nougat(){
   fi
   url+="/repos"
   params='{"name":"'$2'", "description":"'$3'"}'
-  curl -vvvv --include --user robertakarobin:"$GH_ACCESS" -A "$useragent" "https://api.github.com/user/repos" -d "$params"
+  curl -vvvv --include --user robertakarobin:"$GH_ACCESS" -A "$useragent" "$url" -d "$params"
   git init
-  git remote add origin "git@github.com:$acct/$1.git"
+  git remote add origin "git@github.com:$acct/$2.git"
 }
 
-cleardb(){
+function cleardb(){
   tfile="db_drops.txt"
   touch ~/$tfile
   psql -o ~/$tfile << EOF
@@ -120,6 +120,19 @@ EOF
     fi
   done < ~/$tfile
   rm ~/$tfile
+}
+
+function gh(){
+  giturl=$(git config --get remote.origin.url)
+  if [ "$giturl" == "" ]
+    then
+     echo "Not a git repository or no remote.origin.url set"
+     exit 1;
+  fi
+ 
+  giturl=${giturl/git\@github\.com\:/https://github.com/}
+  giturl=${giturl/\.git}
+  open $giturl
 }
 
 ### Added by the Heroku Toolbelt
