@@ -75,7 +75,7 @@ function html(){
   vim index.html
 }
 
-letter(){
+function letter(){
   FILENAME="$(date +%y%m%d)_$1.html"
   cp $w/lib/letter.html "$w/letters/$FILENAME"
   cd $w/letters
@@ -85,6 +85,9 @@ letter(){
 
 function nougat(){
   # Because it's like "new git"
+  # $1 is "ga" or "me
+  # $2 is name
+  # $3 is description
   url="https://api.github.com/"
   if [ "$1" == "ga" ]; then
     url+="orgs/ga-dc"
@@ -129,10 +132,18 @@ function gh(){
      echo "Not a git repository or no remote.origin.url set"
      exit 1;
   fi
- 
+
   giturl=${giturl/git\@github\.com\:/https://github.com/}
   giturl=${giturl/\.git}
   open $giturl
+}
+
+function gitsearch(){
+  git rev-list --all | xargs git grep -i $1
+}
+
+function rename_tree(){
+  for i in $(find . -name "$1"); do mv $i "$(dirname $i)/$2"; done
 }
 
 ### Added by the Heroku Toolbelt
