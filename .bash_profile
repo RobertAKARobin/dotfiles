@@ -1,7 +1,5 @@
 #!/bin/bash
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-source ~/.git-completion.bash
-source ~/.bash_secrets.sh
 
 desk="/Users/robertthomas/Desktop"
 w="/Applications/XAMPP/xamppfiles/htdocs"
