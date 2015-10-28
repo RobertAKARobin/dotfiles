@@ -19,6 +19,7 @@ alias remigrate='rake db:drop && rake db:create && rake db:migrate && rake db:sc
 alias rspec='rspec -f d'
 alias rubz="cd ~/Programming/ruby"
 alias vimrc="vim ~/.vimrc"
+alias pyserv="python -m SimpleHTTPServer"
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
