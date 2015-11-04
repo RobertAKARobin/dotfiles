@@ -30,6 +30,10 @@ set shiftwidth=2
 set softtabstop=2
 set autoindent
 
+set wrap
+set linebreak
+set nolist
+
 set backspace=2
 
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown

@@ -4,22 +4,18 @@
 desk="/Users/robertthomas/Desktop"
 w="/Applications/XAMPP/xamppfiles/htdocs"
 
-alias bx='bundle exec'
 alias geminstall='gem install --no-document'
-alias gito='git remote add origin '
 alias gitrm='git rm --cached -r '
-alias gl='git log --all --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
+alias gl='git log --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
+alias gla='git log --all --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
 alias iscripts='cd /Applications/Adobe\ Illustrator\ CS6/Presets.localized/en_US/Scripts'
-alias openscad='cd /ZDocs/OPENSCAD/'
 alias profile='vim ~/.bash_profile'
 alias psql="'/Applications/Postgres.app/Contents/Versions/9.4/bin'/psql -p5432"
-alias rdm='mv ./*.md ./readme.md'
 alias reload='exec bash -l'
 alias remigrate='rake db:drop && rake db:create && rake db:migrate && rake db:schema:dump && rake db:seed'
-alias rspec='rspec -f d'
-alias rubz='cd ~/Programming/ruby'
 alias vimrc='vim ~/.vimrc'
 alias pyserv='python -m SimpleHTTPServer'
+alias gaev='cp $w/ga/evaluation.md . && vim evaluation.md'
 
 useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36"
 
@@ -33,7 +29,7 @@ function only(){
   rm -rf !($1)
 }
 
-function l(){
+function ls-a(){
   echo ""
   echo "----------"
   ls -AF1
