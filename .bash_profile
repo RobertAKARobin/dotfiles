@@ -1,5 +1,8 @@
 #!/bin/bash
 
+alias profilel="vim ~/.bash_profile_local"
+source ~/.bash_profile_local
+
 alias geminstall='gem install --no-document'
 alias gitrm='git rm --cached -r '
 alias gl='git log --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
@@ -22,6 +25,11 @@ function sship(){
     then cmd="$cmd -R localhost:2000:localhost:22"
   fi
   eval $cmd
+}
+
+function gitssh(){
+  git push -f origin master
+  ssh $(whoami)@$droplet "( cd /var/www/$(basename $PWD) && git fetch origin master && git reset --hard FETCH_HEAD && git clean -df )"
 }
 
 function ls-a(){
@@ -100,4 +108,3 @@ function ghkey(){
   cat ~/.ssh/id_rsa.pub | pbcopy
 }
 
-source ~/.bash_profile_local
