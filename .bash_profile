@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  source $(brew --prefix)/etc/bash_completion
+  GIT_PS1_SHOWDIRTYSTATE=1
+  prompt='$(__git_ps1)'
+fi
+PS1="\W$prompt\n\$ "
+
 alias profilel="vim ~/.bash_profile_local"
 source ~/.bash_profile_local
 
