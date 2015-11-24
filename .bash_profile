@@ -57,29 +57,31 @@ function happ(){
   done
 }
 
-
 function cleardb(){
   tfile="db_drops.txt"
+  rm ~/$tfile
   touch ~/$tfile
   psql -o ~/$tfile << EOF
-    SELECT datname FROM pg_database WHERE datname NOT IN ('$(whoami)','postgres') AND datistemplate = false;
+    SELECT datname FROM pg_database WHERE datname NOT IN ('$(whoami)','postgres') AND datistemplate = false ORDER BY datname ASC;
 EOF
   n=0
   tot=$(wc -l < ~/$tfile)
-  while read line
-  do
+  for line in $(cat ~/$tfile); do
     n=$(($n + 1))
     if [[ $n -gt 2 && $n -lt $(($tot - 1)) ]]; then
-      echo "dropdb" $line
-      dropdb $line
+      read -n1 -p "Drop database '$line'? [y/n] " dodrop
+      echo ''
+      if [ "$dodrop" = "y" ]; then
+        dropdb $line
+        echo "...dropped $line"
+      fi
     fi
-  done < ~/$tfile
-  rm ~/$tfile
+  done
 }
 
 function gh(){
   giturl=$(git config --get remote.origin.url)
-  if [ "$giturl" == "" ]
+  if [ "$giturl" = "" ]
     then
      echo "Not a git repository or no remote.origin.url set"
      exit 1;
@@ -100,7 +102,7 @@ function rename_tree(){
 
 function ghkey(){
   email=$1
-  if [ "$email" == "" ]
+  if [ "$email" = "" ]
     then
     echo "Include an e-mail address!"
     kill -INT $$
