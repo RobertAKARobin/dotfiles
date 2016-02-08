@@ -1,0 +1,82 @@
+desk="$HOME/Desktop"
+w="$HOME/Programming/web"
+games='/usr/share/emacs/22.1/lisp/play/'
+droplet="192.241.177.50"
+
+alias iscripts='cd /Applications/Adobe\ Illustrator\ CS6/Presets.localized/en_US/Scripts'
+alias gaev='cp $w/ga/evaluation.md . && vim evaluation.md'
+
+source ~/.gh_access
+
+function chrome(){
+  REGEX='s/[a-zA-Z\/]*web\///g'
+  PWD=$(echo "$(pwd)" | sed -e $REGEX)
+  if [[ $(pwd) != *"web"* ]]
+  then
+    open -a Google\ Chrome.app "file:///$(pwd)/$1"
+  elif [ -n "$1" ] && [ -f $1 ]
+  then
+    open -a Google\ Chrome.app "http://localhost/$PWD/$1"
+  else
+    open -a Google\ Chrome.app "http://localhost/index.php?url=./$PWD"
+  fi
+}
+
+function html(){
+  cp -pR $w/lib/default_html $1
+  cd $1
+  git init
+  chrome index.html
+  vim index.html
+}
+
+function letter(){
+  FILENAME="$(date +%y%m%d)_$1.html"
+  cp $w/lib/letter.html "$w/letters/$FILENAME"
+  cd $w/letters
+  chrome $FILENAME
+  vim $FILENAME
+}
+
+function nougat(){
+  # Because it's like "new git"
+  # $1 is "ga" or "me
+  # $2 is name
+  # $3 is description
+
+  url="https://api.github.com/"
+  if [ "$1" == "ga" ]; then
+    url+="orgs/ga-wdi-curriculum"
+    acct="ga-wdi-curriculum"
+  elif [ "$1" == "me" ]; then
+    url+="user"
+    acct="robertakarobin"
+  else
+    echo "Indicate 'me' or 'ga', dummy."
+    return
+  fi
+  url+="/repos"
+  params='{"name":"'$2'", "description":"'[$3]'"}'
+  curl -vvvv "$url" --include --user robertakarobin:"$GH_ACCESS" -A "$useragent" -d "$params"
+  git init
+  git remote add origin "git@github.com:$acct/$2.git"
+  git add .
+  git commit -m "Initial commit"
+}
+
+function gup(){
+  if [ -z "$1" ]; then
+    echo "Supply a commit message."
+    return
+  fi
+  git add .
+  git commit -m "$1"
+  git push origin master
+}
+
+function gle(){
+  git clone "git@github.com:ga-wdi-lessons/$1"
+}
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

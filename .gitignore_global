@@ -3,10 +3,10 @@
 /node_modules/*
 /tmp/*
 .bundle
-.gitignore
 secrets.*
 *.sqlite
 .sass-cache/
 *.css.map
 bower_components/*
 env.*
+_files

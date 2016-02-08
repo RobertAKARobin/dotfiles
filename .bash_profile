@@ -5,10 +5,11 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   GIT_PS1_SHOWDIRTYSTATE=1
   prompt='$(__git_ps1)'
 fi
-PS1="\W$prompt\n\$ "
+PS1="\w$prompt\n\$ "
 
 alias profilel="vim ~/.bash_profile_local"
 source ~/.bash_profile_local
+source ~/.rvm/scripts/rvm
 
 alias geminstall='gem install --no-document'
 alias gitrm='git rm --cached -r '
@@ -21,8 +22,22 @@ alias vimrc='vim ~/.vimrc'
 alias pyserv='python -m SimpleHTTPServer'
 alias vinstall='git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim'
 alias vupdate='vim +PluginInstall +qall'
+alias fo='git config core.filemode false'
 
 useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36"
+
+function copy(){
+  cat $1 | pbcopy
+}
+
+function pup(){
+  eval "sudo apachectl $1 && sudo httpd -k $1"
+}
+
+function chmodr(){
+  find $1 \( -type f -execdir chmod 644 {} \; \) \
+       -o \( -type d -execdir chmod 711 {} \; \)
+}
 
 function sship(){
   user=$1
@@ -117,3 +132,4 @@ function ghkey(){
   cat ~/.ssh/id_rsa.pub | pbcopy
 }
 
+export GITHUB_USERNAME='robertakarobin'
