@@ -2,6 +2,7 @@ desk="$HOME/Desktop"
 w="$HOME/Programming/web"
 games='/usr/share/emacs/22.1/lisp/play/'
 droplet="192.241.177.50"
+h="$w/lib/helperjs"
 
 alias iscripts='cd /Applications/Adobe\ Illustrator\ CS6/Presets.localized/en_US/Scripts'
 alias gaev='cp $w/ga/evaluation.md . && vim evaluation.md'
@@ -9,17 +10,8 @@ alias gaev='cp $w/ga/evaluation.md . && vim evaluation.md'
 source ~/.gh_access
 
 function chrome(){
-  REGEX='s/[a-zA-Z\/]*web\///g'
-  PWD=$(echo "$(pwd)" | sed -e $REGEX)
-  if [[ $(pwd) != *"web"* ]]
-  then
-    open -a Google\ Chrome.app "file:///$(pwd)/$1"
-  elif [ -n "$1" ] && [ -f $1 ]
-  then
-    open -a Google\ Chrome.app "http://localhost/$PWD/$1"
-  else
-    open -a Google\ Chrome.app "http://localhost/index.php?url=./$PWD"
-  fi
+  APP="Google Chrome.app"
+  open -a "$APP" "http://localhost$(PWD)/$1"
 }
 
 function html(){
@@ -72,6 +64,14 @@ function gup(){
   git add .
   git commit -m "$1"
   git push origin master
+}
+
+alias curric="cd $w/ga/curricula/curriculum-wdi8"
+function curricdl(){
+  GO_BACK=$(pwd)
+  cd $w/ga/tools/curriculum-collector/
+  sh RUN-ME.sh
+  cd $GO_BACK
 }
 
 function gle(){

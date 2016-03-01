@@ -20,14 +20,20 @@ alias reload='exec bash -l'
 alias remigrate='rake db:drop && rake db:create && rake db:migrate && rake db:schema:dump && rake db:seed'
 alias vimrc='vim ~/.vimrc'
 alias pyserv='python -m SimpleHTTPServer'
+alias timestamp='date "+%y-%m-%d_%H_%M_%S"'
 alias vinstall='git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim'
 alias vupdate='vim +PluginInstall +qall'
 alias fo='git config core.filemode false'
+alias py="python3"
 
 useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36"
 
 function copy(){
   cat $1 | pbcopy
+}
+
+function dumpdb(){
+  pg_dump -Cc $1 -f ~/db_dumps/$1_$(timestamp).psql
 }
 
 function pup(){
@@ -63,7 +69,7 @@ function ls-a(){
 }
 
 function search(){
-  grep -nrilS $1 .
+  sudo grep -nrilS $1 .
 }
 
 function happ(){
@@ -133,3 +139,8 @@ function ghkey(){
 }
 
 export GITHUB_USERNAME='robertakarobin'
+
+# Setting PATH for Python 3.4
+# The orginal version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:${PATH}"
+export PATH
