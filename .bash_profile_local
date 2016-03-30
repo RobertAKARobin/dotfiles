@@ -9,6 +9,10 @@ alias gaev='cp $w/ga/evaluation.md . && vim evaluation.md'
 
 source ~/.gh_access
 
+function hc(){
+  cp "$h/helpers.js" helpers.js
+}
+
 function chrome(){
   APP="Google Chrome.app"
   open -a "$APP" "http://localhost$(PWD)/$1"

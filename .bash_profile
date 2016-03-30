@@ -28,6 +28,15 @@ alias py="python3"
 
 useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36"
 
+# 1. brew install imagemagick
+# 2. brew install ghostscript
+# 3. Install fonts: http://gothick.org.uk/2008/03/14/using-os-x-fonts-in-imagemagick/
+# 4. gdi path-to-file.html name-of-image
+# 5. Image is saved to desktop as name-of-image.png
+function gdi(){
+  git diff --no-prefix head~ "$1" | tail -n +4 | convert -font "DejaVuSansMono" -pointsize "14" -extent 600 -background black -fill yellow label:@- "$HOME/Desktop/$2.png"
+}
+
 function copy(){
   cat $1 | pbcopy
 }
@@ -139,8 +148,3 @@ function ghkey(){
 }
 
 export GITHUB_USERNAME='robertakarobin'
-
-# Setting PATH for Python 3.4
-# The orginal version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:${PATH}"
-export PATH
