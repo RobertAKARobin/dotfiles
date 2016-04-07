@@ -28,13 +28,52 @@ alias py="python3"
 
 useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36"
 
+function gfix(){
+  sha=$2
+  if [ "$1" = "1" ]; then
+    if [ -z "$sha" ]; then echo "Nope" && return 1; fi
+    git add .
+    git commit -m "wip"
+    git checkout -b tmp
+    git reset --hard "$sha"
+    git reset --soft head~
+  elif [ "$1" = "2" ]; then
+    if [ -z "$sha" ]; then echo "Nope" && return 1; fi
+    git commit -c ORIG_HEAD
+    git cherry-pick "$sha"..master
+  elif [ "$1" = "cp" ]; then
+    git cherry-pick --continue
+  elif [ "$1" = "3" ]; then
+    git branch -D master
+    git branch -m master
+  fi
+}
+
 # 1. brew install imagemagick
 # 2. brew install ghostscript
 # 3. Install fonts: http://gothick.org.uk/2008/03/14/using-os-x-fonts-in-imagemagick/
 # 4. gdi path-to-file.html name-of-image
 # 5. Image is saved to desktop as name-of-image.png
 function gdi(){
-  git diff --no-prefix head~ "$1" | tail -n +4 | convert -font "DejaVuSansMono" -pointsize "14" -extent 600 -background black -fill yellow label:@- "$HOME/Desktop/$2.png"
+  bgcolor="#000000"
+  txcolor="#ffffaa"
+  fontfam="LucidaSansTypewriterB"
+  fontsiz="14"
+  # outputl="$HOME/Desktop/$2.png"
+  outputl="$w/ga/lessons/mean-intro/images/$2.png"
+  git diff --no-prefix head~ "$1" | tail -n +4 | convert -font "$fontfam" -pointsize "$fontsiz" -border 10x10 -bordercolor "$bgcolor" -extent 600 -background "$bgcolor" -fill "$txcolor" label:@- "$outputl"
+}
+
+function gnext(){
+  git log --reverse --pretty=%H master | grep -A 1 $(git rev-parse HEAD) | tail -n1 | xargs git checkout
+}
+
+function gprev(){
+  git checkout head~
+}
+
+function gwat(){
+  git diff head~
 }
 
 function copy(){
