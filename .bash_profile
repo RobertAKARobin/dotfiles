@@ -52,16 +52,26 @@ function gfix(){
 # 1. brew install imagemagick
 # 2. brew install ghostscript
 # 3. Install fonts: http://gothick.org.uk/2008/03/14/using-os-x-fonts-in-imagemagick/
-# 4. gdi path-to-file.html name-of-image
-# 5. Image is saved to desktop as name-of-image.png
+# 4. $ echo "foo" | sshot ~/Desktop/myfile
+# 5. Image of "foo" is saved to Desktop as myfile.png
+function sshot(){
+  convert \
+    -font         "LucidaSansTypewriterB" \
+    -pointsize    "14" \
+    -border       "10x10" \
+    -extent       "600" \
+    -bordercolor  "#000000" \
+    -background   "#000000" \
+    -fill         "#ffffaa" \
+    label:@- "$1.png"
+}
+
+# 1. gdi path-to-file.html name-of-image
+# 2. Image is saved as name-of-image.png
 function gdi(){
-  bgcolor="#000000"
-  txcolor="#ffffaa"
-  fontfam="LucidaSansTypewriterB"
-  fontsiz="14"
   # outputl="$HOME/Desktop/$2.png"
-  outputl="$w/ga/lessons/mean-intro/images/$2.png"
-  git diff --no-prefix head~ "$1" | tail -n +4 | convert -font "$fontfam" -pointsize "$fontsiz" -border 10x10 -bordercolor "$bgcolor" -extent 600 -background "$bgcolor" -fill "$txcolor" label:@- "$outputl"
+  outputl="$w/ga/lessons/express-oauth-handrolled/images/$2"
+  git diff --no-prefix head~ "$1" | tail -n +4 | $(sshot $outputl)
 }
 
 function gnext(){
