@@ -49,11 +49,14 @@ function gfix(){
   fi
 }
 
-# 1. brew install imagemagick
-# 2. brew install ghostscript
-# 3. Install fonts: http://gothick.org.uk/2008/03/14/using-os-x-fonts-in-imagemagick/
-# 4. $ echo "foo" | sshot ~/Desktop/myfile
-# 5. Image of "foo" is saved to Desktop as myfile.png
+# 1. $ brew install imagemagick
+# 2. Make system fonts available to imagemagick
+#   - $ curl http://www.imagemagick.org/Usage/scripts/imagick_type_gen > imagick_find_fonts.sh
+#   - $ perl imagick_find_fonts.sh > type.xml
+#   - $ mv type.xml /usr/local/Cellar/imagemagick/some-version-number/etc/ImageMagick-6/
+#   - $ convert -list font
+# 3. $ echo "foo" | sshot ~/Desktop/myfile
+# 4. Image of "foo" is saved to Desktop as myfile.png
 function sshot(){
   convert \
     -font         "LucidaSansTypewriterB" \
