@@ -16,7 +16,7 @@ alias gitrm='git rm --cached -r '
 alias gl='git log --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
 alias gla='git log --all --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
 alias profile='vim ~/.bash_profile'
-alias reload='exec bash -l'
+alias reload='source ~/.bash_profile'
 alias remigrate='rake db:drop && rake db:create && rake db:migrate && rake db:schema:dump && rake db:seed'
 alias vimrc='vim ~/.vimrc'
 alias pyserv='python -m SimpleHTTPServer'
@@ -25,6 +25,7 @@ alias vinstall='git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bun
 alias vupdate='vim +PluginInstall +qall'
 alias fo='git config core.filemode false'
 alias py="python3"
+alias own="sudo chmod -R 777"
 
 useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36"
 
@@ -75,6 +76,86 @@ function gdi(){
   # outputl="$HOME/Desktop/$2.png"
   outputl="$w/ga/lessons/express-oauth-handrolled/images/$2"
   git diff --no-prefix head~ "$1" | tail -n +4 | $(sshot $outputl)
+}
+
+# Loops through repo's entire Git history, and for each commit,
+# loops through all files changed in that commit, and makes a
+# screenshot of that file's diff.
+# See steps 1 and 2 of #sshot above
+function gdis(){
+  folder="diff_imgs"
+  rm -rf $folder
+  mkdir $folder
+
+  # Preserves whitespace. ¯\_(ツ)_/¯
+  IFS='%'
+  # Removes the first commit since you can't diff it
+  # Prints SHA on one line and commit message on another because hard to "split"
+  commits=$(git log --pretty=format:"%h%n%s" | tail -r | tail -n +2 | tail -r)
+  commitnum=1
+  linenum=0
+  while read commitline; do
+    commitnum=$(($linenum / 2))
+    if (( $linenum % 2 == 0 )); then
+      hash="$commitline"
+    else
+      # Removes non-alphanumeric characters from commit message, downcases, adds dashes
+      message=$(echo $commitline | tr "[:upper:]" "[:lower:]" | sed \
+        -e "s/[^a-zA-Z0-9 \-]//g" \
+        -e "s/ /-/g" \
+        -e "s/-\{2,\}/-/g")
+      # A = added, M = modified, R = removed
+      diffiles=$(git diff --diff-filter=AMR --name-only "$hash~..$hash")
+      echo "$hash: $commitline"
+      while read filepath; do
+        echo "    $filepath"
+        # Removes non-alphanumeric characters from filename, adds dashes
+        fileabbr=$(echo $filepath | sed \
+          -e "s/[^a-zA-Z0-9]/-/g" \
+          -e "s/-\{2,\}/-/g")
+        imageout="$message.$fileabbr.png"
+        printcmd=$(cat <<heredoc
+convert \
+-font         "Consolas" \
+-pointsize    "16" \
+-extent       "800" \
+-quality      "0" \
+-bordercolor  "#000000" \
+-background   "#000000" \
+-gravity      "SouthWest"
+heredoc)
+        # First row of each image is the SHA and commit message
+        printcmd+=" -fill \"#ffffff\" label:\"$hash: $commitline \""
+        # 
+        diff="$(git diff --no-prefix "$hash~..$hash" -- $filepath | tail -n +4)"
+        while read diffline; do
+          # If line begins with @@ or ---
+          if [[ "$diffline" =~ ^(@@|---) ]]; then
+            color="#aaaaaa"
+          # If line begins with -
+          elif [[ "$diffline" =~ ^-{1}([^-]|$) ]]; then
+            color="#ff0000"
+          # If line begins with +
+          elif [[ "$diffline" =~ ^\+{1}([^\+]|$) ]]; then
+            color="#00ff00"
+          else
+            color="#ffffff"
+          fi
+          # %q escapes quotes
+          diffline=$(printf "%q" "$diffline")
+          # Adds 20px to end of image and fills it with text
+          printcmd+=" -splice 0x20 -fill \"$color\" -annotate 0 \" $diffline\""
+        done <<< "$diff"
+        # End with a blank line
+        printcmd+=" -splice 0x20 -annotate 0 \" \""
+        # Print to this filename
+        printcmd+=" \"./diff_imgs/$imageout\""
+        eval $printcmd
+      done <<< "$diffiles"
+    fi
+    let "linenum += 1"
+  done <<< "$commits"
+  unset IFS
 }
 
 function gnext(){
