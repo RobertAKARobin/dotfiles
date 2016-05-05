@@ -8,9 +8,6 @@ fi
 PS1="\w$prompt\n\$ "
 
 alias profilel="vim ~/.bash_profile_local"
-source ~/.bash_profile_local
-source ~/.rvm/scripts/rvm
-
 alias geminstall='gem install --no-document'
 alias gitrm='git rm --cached -r '
 alias gl='git log --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
@@ -26,6 +23,10 @@ alias vupdate='vim +PluginInstall +qall'
 alias fo='git config core.filemode false'
 alias py="python3"
 alias own="sudo chmod -R 777"
+alias sas="sass --style expanded --watch --sourcemap=none"
+alias jad="jade -Pw"
+alias jek="jekyll serve -w"
+alias calc="echo 'Type \"bc\". Set decimal places with \"scale=n\"'"
 
 useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36"
 
@@ -191,3 +192,9 @@ function ghkey(){
 }
 
 export GITHUB_USERNAME='robertakarobin'
+
+source ~/.bash_profile_local
+source ~/.rvm/scripts/rvm
+
+
+export PATH="/Users/robertthomas/.rvm/bin:/Users/robertthomas/.rvm/gems/ruby-2.3.0/bin:/Users/robertthomas/.rvm/gems/ruby-2.3.0@global/bin:/Users/robertthomas/.rvm/rubies/ruby-2.3.0/bin:/usr/local/heroku/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"

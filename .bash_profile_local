@@ -59,28 +59,3 @@ function nougat(){
   git add .
   git commit -m "Initial commit"
 }
-
-function gup(){
-  if [ -z "$1" ]; then
-    echo "Supply a commit message."
-    return
-  fi
-  git add .
-  git commit -m "$1"
-  git push origin master
-}
-
-alias curric="cd $w/ga/curricula/curriculum-wdi8"
-function curricdl(){
-  GO_BACK=$(pwd)
-  cd $w/ga/tools/curriculum-collector/
-  sh RUN-ME.sh
-  cd $GO_BACK
-}
-
-function gle(){
-  git clone "git@github.com:ga-wdi-lessons/$1"
-}
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
