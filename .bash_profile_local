@@ -13,11 +13,6 @@ function hc(){
   cp "$h/helpers.js" helpers.js
 }
 
-function chrome(){
-  APP="Google Chrome.app"
-  open -a "$APP" "http://localhost$(PWD)/$1"
-}
-
 function html(){
   cp -pR $w/lib/default_html $1
   cd $1
@@ -59,3 +54,6 @@ function nougat(){
   git add .
   git commit -m "Initial commit"
 }
+
+export PATH="/Users/robertthomas/.rvm/gems/ruby-2.3.1/bin:/Users/robertthomas/.rvm/bin:/Users/robertthomas/.rvm/gems/ruby-2.3.1@global/bin:/Users/robertthomas/.rvm/rubies/ruby-2.3.1/bin:/usr/local/heroku/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+

@@ -126,9 +126,19 @@ function search(){
 }
 
 function happ(){
-  for app in $(heroku apps)
-    do heroku apps:destroy --app $app --confirm $app
-  done
+  urlpfx='https://git.heroku.com/'
+  urlsfx='.git'
+  remote=$(git remote get-url heroku | sed "s~$urlpfx~~" | sed "s~$urlsfx~~")
+  app=${1:-$remote}
+  heroku apps:destroy --app $app --confirm $app
+}
+
+function happs(){
+  while read app; do
+    if [[  $app =~ ^[a-zA-Z0-9\-]+$ ]]; then
+      happ $app
+    fi
+  done < <(heroku apps)
 }
 
 function cleardb(){
@@ -153,17 +163,22 @@ EOF
   done
 }
 
-function gh(){
-  giturl=$(git config --get remote.origin.url)
-  if [ "$giturl" = "" ]
-    then
-     echo "Not a git repository or no remote.origin.url set"
-     exit 1;
+function chrome(){
+  APP="Google Chrome.app"
+  if [[ $1 =~ ^http ]] ;
+    then url=$1
+  else
+    url="http://localhost$(PWD)/$1"
   fi
+  open -a "$APP" "$url"
+}
 
-  giturl=${giturl/git\@github\.com\:/https://github.com/}
-  giturl=${giturl/\.git}
-  open $giturl
+function gh(){
+  remote=${1:-origin}
+  gitpfx='git@github.com:'
+  urlpfx='https://www.github.com/'
+  url=$(git remote get-url $remote | sed "s~$gitpfx~$urlpfx~" | sed "s~\.git\$~~")
+  chrome $url
 }
 
 function gitsearch(){
@@ -193,8 +208,6 @@ function ghkey(){
 
 export GITHUB_USERNAME='robertakarobin'
 
-source ~/.bash_profile_local
 source ~/.rvm/scripts/rvm
+source ~/.bash_profile_local
 
-
-export PATH="/Users/robertthomas/.rvm/bin:/Users/robertthomas/.rvm/gems/ruby-2.3.0/bin:/Users/robertthomas/.rvm/gems/ruby-2.3.0@global/bin:/Users/robertthomas/.rvm/rubies/ruby-2.3.0/bin:/usr/local/heroku/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
