@@ -3,16 +3,17 @@
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   source $(brew --prefix)/etc/bash_completion
   GIT_PS1_SHOWDIRTYSTATE=1
-  prompt='$(__git_ps1)'
+  git_prompt='$(__git_ps1)'
 fi
-PS1="\w$prompt\n\$ "
+export PS1="\[\e[33m\]  \d \t \w$git_prompt\n\[\e[m\]\\$ "
+export EDITOR=/Applications/TextEdit.app/Contents/MacOS/TextEdit
 
-alias profilel="vim ~/.bash_profile_local"
 alias geminstall='gem install --no-document'
 alias gitrm='git rm --cached -r '
 alias gl='git log --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
 alias gla='git log --all --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
 alias profile='vim ~/.bash_profile'
+alias profilel="vim ~/.bash_profile_local"
 alias reload='source ~/.bash_profile'
 alias remigrate='rake db:drop && rake db:create && rake db:migrate && rake db:schema:dump && rake db:seed'
 alias vimrc='vim ~/.vimrc'
@@ -204,6 +205,21 @@ function ghkey(){
   ssh-keygen -t rsa -b 4096 -C "$email"
   ssh-add ~/.ssh/id_rsa
   cat ~/.ssh/id_rsa.pub | pbcopy
+}
+
+function mdhtml(){
+  # brew install pandoc
+  # brew install tidy-html5
+  # brew install fswatch
+  # mdhtml input.md output.html
+  TITLE=$(basename "$PWD")
+  CMD=" echo '===== Regenerating HTML...' \
+        && pandoc $1 -f markdown -t html5 -s \
+             --variable=pagetitle:'$TITLE' \
+             --no-highlight \
+        |  tidy -wrap 0 -indent -quiet -o $2"
+  sh -c "$CMD"
+  fswatch -0 $1 | xargs -0 -I % sh -c "$CMD"
 }
 
 export GITHUB_USERNAME='robertakarobin'
