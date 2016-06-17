@@ -3,6 +3,7 @@ w="$HOME/Programming/web"
 games='/usr/share/emacs/22.1/lisp/play/'
 droplet="192.241.177.50"
 h="$w/lib/helperjs"
+pantemp="/usr/local/Cellar/pandoc/1.17.0.3/share/x86_64-osx-ghc-7.10.3/pandoc-1.17.0.3/data/templates"
 
 alias iscripts='cd /Applications/Adobe\ Illustrator\ CS6/Presets.localized/en_US/Scripts'
 alias gaev='cp $w/ga/evaluation.md . && vim evaluation.md'
