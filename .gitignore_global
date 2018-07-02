@@ -1,6 +1,6 @@
 .DS_Store
+*/node_modules/*
 *.swp
-/node_modules/*
 /tmp/*
 .bundle
 secrets.*
@@ -8,5 +8,5 @@ secrets.*
 .sass-cache/
 *.css.map
 bower_components/*
-env.*
+env.js*
 _files

@@ -1,0 +1,64 @@
+#!/bin/bash
+
+alias gl='git log --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
+alias gla='git log --all --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
+alias reload='source ~/.bash_profile'
+alias sas="sass --style expanded --watch --sourcemap=none"
+alias jad="jade -Pw"
+alias jek="jekyll serve -w"
+alias dnsrefresh="sudo killall -HUP mDNSResponder"
+alias math="bc -l"
+alias sizeof="du -shL .* *"
+# BFG clears stuff from Git history
+alias bfg="java -jar ~/bfg.jar"
+alias chrome="open -a 'Google Chrome.app'"
+alias search="sudo grep -nrilS"
+
+function figall(){
+  filename="figlet.txt"
+  figlist=$(figlist | tail -n +4)
+  nl=$'\n'
+  output=""
+  while read -r font; do
+    if [[ "$font" == "Figlet control files in this directory:"* ]]; then
+      break
+    fi
+    output="$output### $font${nl}"
+    output="$output$(figlet -f $font $1)${nl}${nl}"
+  done <<< "$figlist"
+  echo "$output" > $filename
+}
+
+function gh(){
+  remote=${1:-origin}
+  gitpfx='git@github.com:'
+  urlpfx='https://www.github.com/'
+  url=$(git remote get-url $remote | sed "s~$gitpfx~$urlpfx~" | sed "s~\.git\$~~")
+  chrome $url
+}
+
+function gnext(){
+  git log --reverse --pretty=%H master | grep -A 1 $(git rev-parse HEAD) | tail -n1 | xargs git checkout
+}
+
+function gprev(){
+  git checkout head~
+}
+
+function grc(){
+  git reset --soft head~
+  git add .
+  git commit -C ORIG_HEAD
+}
+
+function gsearch(){
+  git rev-list --all | xargs git grep -i $1
+}
+
+function ls-a(){
+  echo ""
+  echo "----------"
+  ls -AF1 $1
+  echo "----------"
+  echo ""
+}
