@@ -4,3 +4,12 @@
 !.bash_profile_helpers
 !.vimrc
 !.gitconfig
+!Library
+Library/*
+!Library/Application\ Support
+Library/Application\ Support/*
+!Library/Application\ Support/Code
+Library/Application\ Support/Code/*
+!Library/Application\ Support/Code/User
+Library/Application\ Support/Code/User/*
+!Library/Application\ Support/Code/User/settings.json
