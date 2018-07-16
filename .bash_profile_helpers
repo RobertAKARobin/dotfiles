@@ -1,4 +1,4 @@
-#!/bin/bash
+
 
 alias gl='git log --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
 alias gla='git log --all --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
@@ -13,6 +13,14 @@ alias sizeof="du -shL .* *"
 alias bfg="java -jar ~/bfg.jar"
 alias chrome="open -a 'Google Chrome.app'"
 alias search="sudo grep -nrilS"
+
+COLOR_RED="\033]0;31m"
+COLOR_YELLOW="\033[0;33m"
+COLOR_GREEN="\033[0;32m"
+COLOR_OCHRE="\033[38;5;95m"
+COLOR_BLUE="\033[0;34m"
+COLOR_WHITE="\033[0;37m"
+COLOR_RESET="\033[0m"
 
 function figall(){
   filename="figlet.txt"
@@ -37,16 +45,35 @@ function gh(){
   chrome $url
 }
 
+function git_branch(){
+  local git_status="$(git status 2> /dev/null)"
+  local on_branch="On branch ([^${IFS}]*)"
+  local on_commit="HEAD detached at ([^${IFS}]*)"
+  local has_unstaged="Changes not staged for commit"
+  local has_staged="Changes to be committed"
+  local unstaged_char=""
+  local staged_char=""
+  if [[ $git_status =~ $has_unstaged ]]; then
+    unstaged_char=" *"
+  fi
+  if [[ $git_status =~ $has_staged ]]; then
+    staged_char=" #"
+  fi
+  if [[ $git_status =~ $on_branch ]] || [[ $git_status =~ $on_commit ]]; then
+    echo " (${BASH_REMATCH[1]}$unstaged_char$staged_char)"
+  fi
+}
+
 function gnext(){
   git log --reverse --pretty=%H master | grep -A 1 $(git rev-parse HEAD) | tail -n1 | xargs git checkout
 }
 
 function gprev(){
-  git checkout head~
+  git checkout HEAD~
 }
 
 function grc(){
-  git reset --soft head~
+  git reset --soft HEAD~
   git add .
   git commit -C ORIG_HEAD
 }
