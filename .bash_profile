@@ -3,7 +3,7 @@
 source ~/.bash_profile_local
 source ~/.bash_profile_helpers
 
-export PS1="\[\e[33m\]  \d \t \w\$(git_branch)\n\[\e[m\]\\$ "
+export PS1="\[\e[33m\]  \d \t \w\$(git_branch)"$'\n\[\e[m\]\\$ '
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
