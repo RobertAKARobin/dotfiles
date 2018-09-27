@@ -2,6 +2,9 @@
 
 source ~/.bash_profile_local
 source ~/.bash_profile_helpers
+if [ -f ~/.bash_profile_private ]; then 
+  source ~/.bash_profile_private
+fi
 
 export PS1="\[\e[33m\]  \d \t \w\$(git_branch)"$'\n\[\e[m\]\\$ '
 
