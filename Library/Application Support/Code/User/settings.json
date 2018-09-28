@@ -29,6 +29,7 @@
 	},
 	"editor.parameterHints": false,
 	"javascript.updateImportsOnFileMove.enabled": "never",
+	"explorer.confirmDragAndDrop": false,
 
 	// Files to exclude
 	"files.exclude": {
@@ -37,5 +38,5 @@
 		"**/.hg": false,
 		"**/CVS": false,
 		"**/.DS_Store": false
-	  }
+	}
 }
