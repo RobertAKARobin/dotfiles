@@ -10,6 +10,7 @@ alias dnsrefresh="sudo killall -HUP mDNSResponder"
 alias math="bc -l"
 alias sizeof="du -shL .* *"
 # BFG clears stuff from Git history
+# https://rtyley.github.io/bfg-repo-cleaner/
 alias bfg="java -jar ~/bfg.jar"
 alias chrome="open -a 'Google Chrome.app'"
 alias search="sudo grep -nrilS"
