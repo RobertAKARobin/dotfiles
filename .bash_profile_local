@@ -6,4 +6,5 @@ w="$HOME/Programming/web"
 games='/usr/share/emacs/22.1/lisp/play/'
 
 export PATH="/usr/local/sbin:$PATH" 
+export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 
