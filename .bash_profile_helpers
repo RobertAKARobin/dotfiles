@@ -17,6 +17,8 @@ alias search="sudo grep -nrilS"
 alias py="python3"
 alias pip="pip3"
 
+useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
+
 COLOR_RED="\033]0;31m"
 COLOR_YELLOW="\033[0;33m"
 COLOR_GREEN="\033[0;32m"
