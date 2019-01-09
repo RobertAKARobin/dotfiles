@@ -2,7 +2,7 @@
 	name = RobertAKARobin
 	email = robertgfthomas@gmail.com
 [core]
-	excludesfile = /Users/robertthomas/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	filemode = false
 	editor = vim
 	ignorecase = false

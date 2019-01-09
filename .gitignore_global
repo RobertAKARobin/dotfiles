@@ -1,12 +1,11 @@
 .DS_Store
-*/node_modules/*
+node_modules
+tmp
+bower_components
+.sass-cache/
 *.swp
-/tmp/*
 .bundle
 secrets.*
 *.sqlite
-.sass-cache/
 *.css.map
-bower_components/*
 env.js*
-_files
