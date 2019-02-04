@@ -21,7 +21,7 @@
 	"javascript.nameSuggestions": false,
 	"javascript.suggestionActions.enabled": false,
 	"jsDocCompletion.enabled": false,
-	"javascript.format.enable": false,
+	"javascript.format.enable": true,
 	"editor.suggestOnTriggerCharacters": false,
 	"editor.wordBasedSuggestions": false,
 	"editor.quickSuggestions": {
