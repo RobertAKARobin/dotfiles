@@ -40,5 +40,6 @@
 		"**/.hg": false,
 		"**/CVS": false,
 		"**/.DS_Store": false
-	}
+	},
+	"html.autoClosingTags": false
 }
