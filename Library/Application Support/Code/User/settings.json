@@ -9,7 +9,6 @@
 	"editor.renderWhitespace": "all",
 	"editor.insertSpaces": false,
 	"editor.detectIndentation": true,
-	"editor.formatOnPaste": true,
 
 	// VSC-specific stuff
 	"editor.minimap.enabled": false,
