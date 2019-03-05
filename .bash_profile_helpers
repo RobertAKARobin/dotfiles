@@ -27,7 +27,7 @@ COLOR_WHITE="\033[0;37m"
 COLOR_RESET="\033[0m"
 
 function ftext(){
-  egrep -i -r -l "$1" $2
+  egrep -i -r -l "$1" ${2:-.}
 }
 
 function figall(){
