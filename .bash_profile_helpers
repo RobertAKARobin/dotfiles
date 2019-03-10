@@ -16,6 +16,9 @@ alias chrome="open -a 'Google Chrome.app'"
 alias search="sudo grep -nrilS"
 alias json="jq"
 
+desk="$HOME/Desktop"
+w="$HOME/Programming/web"
+games='/usr/share/emacs/22.1/lisp/play/'
 useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
 
 COLOR_RED="\033]0;31m"

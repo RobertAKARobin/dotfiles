@@ -1,10 +1,13 @@
 #!/bin/bash
 
-source ~/.bash_profile_local
+export GITHUB_USERNAME='robertakarobin'
+
 source ~/.bash_profile_helpers
 if [ -f ~/.bash_profile_private ]; then 
   source ~/.bash_profile_private
 fi
+
+export PATH="/usr/local/sbin:$PATH" 
 
 export PS1="\[\e[33m\]  \d \t \w\$(git_branch)"$'\n\[\e[m\]\\$ '
 
@@ -18,6 +21,3 @@ fi
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-
-# This has to be at the end of the file
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
