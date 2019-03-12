@@ -39,5 +39,8 @@
 		"**/CVS": false,
 		"**/.DS_Store": false
 	},
-	"html.autoClosingTags": false
+	"html.autoClosingTags": false,
+	"workbench.editor.closeEmptyGroups": false,
+	"workbench.editor.enablePreviewFromQuickOpen": false,
+	"workbench.editor.enablePreview": false
 }
