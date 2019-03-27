@@ -15,6 +15,7 @@ alias bfg="java -jar ~/bfg.jar"
 alias chrome="open -a 'Google Chrome.app'"
 alias search="sudo grep -nrilS"
 alias json="jq"
+alias ports='lsof -i -P | grep -i "listen"'
 
 desk="$HOME/Desktop"
 w="$HOME/Programming/web"
