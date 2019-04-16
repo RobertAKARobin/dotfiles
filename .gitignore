@@ -3,6 +3,7 @@
 !.bash_profile_local
 !.bash_profile_helpers
 !.vimrc
+!.gemrc
 !.gitconfig
 !Library
 Library/*
