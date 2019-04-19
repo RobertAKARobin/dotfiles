@@ -8,7 +8,6 @@ alias jad="jade -Pw"
 alias jek="jekyll serve -w"
 alias dnsrefresh="sudo killall -HUP mDNSResponder"
 alias math="bc -l"
-alias sizeof="du -shL .* *"
 # BFG clears stuff from Git history
 # https://rtyley.github.io/bfg-repo-cleaner/
 alias bfg="java -jar ~/bfg.jar"
@@ -100,4 +99,12 @@ function ls-a(){
   ls -AF1 $1
   echo "----------"
   echo ""
+}
+
+function sizeof(){
+  ls -Flah $1 | awk {'print $5"\t"$9'}
+}
+
+function sizeofs(){
+  ls -FlaSh $1 | awk {'print $5"\t"$9'}
 }
