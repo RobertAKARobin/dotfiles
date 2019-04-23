@@ -114,3 +114,7 @@ function sizeof(){
     du -hc -d 0 $1 2>/dev/null
   fi
 }
+
+function sizeofs(){
+  sizeof $1 | sort -h
+}
