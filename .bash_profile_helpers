@@ -15,6 +15,7 @@ alias chrome="open -a 'Google Chrome.app'"
 alias search="sudo grep -nrilS"
 alias json="jq"
 alias ports='lsof -i -P | grep -i "listen"'
+alias dj='pipenv run python manage.py'
 
 desk="$HOME/Desktop"
 w="$HOME/Programming/web"
