@@ -104,13 +104,13 @@ function ls-a(){
 
 function sizeof(){
   if [[ $1 == "." ]] || [[ -z "$1" ]]; then
-    du -h -d 0 ./. ./.[!.]* ./* 2>/dev/null
+    du -hc -d 0 ./.[!.]* ./* 2>/dev/null
   elif [[ $1 == ".." ]]; then
-    du -h -d 0 ../. ../.[!.]* ../* 2>/dev/null
+    du -hc -d 0 ../.[!.]* ../* 2>/dev/null
   elif [[ -d $1 ]]; then
     dir=${1%/}
-    du -h -d 0 $dir/. $dir/.[!.]* $dir/* 2>/dev/null
+    du -hc -d 0 $dir/.[!.]* $dir/* 2>/dev/null
   else
-    du -h -d 0 $1 2>/dev/null
+    du -hc -d 0 $1 2>/dev/null
   fi
 }
