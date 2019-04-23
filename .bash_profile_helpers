@@ -103,9 +103,14 @@ function ls-a(){
 }
 
 function sizeof(){
-  ls -Flah $1 | awk {'print $5"\t"$9'}
-}
-
-function sizeofs(){
-  ls -FlaSh $1 | awk {'print $5"\t"$9'}
+  if [[ $1 == "." ]] || [[ -z "$1" ]]; then
+    du -h -d 0 ./. ./.[!.]* ./* 2>/dev/null
+  elif [[ $1 == ".." ]]; then
+    du -h -d 0 ../. ../.[!.]* ../* 2>/dev/null
+  elif [[ -d $1 ]]; then
+    dir=${1%/}
+    du -h -d 0 $dir/. $dir/.[!.]* $dir/* 2>/dev/null
+  else
+    du -h -d 0 $1 2>/dev/null
+  fi
 }
