@@ -42,5 +42,6 @@
 	"html.autoClosingTags": false,
 	"workbench.editor.closeEmptyGroups": false,
 	"workbench.editor.enablePreviewFromQuickOpen": false,
-	"workbench.editor.enablePreview": false
+	"workbench.editor.enablePreview": false,
+	"extensions.ignoreRecommendations": true
 }
