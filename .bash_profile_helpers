@@ -34,6 +34,13 @@ function ftext(){
   egrep -i -r -l "$1" ${2:-.}
 }
 
+function djdrop(){
+  rm -rf $1/$2/migrations
+  rm *.sqlite3
+  dj makemigrations $2
+  dj migrate
+}
+
 function figall(){
   filename="figlet.txt"
   figlist=$(figlist | tail -n +4)
