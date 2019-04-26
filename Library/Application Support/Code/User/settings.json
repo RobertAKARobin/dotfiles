@@ -16,9 +16,7 @@
 
 	// Trying to disable most kinds of autosuggest
 	"workbench.tips.enabled": false,
-	"javascript.nameSuggestions": false,
 	"javascript.suggestionActions.enabled": false,
-	"jsDocCompletion.enabled": false,
 	"javascript.format.enable": true,
 	"editor.suggestOnTriggerCharacters": false,
 	"editor.wordBasedSuggestions": false,
@@ -43,5 +41,11 @@
 	"workbench.editor.closeEmptyGroups": false,
 	"workbench.editor.enablePreviewFromQuickOpen": false,
 	"workbench.editor.enablePreview": false,
-	"extensions.ignoreRecommendations": true
+	"extensions.ignoreRecommendations": true,
+
+	// Language-specific
+	"[python]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 4
+	}
 }

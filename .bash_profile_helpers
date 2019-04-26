@@ -39,6 +39,7 @@ function djdrop(){
   rm *.sqlite3
   dj makemigrations $2
   dj migrate
+  dj loaddata $2
 }
 
 function figall(){
