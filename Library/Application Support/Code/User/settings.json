@@ -47,5 +47,9 @@
 	"[python]": {
 		"editor.insertSpaces": true,
 		"editor.tabSize": 4
-	}
+	},
+
+    "files.associations": {
+        "*.djt": "django-html"
+    }
 }
