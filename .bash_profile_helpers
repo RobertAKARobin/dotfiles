@@ -35,11 +35,15 @@ function ftext(){
 }
 
 function djdrop(){
-  rm -rf $1/$2/migrations
+  if [[ -z ${1} ]]; then
+    echo "Need argument"
+    return
+  fi
+  rm -rf migrations/
   rm *.sqlite3
-  dj makemigrations $2
+  dj makemigrations $1
   dj migrate
-  dj loaddata $2
+  dj loaddata fixtures/*
 }
 
 function figall(){
