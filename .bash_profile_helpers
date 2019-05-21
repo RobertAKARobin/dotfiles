@@ -2,6 +2,7 @@
 
 alias gl='git log --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
 alias gla='git log --all --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
+alias gclean='git clean -xfd'
 alias reload='source ~/.bash_profile'
 alias sas="sass --style expanded --watch --sourcemap=none"
 alias jad="jade -Pw"
@@ -34,16 +35,8 @@ function ftext(){
   egrep -i -r -l "$1" ${2:-.}
 }
 
-function djdrop(){
-  if [[ -z ${1} ]]; then
-    echo "Need argument"
-    return
-  fi
-  rm -rf migrations/
-  rm *.sqlite3
-  dj makemigrations $1
-  dj migrate
-  dj loaddata fixtures/*
+function happ(){
+  heroku apps:destroy $1 --confirm $1
 }
 
 function figall(){
