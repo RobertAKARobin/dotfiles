@@ -8,8 +8,10 @@ fi
 export PATH="/usr/local/sbin:$PATH" 
 
 # Git
-export GITHUB_USERNAME='robertakarobin'
-export PS1="\[\e[33m\]  \d \t \w\$(git_branch)"$'\n\[\e[m\]\\$ '
+if [ -z "$BASH_COLOR" ]; then
+  BASH_COLOR="\e[33m"
+fi
+export PS1="\[$BASH_COLOR\]  \d \t \w\$(git_branch)"$'\n\[\e[m\]\\$ '
 
 # Node
 export NVM_DIR="$HOME/.nvm"
