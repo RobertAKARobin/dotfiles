@@ -50,6 +50,7 @@
 	},
 
     "files.associations": {
-        "*.djt": "django-html"
+		"*.djt": "django-html",
+		"*.html": "html"
     }
 }
