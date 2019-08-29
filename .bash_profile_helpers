@@ -90,9 +90,15 @@ function gprev(){
 }
 
 function grc(){
-  git reset --soft HEAD~
+  num_commits=$(git rev-list --count HEAD)
+  message="$(git log -1 --pretty=%B)"
+  if [[ $num_commits == 1 ]]; then
+    git update-ref -d HEAD
+  else
+    git reset --soft HEAD~
+  fi
   git add .
-  git commit -C ORIG_HEAD
+  git commit -m "$message"
 }
 
 function gsearch(){
