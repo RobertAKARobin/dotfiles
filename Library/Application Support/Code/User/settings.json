@@ -49,6 +49,11 @@
 		"editor.tabSize": 4
 	},
 
+	"[ruby]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2
+	},
+
     "files.associations": {
 		"*.djt": "django-html",
 		"*.html": "html"
