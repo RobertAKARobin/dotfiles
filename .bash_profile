@@ -22,7 +22,7 @@ export NVM_DIR="$HOME/.nvm"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
-export PATH="$PATH:/Users/robertthomas/.local/bin"
+export PATH="$PATH:/Users/$(whoami)/.local/bin"
 
 # Ruby
 if command -v rbenv 1>/dev/null 2>&1; then
