@@ -32,7 +32,7 @@ COLOR_WHITE="\033[0;37m"
 COLOR_RESET="\033[0m"
 
 function ftext(){
-  fgrep -i -r -l "$1" ${2:-.} --exclude-dir={node_modules,jspm_packages,.git}
+  fgrep -i -r -l "$1" ${2:-.} --exclude-dir={node_modules,jspm_packages,.git,tmp}
 }
 
 function happ(){
