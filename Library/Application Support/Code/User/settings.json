@@ -3,7 +3,7 @@
 	"editor.fontSize": 11,
 	"editor.wordWrap": "on",
 	"editor.scrollBeyondLastLine": false,
-	"window.zoomLevel": -1,
+	"window.zoomLevel": 0,
 	
 	// Whitespaces
 	"editor.renderWhitespace": "all",
@@ -59,8 +59,19 @@
 		"editor.tabSize": 2
 	},
 
-    "files.associations": {
+	"files.associations": {
 		"*.djt": "django-html",
 		"*.html": "html"
-    }
+	},
+	
+	"eslint.options": {
+		"extensions": [".js", ".vue"]
+	},
+	"eslint.validate": [
+		"javascript",
+		{
+			"language": "vue",
+			"autoFix": false
+		}
+	],
 }
