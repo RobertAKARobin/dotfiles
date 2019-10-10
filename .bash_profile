@@ -28,3 +28,5 @@ export PATH="$PATH:/Users/$(whoami)/.local/bin"
 if command -v rbenv 1>/dev/null 2>&1; then
   eval "$(rbenv init -)"
 fi
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
