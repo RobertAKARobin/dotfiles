@@ -19,6 +19,7 @@ alias gla='git log --all --decorate --graph --pretty=format:"%C(yellow)%h%Creset
 alias gclean='git clean -xfd'
 alias gc='git checkout'
 alias gd='git diff'
+alias gds='git diff --stat'
 alias gr='git reset'
 alias gu='git reset --soft head~ && git status'
 alias gU='git reset --soft head~ && git reset head . && git status'
