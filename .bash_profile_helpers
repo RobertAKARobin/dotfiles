@@ -1,8 +1,4 @@
 #!/bin/bash
-
-alias gl='git log --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
-alias gla='git log --all --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
-alias gclean='git clean -xfd'
 alias reload='source ~/.bash_profile'
 alias sas="sass --style expanded --watch --sourcemap=none"
 alias jad="jade -Pw"
@@ -17,6 +13,21 @@ alias search="sudo grep -nrilS"
 alias json="jq"
 alias ports='lsof -i -P | grep -i "listen"'
 alias dj='pipenv run python manage.py'
+
+alias gl='git log --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
+alias gla='git log --all --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"'
+alias gclean='git clean -xfd'
+alias gc='git checkout'
+alias gd='git diff'
+alias gr='git reset'
+alias gu='git reset --soft head~ && git status'
+alias gU='git reset --soft head~ && git reset head . && git status'
+alias gp='git push -u'
+alias gC='git commit -C ORIG_HEAD'
+alias gM='git commit --amend -m'
+alias gsearch='git rev-list --all | xargs git grep -i'
+alias gnext='git log --reverse --pretty=%H master | grep -A 1 $(git rev-parse HEAD) | tail -n1 | xargs git checkout'
+alias gprev='git checkout HEAD~'
 
 desk="$HOME/Desktop"
 w="$HOME/Programming/web"
@@ -81,14 +92,6 @@ function git_branch(){
   fi
 }
 
-function gnext(){
-  git log --reverse --pretty=%H master | grep -A 1 $(git rev-parse HEAD) | tail -n1 | xargs git checkout
-}
-
-function gprev(){
-  git checkout HEAD~
-}
-
 function grc(){
   num_commits=$(git rev-list --count HEAD)
   message="$(git log -1 --pretty=%B)"
@@ -99,10 +102,6 @@ function grc(){
   fi
   git add .
   git commit -m "$message"
-}
-
-function gsearch(){
-  git rev-list --all | xargs git grep -i $1
 }
 
 function ls-a(){
