@@ -104,7 +104,7 @@ function grc(){
   git commit -m "$message"
 }
 
-function ls-a(){
+function ll(){
   echo ""
   echo "----------"
   ls -AF1 $1
