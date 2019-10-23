@@ -43,8 +43,12 @@ COLOR_BLUE="\033[0;34m"
 COLOR_WHITE="\033[0;37m"
 COLOR_RESET="\033[0m"
 
+IGNORE_DIRS="--exclude-dir={node_modules,jspm_packages,.git,tmp}"
 function ftext(){
-  fgrep -i -r -l "$1" ${2:-.} --exclude-dir={node_modules,jspm_packages,.git,tmp}
+  fgrep -irl "$1" ${2:-.} $IGNORE_DIRS 
+}
+function frx(){
+  fgrep -irl -E "$1" ${2:-.} $IGNORE_DIRS
 }
 
 function happ(){
