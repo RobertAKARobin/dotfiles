@@ -20,12 +20,14 @@ alias gclean='git clean -xfd'
 alias gc='git checkout'
 alias gd='git diff'
 alias gds='git diff --stat'
+alias gm='git commit -m'
+alias gmA='git commit --amend -m'
+alias gmC='git commit -C ORIG_HEAD'
+alias gp='git push -u'
 alias gr='git reset'
+alias gs='git status'
 alias gu='git reset --soft head~ && git status'
 alias gU='git reset --soft head~ && git reset head . && git status'
-alias gp='git push -u'
-alias gC='git commit -C ORIG_HEAD'
-alias gM='git commit --amend -m'
 alias gsearch='git rev-list --all | xargs git grep -i'
 alias gnext='git log --reverse --pretty=%H master | grep -A 1 $(git rev-parse HEAD) | tail -n1 | xargs git checkout'
 alias gprev='git checkout HEAD~'
@@ -46,6 +48,9 @@ COLOR_RESET="\033[0m"
 IGNORE_DIRS="--exclude-dir={node_modules,jspm_packages,.git,tmp}"
 function ftext(){
   fgrep -irl "$1" ${2:-.} $IGNORE_DIRS 
+}
+function fline(){
+  fgrep -ir "$1" ${2:-.} $IGNORE_DIRS
 }
 function frx(){
   fgrep -irl -E "$1" ${2:-.} $IGNORE_DIRS
