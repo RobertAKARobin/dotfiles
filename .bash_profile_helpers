@@ -15,34 +15,46 @@ alias json="jq"
 alias ports='lsof -i -P | grep -i "listen"'
 
 function g(){
-  abbv=$1
+  local abbv=$1
+  local c=()
   shift
   case "$abbv" in
     a)  c=(add);;
     c)  c=(checkout);;
     d)  c=(diff);;
+    dg) c=(diff --staged);;
     ds) c=(diff --stat);;
-    # Search for a string
-    f)  git rev-list --all | xargs git grep -i;;
+    f)  c=(fetch);;
     l)  c=(log       --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
     la) c=(log --all --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
-    m)  c=(commit -m);;
+    m)  c=(commit);;
+    mm) c=(commit -m);;
     mA) c=(commit --amend -m);;
     mC) git commit -C ORIG_HEAD;;
     p)  c=(push -u);;
     r)  c=(reset);;
+    rc)
+        git reset --soft head~
+        git add .
+        git commit -c ORIG_HEAD
+        ;;
     s)  c=(status);;
-    u)  git reset --soft head~ && git status;;
-    U)  git reset --soft head~ && git reset head . && git status;;
+    u)
+        git reset --soft head~
+        git status
+        ;;
+    U)
+        git reset --soft head~
+        git reset head .
+        git status
+        ;;
     x)  c=(clean -fd);;
     # Clean everything including ignored files
     X)  c=(clean -xfd);;
     # Go to next commit
-    ++) git log --reverse --pretty=%H master | grep -A 1 $(git rev-parse HEAD) | tail -n1 | xargs git checkout;;
+    ++) git log --all --reverse --pretty=%H | grep -A 1 $(git rev-parse HEAD) | tail -n1 | xargs git checkout;;
     # Go to previous commit
     --) git checkout HEAD~;;
-    # Default
-    *)  c=();;
   esac
   if [[ ! -z $c ]]; then
     git "${c[@]}" "$@"
