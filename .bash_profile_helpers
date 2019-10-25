@@ -25,12 +25,17 @@ function g(){
     dg) c=(diff --staged);;
     ds) c=(diff --stat);;
     f)  c=(fetch);;
+    fn)
+        git rev-list --all | xargs git grep -i "$@"
+        ;;
     l)  c=(log       --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
     la) c=(log --all --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
     m)  c=(commit);;
     mm) c=(commit -m);;
     mA) c=(commit --amend -m);;
-    mC) git commit -C ORIG_HEAD;;
+    mC)
+        git commit -C ORIG_HEAD
+        ;;
     p)  c=(push -u);;
     r)  c=(reset);;
     rc)
@@ -52,9 +57,13 @@ function g(){
     # Clean everything including ignored files
     X)  c=(clean -xfd);;
     # Go to next commit
-    ++) git log --all --reverse --pretty=%H | grep -A 1 $(git rev-parse HEAD) | tail -n1 | xargs git checkout;;
+    ++)
+        git log --all --reverse --pretty=%H | grep -A 1 $(git rev-parse HEAD) | tail -n1 | xargs git checkout
+        ;;
     # Go to previous commit
-    --) git checkout HEAD~;;
+    --)
+        git checkout HEAD~
+        ;;
   esac
   if [[ ! -z $c ]]; then
     git "${c[@]}" "$@"
