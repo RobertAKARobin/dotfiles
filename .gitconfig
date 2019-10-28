@@ -25,3 +25,5 @@
 [mergetool]
 	prompt = false
 	keepBackup = false
+[difftool]
+	prompt = true
