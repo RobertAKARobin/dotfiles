@@ -44,6 +44,24 @@ function g(){
         git commit -c ORIG_HEAD
         ;;
     s)  c=(status);;
+    t) 
+        if [[ -z $1 ]]; then
+          c=(diff HEAD~$2..HEAD)
+        else
+          c=(diff $1~$2..$1)
+        fi
+        shift
+        shift
+        ;;
+    ts) 
+        if [[ -z $1 ]]; then
+          c=(diff --stat HEAD~$2..HEAD)
+        else
+          c=(diff --stat $1~$2..$1)
+        fi
+        shift
+        shift
+        ;;
     u)
         git reset --soft head~
         git status
@@ -67,6 +85,8 @@ function g(){
   esac
   if [[ ! -z $c ]]; then
     git "${c[@]}" "$@"
+  else
+    git $abbv "$@"
   fi
 }
 
