@@ -80,6 +80,7 @@ function g(){
         git reset head .
         git status
         ;;
+    v)  c=(show $1:./$2);;
     x)  c=(clean -fd);;
     # Clean everything including ignored files
     X)  c=(clean -xfd);;
