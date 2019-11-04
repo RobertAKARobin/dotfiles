@@ -50,7 +50,7 @@ function g(){
     rc)
         git reset --soft head~
         git add .
-        git commit -c ORIG_HEAD
+        git commit -C ORIG_HEAD
         ;;
     s)  c=(status);;
     t) 
