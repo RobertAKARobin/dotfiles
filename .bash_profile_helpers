@@ -14,6 +14,19 @@ alias search="sudo grep -nrilS"
 alias json="jq"
 alias ports='lsof -i -P | grep -i "listen"'
 
+desk="$HOME/Desktop"
+w="$HOME/Programming/web"
+games='/usr/share/emacs/22.1/lisp/play/'
+useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
+
+COLOR_RED="\033]0;31m"
+COLOR_YELLOW="\033[0;33m"
+COLOR_GREEN="\033[0;32m"
+COLOR_OCHRE="\033[38;5;95m"
+COLOR_BLUE="\033[0;34m"
+COLOR_WHITE="\033[0;37m"
+COLOR_RESET="\033[0m"
+
 function targz(){
   local dir=$(dirname "$1")
   local base=$(basename "$1")
@@ -54,11 +67,11 @@ function g(){
         ;;
     s)  c=(status);;
     t) 
-        if [[ -z $1 ]]; then
-          c=(diff HEAD~$2..HEAD)
-        else
-          c=(diff $1~$2..$1)
+        local base="$1"
+        if [[ -z $base ]]; then
+          base="HEAD"
         fi
+        c=(diff $base~$2..$base)
         shift
         shift
         ;;
@@ -94,24 +107,13 @@ function g(){
         ;;
   esac
   if [[ ! -z $c ]]; then
+    echo ">>> git $c $@"
     git "${c[@]}" "$@"
-  else
+  elif [[ ! -z $abbv ]]; then
+    echo ">>> git $abbv $@"
     git $abbv "$@"
   fi
 }
-
-desk="$HOME/Desktop"
-w="$HOME/Programming/web"
-games='/usr/share/emacs/22.1/lisp/play/'
-useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
-
-COLOR_RED="\033]0;31m"
-COLOR_YELLOW="\033[0;33m"
-COLOR_GREEN="\033[0;32m"
-COLOR_OCHRE="\033[38;5;95m"
-COLOR_BLUE="\033[0;34m"
-COLOR_WHITE="\033[0;37m"
-COLOR_RESET="\033[0m"
 
 IGNORE_DIRS="--exclude-dir={node_modules,jspm_packages,.git,tmp}"
 function ftext(){
