@@ -61,7 +61,13 @@ function g(){
     p)  c=(push -u);;
     r)  c=(reset);;
     rc)
-        git reset --soft head~
+        local num_commits=$(git rev-list --count HEAD)
+        local message="$(git log -1 --pretty=%B)"
+        if [[ $num_commits == 1 ]]; then
+          git update-ref -d HEAD
+        else
+          git reset --soft HEAD~
+        fi
         git add .
         git commit -C ORIG_HEAD
         ;;
@@ -170,18 +176,6 @@ function git_branch(){
   if [[ $git_status =~ $on_branch ]] || [[ $git_status =~ $on_commit ]]; then
     echo " (${BASH_REMATCH[1]}$unstaged_char$staged_char)"
   fi
-}
-
-function grc(){
-  num_commits=$(git rev-list --count HEAD)
-  message="$(git log -1 --pretty=%B)"
-  if [[ $num_commits == 1 ]]; then
-    git update-ref -d HEAD
-  else
-    git reset --soft HEAD~
-  fi
-  git add .
-  git commit -m "$message"
 }
 
 function ll(){
