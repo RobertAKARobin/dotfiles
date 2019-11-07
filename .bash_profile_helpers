@@ -121,9 +121,9 @@ function g(){
   fi
 }
 
-IGNORE_DIRS="--exclude-dir={node_modules,jspm_packages,.git,tmp}"
+IGNORE_DIRS="--exclude-dir=node_modules --exclude-dir=jspm_packages --exclude-dir=.git --exclude-dir=tmp"
 function ftext(){
-  fgrep -irl "$1" ${2:-.} $IGNORE_DIRS 
+  fgrep -irl "$1" ${2:-.} $IGNORE_DIRS
 }
 function fline(){
   fgrep -ir "$1" ${2:-.} $IGNORE_DIRS
