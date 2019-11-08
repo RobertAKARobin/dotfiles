@@ -42,6 +42,7 @@ function g(){
   shift
   case "$abbv" in
     a)  c=(add);;
+    b)  c=(branch);;
     c)  c=(checkout);;
     d)  c=(diff);;
     dg) c=(diff --staged);;
@@ -49,6 +50,7 @@ function g(){
     f)  c=(fetch);;
     fn)
         git rev-list --all | xargs git grep -i "$@"
+        return
         ;;
     l)  c=(log       --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
     la) c=(log --all --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
@@ -56,14 +58,11 @@ function g(){
     mm) c=(commit -m);;
     mA) c=(commit --amend -m);;
     mC) c=(commit -C ORIG_HEAD);;
-    p)  
-        local upstream=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null)
-        if [[ -z $upstream ]]; then
-          local branch=$(git rev-parse --abbrev-ref HEAD)
-          c=(push -u origin $branch)
-        else
-          c=(push)
-        fi
+    p)  c=(push);;
+    pD) c=(push --delete origin);;
+    pu)
+        local branch=$(git rev-parse --abbrev-ref HEAD)
+        c=(push -u origin $branch)
         ;;
     r)  c=(reset);;
     rc)
@@ -112,19 +111,17 @@ function g(){
     # Go to next commit
     ++)
         git log --all --reverse --pretty=%H | grep -A 1 $(git rev-parse HEAD) | tail -n1 | xargs git checkout
+        return
         ;;
     # Go to previous commit
-    --)
-        c=(checkout HEAD~)
-        ;;
+    --) c=(checkout HEAD~);;
   esac
-  if [[ ! -z $c ]]; then
-    echo ">>> git $c $@"
-    git "${c[@]}" "$@"
-  elif [[ ! -z $abbv ]]; then
-    echo ">>> git $abbv $@"
-    git $abbv "$@"
+  
+  if [[ -z $c ]]; then
+    c=$abbv
   fi
+  echo ">>> git ${c[@]} $@"
+  git "${c[@]}" "$@"
 }
 
 IGNORE_DIRS="--exclude-dir=node_modules --exclude-dir=jspm_packages --exclude-dir=.git --exclude-dir=tmp"
