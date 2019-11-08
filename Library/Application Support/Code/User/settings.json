@@ -9,6 +9,7 @@
 	"editor.renderWhitespace": "all",
 	"editor.insertSpaces": false,
 	"editor.detectIndentation": true,
+	"files.insertFinalNewline": true,
 
 	// VSC-specific stuff
 	"editor.minimap.enabled": false,
@@ -44,6 +45,11 @@
 	"extensions.ignoreRecommendations": true,
 
 	// Language-specific
+	"[javascript]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 4
+	},
+
 	"[python]": {
 		"editor.insertSpaces": true,
 		"editor.tabSize": 4
