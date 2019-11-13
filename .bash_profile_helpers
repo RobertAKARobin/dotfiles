@@ -134,6 +134,16 @@ function fline(){
 function frx(){
   fgrep -irl -E "$1" ${2:-.} $IGNORE_DIRS
 }
+function ffile(){
+  local path=$1
+  local pattern=$2
+  if [[ -z $pattern ]]; then
+    path="."
+    pattern=$1
+  fi
+  echo ">>> find $path -name $pattern"
+  find "$path" -name "$pattern"
+}
 
 function happ(){
   heroku apps:destroy $1 --confirm $1
