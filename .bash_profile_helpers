@@ -52,8 +52,8 @@ function g(){
         git rev-list --all | xargs git grep -i "$@"
         return
         ;;
-    l)  c=(log       --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
-    la) c=(log --all --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
+    l)  c=(log       --follow --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
+    la) c=(log --all --follow --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
     m)  c=(commit);;
     mm) c=(commit -m);;
     mA) c=(commit --amend -m);;
