@@ -99,6 +99,7 @@ function g(){
         git reset head .
         c=(status)
         ;;
+    uH) c=(reset --hard head~$1);;
     sh) c=(show $1:./$2);;
     x)  c=(clean -fd);;
     # Clean everything including ignored files
