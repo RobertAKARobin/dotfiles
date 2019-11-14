@@ -47,13 +47,26 @@ function g(){
     d)  c=(diff);;
     dg) c=(diff --staged);;
     ds) c=(diff --stat);;
+    dt) # diff (be)tween
+        c=(diff $1~$2..$1)
+        shift
+        shift
+        ;;
+    dts)
+        c=(diff --stat $1~$2..$1)
+        shift
+        shift
+        ;;
     f)  c=(fetch);;
     fn)
         git rev-list --all | xargs git grep -i "$@"
         return
         ;;
-    l)  c=(log       --follow --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
-    la) c=(log --all --follow --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
+    l)  c=(log --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
+    lf) g l --follow $@; return;;
+    la) g l --all $@; return;;
+    laf)
+        g l --all --follow $2; return;;
     m)  c=(commit);;
     mm) c=(commit -m);;
     mA) c=(commit --amend -m);;
@@ -77,25 +90,7 @@ function g(){
         c=(commit -C ORIG_HEAD)
         ;;
     s)  c=(status);;
-    t) 
-        local base="$1"
-        if [[ -z $base ]]; then
-          base="HEAD"
-        fi
-        c=(diff $base~$2..$base)
-        shift
-        shift
-        ;;
-    ts) 
-        if [[ -z $1 ]]; then
-          c=(diff --stat HEAD~$2..HEAD)
-        else
-          c=(diff --stat $1~$2..$1)
-        fi
-        shift
-        shift
-        ;;
-    u)
+    u)  # undo
         git reset --soft head~
         c=(status)
         ;;
@@ -104,7 +99,7 @@ function g(){
         git reset head .
         c=(status)
         ;;
-    v)  c=(show $1:./$2);;
+    sh) c=(show $1:./$2);;
     x)  c=(clean -fd);;
     # Clean everything including ignored files
     X)  c=(clean -xfd);;
