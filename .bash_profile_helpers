@@ -123,17 +123,21 @@ function g(){
 
 IGNORE_DIRS="--exclude-dir=node_modules --exclude-dir=jspm_packages --exclude-dir=.git --exclude-dir=tmp"
 function ftext(){
+  # Search for a substring ($1) in a file tree ($2) and output the file names
   fgrep -irl "$1" ${2:-.} $IGNORE_DIRS
 }
 function fline(){
+  # Search for a substring ($1) in a file tree ($2) and output the lines on which it appears
   fgrep -ir "$1" ${2:-.} $IGNORE_DIRS
 }
 function frx(){
+  # Search for a RegEx ($1) in a file tree ($2) and output the file names
   fgrep -irl -E "$1" ${2:-.} $IGNORE_DIRS
 }
 function ffile(){
-  local path=$1
-  local pattern=$2
+  # Search for a filename matching a RegEx ($1) within a file tree ($2) and output the filename
+  local pattern=$1
+  local path=$2
   if [[ -z $pattern ]]; then
     path="."
     pattern=$1
