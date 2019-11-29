@@ -68,6 +68,7 @@ function g(){
     la) g l --all $@; return;;
     laf)
         g l --all --follow $2; return;;
+    lc) c=(diff --name-only --diff-filter=U);; # List conflicted files
     m)  c=(commit);;
     mm) c=(commit -m);;
     mA) c=(commit --amend -m);;
@@ -100,7 +101,7 @@ function g(){
         git reset head .
         c=(status)
         ;;
-    uH) c=(reset --hard head~$1);;
+    UH) c=(reset --hard head~$1);;
     sh) c=(show $1:./$2);;
     x)  c=(clean -fd);;
     # Clean everything including ignored files
