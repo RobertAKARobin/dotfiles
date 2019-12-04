@@ -102,7 +102,10 @@ function g(){
         c=(status)
         ;;
     UH) c=(reset --hard head~$1);;
-    sh) c=(show $1:./$2);;
+    sh) c=(show $1:./$2)
+        shift
+        shift
+        ;;
     x)  c=(clean -fd);;
     # Clean everything including ignored files
     X)  c=(clean -xfd);;
