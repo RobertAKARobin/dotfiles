@@ -80,4 +80,5 @@
 			"autoFix": false
 		}
 	],
+	"typescript.updateImportsOnFileMove.enabled": "always",
 }
