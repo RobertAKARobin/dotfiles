@@ -80,6 +80,7 @@
 			"autoFix": false
 		}
 	],
+	"javascript.implicitProjectConfig.experimentalDecorators": true,
 	"typescript.updateImportsOnFileMove.enabled": "always",
 	"explorer.compactFolders": false,
 }
