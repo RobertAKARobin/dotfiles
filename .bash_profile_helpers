@@ -142,9 +142,8 @@ function ffile(){
   # Search for a filename matching a RegEx ($1) within a file tree ($2) and output the filename
   local pattern=$1
   local path=$2
-  if [[ -z $pattern ]]; then
+  if [[ -z $path ]]; then
     path="."
-    pattern=$1
   fi
   echo ">>> find $path -name $pattern"
   find "$path" -name "$pattern"
