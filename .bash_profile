@@ -29,4 +29,6 @@ if command -v rbenv 1>/dev/null 2>&1; then
   eval "$(rbenv init -)"
 fi
 
+source ~/Library/Preferences/org.dystroy.broot/launcher/bash/br
+
 export BASH_SILENCE_DEPRECATION_WARNING=1
