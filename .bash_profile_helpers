@@ -44,6 +44,12 @@ function g(){
     a)  c=(add);;
     b)  c=(branch);;
     c)  c=(checkout);;
+    ca)
+        local branch
+        local branches=$(git branch -a --format "%(refname:lstrip=2)")
+        select_from "$branches" branch
+        c=(checkout $branch)
+        ;;
     cp) c=(cherry-pick);;
     d)  c=(diff);;
     dg) c=(diff --staged);;
@@ -218,4 +224,20 @@ function sizeof(){
 
 function sizeofs(){
   sizeof $1 | sort -h
+}
+
+function select_from(){
+  local options=($1)
+  local varname=$2
+  local index
+  local selection
+  for index in "${!options[@]}"; do
+    echo -e "$index\t${options[index]}"
+  done
+  read -n 2 index
+  if [[ $index == "q" ]]; then
+    return
+  fi
+  selection="${options[$index]}"
+  eval $varname="$selection"
 }
