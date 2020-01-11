@@ -30,5 +30,6 @@ if command -v rbenv 1>/dev/null 2>&1; then
 fi
 
 source ~/Library/Preferences/org.dystroy.broot/launcher/bash/br
+export MACPREFS_BACKUP_DIR="$HOME/Google Drive/Backup/Macprefs"
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
