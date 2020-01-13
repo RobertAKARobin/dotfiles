@@ -29,7 +29,8 @@ if command -v rbenv 1>/dev/null 2>&1; then
   eval "$(rbenv init -)"
 fi
 
-source ~/Library/Preferences/org.dystroy.broot/launcher/bash/br
 export MACPREFS_BACKUP_DIR="$HOME/Google Drive/Backup/Macprefs"
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
+
+source "$HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br"
