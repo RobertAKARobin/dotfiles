@@ -43,6 +43,10 @@ function g(){
   case "$abbv" in
     a)  c=(add);;
     b)  c=(branch);;
+    bDD) # Delete all local branches except the current one 
+        git branch | grep -v \* | xargs git branch -D
+        c=(branch)
+        ;;
     c)  c=(checkout);;
     ca)
         local branch
