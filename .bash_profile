@@ -33,4 +33,4 @@ export MACPREFS_BACKUP_DIR="$HOME/Google Drive/Backup/Macprefs"
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-source "$HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br"
+# source "$HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br"
