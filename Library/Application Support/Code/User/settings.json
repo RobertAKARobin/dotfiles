@@ -75,10 +75,7 @@
 	},
 	"eslint.validate": [
 		"javascript",
-		{
-			"language": "vue",
-			"autoFix": false
-		}
+		"typescript",
 	],
 	"javascript.implicitProjectConfig.experimentalDecorators": true,
 	"typescript.updateImportsOnFileMove.enabled": "always",
