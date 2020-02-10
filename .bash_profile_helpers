@@ -103,15 +103,19 @@ function g(){
         ;;
     s)  c=(status);;
     u)  # undo
-        git reset --soft head~
+        git reset --soft head~$1
+        shift
         c=(status)
         ;;
     U)
-        git reset --soft head~
+        git reset --soft head~$1
+        shift
         git reset head .
         c=(status)
         ;;
-    UH) c=(reset --hard head~$1);;
+    UH) c=(reset --hard head~$1)
+        shift
+        ;;
     sh) c=(show $1:./$2)
         shift
         shift
