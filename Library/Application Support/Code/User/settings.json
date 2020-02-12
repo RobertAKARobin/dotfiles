@@ -19,7 +19,7 @@
 	"workbench.tips.enabled": false,
 	"javascript.suggestionActions.enabled": false,
 	"javascript.format.enable": true,
-	"editor.suggestOnTriggerCharacters": false,
+	"editor.suggestOnTriggerCharacters": true,
 	"editor.wordBasedSuggestions": false,
 	"editor.quickSuggestions": {
 		"other": false,
@@ -67,7 +67,8 @@
 
 	"files.associations": {
 		"*.djt": "django-html",
-		"*.html": "html"
+		"*.html": "html",
+		"*.ejs": "html"
 	},
 	
 	"eslint.options": {
