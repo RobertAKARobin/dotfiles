@@ -7,7 +7,7 @@
 	
 	// Whitespaces
 	"editor.renderWhitespace": "all",
-	"editor.insertSpaces": false,
+	"editor.insertSpaces": true,
 	"editor.detectIndentation": true,
 	"files.insertFinalNewline": true,
 
@@ -26,8 +26,7 @@
 		"comments": false,
 		"strings": false
 	},
-	"editor.parameterHints.enabled": false,
-	"javascript.updateImportsOnFileMove.enabled": "never",
+  "editor.parameterHints.enabled": false,
 	"explorer.confirmDragAndDrop": false,
 
 	// Files to exclude
@@ -65,6 +64,11 @@
 		"editor.tabSize": 2
 	},
 
+	"[scss]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2
+	},
+
 	"files.associations": {
 		"*.djt": "django-html",
 		"*.html": "html",
@@ -78,8 +82,7 @@
 		"javascript",
 		"typescript",
 	],
-	"javascript.implicitProjectConfig.experimentalDecorators": true,
-	"typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.implicitProjectConfig.experimentalDecorators": true,
 	"explorer.compactFolders": false,
 	"html.mirrorCursorOnMatchingTag": false,
 	"[json]": {
@@ -88,4 +91,8 @@
 	"[jsonc]": {
 		"editor.defaultFormatter": "vscode.json-language-features"
 	},
+	"beautify.options": {
+		"indent_level": 2,
+		"indent_with_tabs": false
+	}
 }

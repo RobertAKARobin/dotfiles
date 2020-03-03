@@ -34,3 +34,9 @@ export MACPREFS_BACKUP_DIR="$HOME/Google Drive/Backup/Macprefs"
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # source "$HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/rothomas/google-cloud-sdk/path.bash.inc' ]; then . '/Users/rothomas/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/rothomas/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/rothomas/google-cloud-sdk/completion.bash.inc'; fi
