@@ -23,6 +23,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 export PATH="$PATH:/Users/$(whoami)/.local/bin"
+export CLOUDSDK_PYTHON=/Users/$(whoami)/.pyenv/shims/python
 
 # Ruby
 if command -v rbenv 1>/dev/null 2>&1; then
