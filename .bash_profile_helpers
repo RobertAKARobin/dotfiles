@@ -55,6 +55,12 @@ function g(){
         c=(checkout $branch)
         ;;
     cp) c=(cherry-pick);;
+    cpb)
+        local branch=$1
+        local sha=$(git merge-base HEAD $branch)
+        c=(cherry-pick $sha..$branch)
+        shift
+        ;;
     d)  c=(diff);;
     dg) c=(diff --staged);;
     ds) c=(diff --stat);;
