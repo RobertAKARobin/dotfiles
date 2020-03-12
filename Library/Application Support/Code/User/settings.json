@@ -94,5 +94,18 @@
 	"beautify.options": {
 		"indent_level": 2,
 		"indent_with_tabs": false
-	}
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "htmlhint.options": {
+    "tagname-lowercase": true,
+    "attr-lowercase": false,
+    "attr-value-double-quotes": true,
+    "doctype-first": false,
+    "tag-pair": true,
+    "spec-char-escape": true,
+    "id-unique": true,
+    "src-not-empty": true,
+    "attr-no-duplication": true,
+    "title-require": true
+  }
 }
