@@ -145,19 +145,29 @@ function g(){
   git "${c[@]}" "$@"
 }
 
-IGNORE_DIRS="--exclude-dir=node_modules --exclude-dir=jspm_packages --exclude-dir=.git --exclude-dir=tmp"
-function ftext(){
-  # Search for a substring ($1) in a file tree ($2) and output the file names
-  fgrep -irl "$1" ${2:-.} $IGNORE_DIRS "$@"
+function f() {
+  local dowhat=$1; shift
+  local substring=$1; shift
+  local include=$1; shift
+
+  local ignore_dirs="--exclude-dir=node_modules --exclude-dir=jspm_packages --exclude-dir=.git --exclude-dir=tmp"
+
+  local c=()
+  case "$dowhat" in
+    tx) c=(fgrep -irl "$substring" . --include="./$include*" $ignore_dirs);;
+    ln) c=(fgrep -ir "$substring" . --include="./$include*" $ignore_dirs);;
+    rx) c=(fgrep -irl -E "$substring" . $include $ignore_dirs);;
+  esac
+
+  if [[ -z $c ]]; then
+    echo "$dowhat isn't a thing."
+    return
+  fi
+
+  echo ">>> ${c[@]}"
+  ${c[@]}
 }
-function fline(){
-  # Search for a substring ($1) in a file tree ($2) and output the lines on which it appears
-  fgrep -ir "$1" ${2:-.} $IGNORE_DIRS "$@"
-}
-function frx(){
-  # Search for a RegEx ($1) in a file tree ($2) and output the file names
-  fgrep -irl -E "$1" ${2:-.} $IGNORE_DIRS "$@"
-}
+
 function ffile(){
   # Search for a filename matching a RegEx ($1) within a file tree ($2) and output the filename
   local pattern=$1
