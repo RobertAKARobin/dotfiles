@@ -63,9 +63,17 @@ function g(){
         ;;
     d)  c=(diff);;
     dg) c=(diff --staged);;
+    dnew) # Diff from my last commit
+        local branch=$(git rev-parse --abbrev-ref HEAD)
+        local author=$(git config user.name)
+        local hash=$(git log --author=$author -1 --pretty=%h)
+        c=(diff $hash..HEAD)
+        ;;
     ds) c=(diff --stat);;
-    dt) # diff (be)tween
-        c=(diff $1~$2..$1)
+    dt) # diff be(t)ween
+        local hash=$1
+        local num_commits=$2
+        c=(diff $hash~$num_commits..$hash)
         shift
         shift
         ;;
@@ -78,6 +86,13 @@ function g(){
     fn)
         git rev-list --all | xargs git grep -i "$@"
         return
+        ;;
+    h)
+        remote=${1:-origin}
+        gitpfx='git@github.com:'
+        urlpfx='https://www.github.com/'
+        url=$(git remote get-url $remote | sed "s~$gitpfx~$urlpfx~" | sed "s~\.git\$~~")
+        chrome $url
         ;;
     l)  c=(log --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
     lf) g l --follow $@; return;;
@@ -131,7 +146,7 @@ function g(){
     X)  c=(clean -xfd);;
     # Go to next commit
     ++)
-        git log --all --reverse --pretty=%H | grep -A 1 $(git rev-parse HEAD) | tail -n1 | xargs git checkout
+        git log --reverse --pretty=%H | grep -A 1 $(git rev-parse HEAD) | tail -n1 | xargs git checkout
         return
         ;;
     # Go to previous commit
@@ -196,14 +211,6 @@ function figall(){
     output="$output$(figlet -f $font $1)${nl}${nl}"
   done <<< "$figlist"
   echo "$output" > $filename
-}
-
-function gh(){
-  remote=${1:-origin}
-  gitpfx='git@github.com:'
-  urlpfx='https://www.github.com/'
-  url=$(git remote get-url $remote | sed "s~$gitpfx~$urlpfx~" | sed "s~\.git\$~~")
-  chrome $url
 }
 
 function git_branch(){
