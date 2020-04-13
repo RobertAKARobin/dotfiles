@@ -167,11 +167,11 @@ function f() {
 
   local ignore_dirs="--exclude-dir=node_modules --exclude-dir=jspm_packages --exclude-dir=.git --exclude-dir=tmp"
 
-  local c=()
+  local c=""
   case "$dowhat" in
-    tx) c=(fgrep -irl "$substring" . --include="./$include*" $ignore_dirs);;
-    ln) c=(fgrep -ir "$substring" . --include="./$include*" $ignore_dirs);;
-    rx) c=(fgrep -irl -E "$substring" . $include $ignore_dirs);;
+    tx) c="fgrep -irl \"$substring\" . --include="./$include*" $ignore_dirs";;
+    ln) c="fgrep -ir \"$substring\" . --include="./$include*" $ignore_dirs";;
+    rx) c="fgrep -irl -E \"$substring\" . $include $ignore_dirs";;
   esac
 
   if [[ -z $c ]]; then
@@ -179,8 +179,8 @@ function f() {
     return
   fi
 
-  echo ">>> ${c[@]}"
-  ${c[@]}
+  echo ">>> $c"
+  bash -c "$c"
 }
 
 function ffile(){
