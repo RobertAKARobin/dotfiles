@@ -95,6 +95,10 @@ function g(){
         chrome $url
         ;;
     l)  c=(log --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
+    lme)
+        local author=$(git config user.name)
+        g l --author=$author
+        return;;
     lf) g l --follow $@; return;;
     la) g l --all $@; return;;
     laf)
