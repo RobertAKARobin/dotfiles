@@ -44,3 +44,7 @@ if [ -f '/Users/rothomas/google-cloud-sdk/path.bash.inc' ]; then . '/Users/rotho
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/rothomas/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/rothomas/google-cloud-sdk/completion.bash.inc'; fi
+
+# MacPorts
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+
