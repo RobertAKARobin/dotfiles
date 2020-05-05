@@ -15,7 +15,7 @@ alias json="jq"
 alias ports='lsof -i -P | grep -i "listen"'
 
 desk="$HOME/Desktop"
-w="$HOME/Programming/web"
+export w="$HOME/Programming/web"
 games='/usr/share/emacs/22.1/lisp/play/'
 useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
 
@@ -38,6 +38,7 @@ function targz(){
 
 function g(){
   local abbv=$1
+  local current_branch=$(git rev-parse --abbrev-ref HEAD)
   local c=()
   shift
   case "$abbv" in
@@ -64,7 +65,6 @@ function g(){
     d)  c=(diff);;
     dg) c=(diff --staged);;
     dnew) # Diff from my last commit
-        local branch=$(git rev-parse --abbrev-ref HEAD)
         local author=$(git config user.name)
         local hash=$(git log --author=$author -1 --pretty=%h)
         c=(diff $hash..HEAD)
@@ -109,11 +109,15 @@ function g(){
     mA) c=(commit --amend -m);;
     mC) c=(commit -C ORIG_HEAD);;
     p)  c=(push);;
-    pD) c=(push --delete origin);;
-    pu)
-        local branch=$(git rev-parse --abbrev-ref HEAD)
-        c=(push -u origin $branch)
+    pD) 
+        local branch=$1
+        shift
+        if [ -z $branch ]; then
+          local branch=$current_branch
+        fi
+        c=(push --delete origin $branch)
         ;;
+    pu) c=(push -u origin $current_branch);;
     r)  c=(reset);;
     rc)
         local num_commits=$(git rev-list --count HEAD)
