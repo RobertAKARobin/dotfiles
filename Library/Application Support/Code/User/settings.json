@@ -10,6 +10,7 @@
 	"editor.insertSpaces": true,
 	"editor.detectIndentation": true,
 	"files.insertFinalNewline": true,
+	"editor.trimAutoWhitespace": true,
 
 	// VSC-specific stuff
 	"editor.minimap.enabled": false,

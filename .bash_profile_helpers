@@ -169,17 +169,24 @@ function g(){
 }
 
 function f() {
-  local dowhat=$1; shift
-  local substring=$1; shift
-  local include=$1; shift
+  local dowhat=$1
+  local substring=$2
+  local include=$3
 
-  local ignore_dirs="--exclude-dir=node_modules --exclude-dir=jspm_packages --exclude-dir=.git --exclude-dir=tmp"
+  local ignore_dirs=(node_modules jspm_packages .git tmp)
+  local exclude_dirs=$(wrap "--exclude-dir=% " ${ignore_dirs[@]})
+  local find_path=$include
+
+  if [[ -z $find_path ]]; then
+    local find_path="."
+  fi
 
   local c=""
   case "$dowhat" in
-    tx) c="fgrep -irl \"$substring\" . --include="./$include*" $ignore_dirs";;
-    ln) c="fgrep -ir \"$substring\" . --include="./$include*" $ignore_dirs";;
-    rx) c="fgrep -irl -E \"$substring\" . $include $ignore_dirs";;
+    tx) c="fgrep -irl \"$substring\" . --include="./$include*" $exclude_dirs";;
+    ln) c="fgrep -ir \"$substring\" . --include="./$include*" $exclude_dirs";;
+    rx) c="fgrep -irl -E \"$substring\" . $include $exclude_dirs";;
+    fi) c="find $find_path -name $substring -print -o $(wrap "-path ./% -prune -o " ${ignore_dirs[@]}) -type f"
   esac
 
   if [[ -z $c ]]; then
@@ -189,17 +196,6 @@ function f() {
 
   echo ">>> $c"
   bash -c "$c"
-}
-
-function ffile(){
-  # Search for a filename matching a RegEx ($1) within a file tree ($2) and output the filename
-  local pattern=$1
-  local path=$2
-  if [[ -z $path ]]; then
-    path="."
-  fi
-  echo ">>> find $path -name $pattern"
-  find "$path" -name "$pattern"
 }
 
 function happ(){
@@ -279,4 +275,14 @@ function select_from(){
   fi
   selection="${options[$index]}"
   eval $varname="$selection"
+}
+
+function wrap() {
+  local wrapper=$1
+  shift
+  local output=""
+  for item in "$@"; do
+    output="$output${wrapper//%/$item}"
+  done
+  echo $output
 }
