@@ -64,6 +64,8 @@ function g(){
         ;;
     d)  c=(diff);;
     dg) c=(diff --staged);;
+    dgs)
+        c=(diff --staged --stat);;
     dnew) # Diff from my last commit
         local author=$(git config user.name)
         local hash=$(git log --author=$author -1 --pretty=%h)
@@ -106,6 +108,7 @@ function g(){
     lc) c=(diff --name-only --diff-filter=U);; # List conflicted files
     m)  c=(commit);;
     mm) c=(commit -m);;
+    ma) c=(commit --amend);;
     mA) c=(commit --amend -m);;
     mC) c=(commit -C ORIG_HEAD);;
     p)  c=(push);;
