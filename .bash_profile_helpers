@@ -27,6 +27,18 @@ COLOR_BLUE="\033[0;34m"
 COLOR_WHITE="\033[0;37m"
 COLOR_RESET="\033[0m"
 
+function b64() {
+  if [[ -n $2 ]]; then
+    local flags=$1
+    shift
+  fi
+  local string=$1
+  c="echo -n \$(echo -n "$string" | base64 $flags) | pbcopy"
+  echo ">>> $c"
+  bash -c "$c"
+  echo $(pbpaste)
+}
+
 function f() {
   local dowhat=$1
   local substring=$2
