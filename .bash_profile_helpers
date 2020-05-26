@@ -1,31 +1,22 @@
 #!/bin/bash
 
-alias reload='source ~/.bash_profile'
-alias sas="sass --style expanded --watch --sourcemap=none"
+alias bfg="java -jar ~/bfg.jar" # clears stuff from Git history, https://rtyley.github.io/bfg-repo-cleaner/
+alias chrome="open -a 'Google Chrome.app'"
+alias dnsrefresh="sudo killall -HUP mDNSResponder"
 alias jad="jade -Pw"
 alias jek="jekyll serve -w"
-alias dnsrefresh="sudo killall -HUP mDNSResponder"
-alias math="bc -l"
-# BFG clears stuff from Git history
-# https://rtyley.github.io/bfg-repo-cleaner/
-alias bfg="java -jar ~/bfg.jar"
-alias chrome="open -a 'Google Chrome.app'"
-alias search="sudo grep -nrilS"
 alias json="jq"
+alias math="bc -l"
 alias ports='lsof -i -P | grep -i "listen"'
+alias reload='source ~/.bash_profile'
+alias sas="sass --style expanded --watch --sourcemap=none"
+alias search="sudo grep -nrilS"
 
-desk="$HOME/Desktop"
+export desk="$HOME/Desktop"
+export useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
 export w="$HOME/Programming/web"
-games='/usr/share/emacs/22.1/lisp/play/'
-useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
 
-COLOR_RED="\033]0;31m"
-COLOR_YELLOW="\033[0;33m"
-COLOR_GREEN="\033[0;32m"
-COLOR_OCHRE="\033[38;5;95m"
-COLOR_BLUE="\033[0;34m"
-COLOR_WHITE="\033[0;37m"
-COLOR_RESET="\033[0m"
+games='/usr/share/emacs/22.1/lisp/play/'
 
 function b64() {
   if [[ -n $2 ]]; then
