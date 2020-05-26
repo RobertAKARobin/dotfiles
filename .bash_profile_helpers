@@ -186,9 +186,20 @@ function f() {
 
   local c=""
   case "$dowhat" in
+    # Look for substring in files, return file names
+    # e.g. `f tx "foo bar" ./some_directory`
     tx) c="fgrep -irl \"$substring\" . --include="./$include*" $exclude_dirs";;
+
+    # Look for substring in files, return matching lines 
+    # e.g. `f ln "foo bar" ./some_directory`
     ln) c="fgrep -ir \"$substring\" . --include="./$include*" $exclude_dirs";;
+    
+    # Look for regex in files, return file names
+    # e.g. `f rx "foo b[ar]{2}" ./some_directory`
     rx) c="fgrep -irl -E \"$substring\" . $include $exclude_dirs";;
+
+    # Look for regex in file names, return file names
+    # e.g. `f fi "*\.ts" ./some_directory`
     fi) c="find $find_path -name $substring -print -o $(wrap "-path ./% -prune -o " ${ignore_dirs[@]}) -type f"
   esac
 
