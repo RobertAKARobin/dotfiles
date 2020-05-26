@@ -27,13 +27,79 @@ COLOR_BLUE="\033[0;34m"
 COLOR_WHITE="\033[0;37m"
 COLOR_RESET="\033[0m"
 
-function targz(){
-  local dir=$(dirname "$1")
-  local base=$(basename "$1")
-  local fp="$base.tar.gz"
-  rm -rf $fp
-  tar -cvzf $fp $1
-  mv $fp $dir
+function f() {
+  local dowhat=$1
+  local substring=$2
+  local include=$3
+
+  local ignore_dirs=(node_modules jspm_packages .git tmp)
+  local exclude_dirs=$(wrap "--exclude-dir=% " ${ignore_dirs[@]})
+  local find_path=$include
+
+  if [[ -z $find_path ]]; then
+    local find_path="."
+  fi
+
+  local c=""
+  case "$dowhat" in
+    # Look for substring in files, return file names
+    # e.g. `f tx "foo bar" ./some_directory`
+    tx) c="fgrep -irl \"$substring\" . --include="./$include*" $exclude_dirs";;
+
+    # Look for substring in files, return matching lines 
+    # e.g. `f ln "foo bar" ./some_directory`
+    ln) c="fgrep -ir \"$substring\" . --include="./$include*" $exclude_dirs";;
+    
+    # Look for regex in files, return file names
+    # e.g. `f rx "foo b[ar]{2}" ./some_directory`
+    rx) c="fgrep -irl -E \"$substring\" . $include $exclude_dirs";;
+
+    # Look for regex in file names, return file names
+    # e.g. `f fi "*\.ts" ./some_directory`
+    fi) c="find $find_path -name $substring -print -o $(wrap "-path ./% -prune -o " ${ignore_dirs[@]}) -type f"
+  esac
+
+  if [[ -z $c ]]; then
+    echo "$dowhat isn't a thing."
+    return
+  fi
+
+  echo ">>> $c"
+  bash -c "$c"
+}
+
+function figall(){
+  filename="figlet.txt"
+  figlist=$(figlist | tail -n +4)
+  nl=$'\n'
+  output=""
+  while read -r font; do
+    if [[ "$font" == "Figlet control files in this directory:"* ]]; then
+      break
+    fi
+    output="$output### $font${nl}"
+    output="$output$(figlet -f $font $1)${nl}${nl}"
+  done <<< "$figlist"
+  echo "$output" > $filename
+}
+
+function git_branch(){
+  local git_status="$(git status 2> /dev/null)"
+  local on_branch="On branch ([^${IFS}]*)"
+  local on_commit="HEAD detached at ([^${IFS}]*)"
+  local has_unstaged="Changes not staged for commit"
+  local has_staged="Changes to be committed"
+  local unstaged_char=""
+  local staged_char=""
+  if [[ $git_status =~ $has_unstaged ]]; then
+    unstaged_char=" *"
+  fi
+  if [[ $git_status =~ $has_staged ]]; then
+    staged_char=" +"
+  fi
+  if [[ $git_status =~ $on_branch ]] || [[ $git_status =~ $on_commit ]]; then
+    echo " (${BASH_REMATCH[1]}$unstaged_char$staged_char)"
+  fi
 }
 
 function g(){
@@ -171,83 +237,8 @@ function g(){
   git "${c[@]}" "$@"
 }
 
-function f() {
-  local dowhat=$1
-  local substring=$2
-  local include=$3
-
-  local ignore_dirs=(node_modules jspm_packages .git tmp)
-  local exclude_dirs=$(wrap "--exclude-dir=% " ${ignore_dirs[@]})
-  local find_path=$include
-
-  if [[ -z $find_path ]]; then
-    local find_path="."
-  fi
-
-  local c=""
-  case "$dowhat" in
-    # Look for substring in files, return file names
-    # e.g. `f tx "foo bar" ./some_directory`
-    tx) c="fgrep -irl \"$substring\" . --include="./$include*" $exclude_dirs";;
-
-    # Look for substring in files, return matching lines 
-    # e.g. `f ln "foo bar" ./some_directory`
-    ln) c="fgrep -ir \"$substring\" . --include="./$include*" $exclude_dirs";;
-    
-    # Look for regex in files, return file names
-    # e.g. `f rx "foo b[ar]{2}" ./some_directory`
-    rx) c="fgrep -irl -E \"$substring\" . $include $exclude_dirs";;
-
-    # Look for regex in file names, return file names
-    # e.g. `f fi "*\.ts" ./some_directory`
-    fi) c="find $find_path -name $substring -print -o $(wrap "-path ./% -prune -o " ${ignore_dirs[@]}) -type f"
-  esac
-
-  if [[ -z $c ]]; then
-    echo "$dowhat isn't a thing."
-    return
-  fi
-
-  echo ">>> $c"
-  bash -c "$c"
-}
-
 function happ(){
   heroku apps:destroy $1 --confirm $1
-}
-
-function figall(){
-  filename="figlet.txt"
-  figlist=$(figlist | tail -n +4)
-  nl=$'\n'
-  output=""
-  while read -r font; do
-    if [[ "$font" == "Figlet control files in this directory:"* ]]; then
-      break
-    fi
-    output="$output### $font${nl}"
-    output="$output$(figlet -f $font $1)${nl}${nl}"
-  done <<< "$figlist"
-  echo "$output" > $filename
-}
-
-function git_branch(){
-  local git_status="$(git status 2> /dev/null)"
-  local on_branch="On branch ([^${IFS}]*)"
-  local on_commit="HEAD detached at ([^${IFS}]*)"
-  local has_unstaged="Changes not staged for commit"
-  local has_staged="Changes to be committed"
-  local unstaged_char=""
-  local staged_char=""
-  if [[ $git_status =~ $has_unstaged ]]; then
-    unstaged_char=" *"
-  fi
-  if [[ $git_status =~ $has_staged ]]; then
-    staged_char=" +"
-  fi
-  if [[ $git_status =~ $on_branch ]] || [[ $git_status =~ $on_commit ]]; then
-    echo " (${BASH_REMATCH[1]}$unstaged_char$staged_char)"
-  fi
 }
 
 function ll(){
@@ -256,6 +247,22 @@ function ll(){
   ls -AF1 $1
   echo "----------"
   echo ""
+}
+
+function select_from(){
+  local options=($1)
+  local varname=$2
+  local index
+  local selection
+  for index in "${!options[@]}"; do
+    echo -e "$index\t${options[index]}"
+  done
+  read -n 2 index
+  if [[ $index == "q" ]]; then
+    return
+  fi
+  selection="${options[$index]}"
+  eval $varname="$selection"
 }
 
 function sizeof(){
@@ -275,20 +282,13 @@ function sizeofs(){
   sizeof $1 | sort -h
 }
 
-function select_from(){
-  local options=($1)
-  local varname=$2
-  local index
-  local selection
-  for index in "${!options[@]}"; do
-    echo -e "$index\t${options[index]}"
-  done
-  read -n 2 index
-  if [[ $index == "q" ]]; then
-    return
-  fi
-  selection="${options[$index]}"
-  eval $varname="$selection"
+function targz(){
+  local dir=$(dirname "$1")
+  local base=$(basename "$1")
+  local fp="$base.tar.gz"
+  rm -rf $fp
+  tar -cvzf $fp $1
+  mv $fp $dir
 }
 
 function wrap() {
