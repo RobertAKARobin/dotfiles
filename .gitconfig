@@ -27,3 +27,5 @@
 	keepBackup = false
 [difftool]
 	prompt = true
+[pull]
+	rebase = false
