@@ -50,6 +50,16 @@
 		"editor.tabSize": 2
 	},
 
+	"[json]": {
+		"editor.defaultFormatter": "vscode.json-language-features",
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2
+	},
+
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+
 	"[python]": {
 		"editor.insertSpaces": true,
 		"editor.tabSize": 4
@@ -90,16 +100,10 @@
 		"typescript",
 	],
 	"javascript.implicitProjectConfig.experimentalDecorators": true,
-		"explorer.compactFolders": false,
-		"[json]": {
-			"editor.defaultFormatter": "vscode.json-language-features"
-		},
-		"[jsonc]": {
-			"editor.defaultFormatter": "vscode.json-language-features"
-		},
-		"beautify.options": {
-			"indent_level": 2,
-			"indent_with_tabs": false
+	"explorer.compactFolders": false,
+	"beautify.options": {
+		"indent_level": 2,
+		"indent_with_tabs": false
 	},
 	"javascript.updateImportsOnFileMove.enabled": "always",
 	"htmlhint.options": {
