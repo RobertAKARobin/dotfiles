@@ -27,6 +27,8 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 export PATH="$PATH:/Users/$(whoami)/.local/bin"
 export CLOUDSDK_PYTHON=/Users/$(whoami)/.pyenv/shims/python
+export PIPENV_VENV_IN_PROJECT=1
+export PIPENV_IGNORE_VIRTUALENVS=1
 
 # Ruby
 if command -v rbenv 1>/dev/null 2>&1; then
