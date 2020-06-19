@@ -12,6 +12,14 @@
 	"files.insertFinalNewline": true,
 	"editor.trimAutoWhitespace": true,
 
+	// Appearance
+	"editor.fontWeight": "400",
+	"workbench.colorTheme": "Visual Studio Light",
+	"workbench.colorCustomizations": {
+		"editor.background": "#fffff9",
+		"sideBar.background": "#fffff0"
+	},
+
 	// VSC-specific stuff
 	"editor.minimap.enabled": false,
 	"workbench.startupEditor": "newUntitledFile",
@@ -118,4 +126,5 @@
 		"attr-no-duplication": true,
 		"title-require": true
 	},
+	"workbench.activityBar.visible": true
 }
