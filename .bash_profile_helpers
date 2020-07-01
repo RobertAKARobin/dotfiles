@@ -58,8 +58,12 @@ function f() {
     rx) c="fgrep -irl -E \"$substring\" . $include $exclude_dirs";;
 
     # Look for regex in file names, return file names
-    # e.g. `f fi "*\.ts" ./some_directory`
-    fi) c="find $find_path -name $substring -print -o $(wrap "-path ./% -prune -o " ${ignore_dirs[@]}) -type f"
+    # e.g. `f fr "*\.ts" ./some_directory`
+    fr) c="find $find_path -name $substring -print -o $(wrap "-path ./% -prune -o " ${ignore_dirs[@]}) -type f";;
+
+    # Look for substring in file names, return file names
+    # e.g. `f fi "foo" ./some_directory`
+    fi) c="find $find_path -name "*$substring*" -print -o $(wrap "-path ./% -prune -o " ${ignore_dirs[@]}) -type f";;
   esac
 
   if [[ -z $c ]]; then
