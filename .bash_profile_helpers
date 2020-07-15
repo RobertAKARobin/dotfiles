@@ -18,7 +18,10 @@ export w="$HOME/Programming/web"
 
 games='/usr/share/emacs/22.1/lisp/play/'
 
-function b64() {
+function b64() { 
+  # Base 64 encode/decode
+  # Encoce: b64 "Hello world"
+  # Decode: b64 -d SGVsbG8gd29ybGQ=
   if [[ -n $2 ]]; then
     local flags=$1
     shift
@@ -28,6 +31,12 @@ function b64() {
   echo ">>> $c"
   bash -c "$c"
   echo $(pbpaste)
+}
+
+function cbrew() {
+  # Change brew permissions on corporate machine
+  sudo chown -R $(whoami) /usr/local/bin /usr/local/etc /usr/local/sbin /usr/local/share /usr/local/share/doc
+  chmod u+w /usr/local/bin /usr/local/etc /usr/local/sbin /usr/local/share /usr/local/share/doc
 }
 
 function f() {
