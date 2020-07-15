@@ -35,7 +35,7 @@ function f() {
   local substring=$2
   local include=$3
 
-  local ignore_dirs=(node_modules jspm_packages .git tmp .venv)
+  local ignore_dirs=(node_modules jspm_packages .git tmp .venv "*vendor*")
   local exclude_dirs=$(wrap "--exclude-dir=% " ${ignore_dirs[@]})
   local find_path=$include
 
