@@ -8,7 +8,7 @@ alias jek="jekyll serve -w"
 alias json="jq"
 alias math="bc -l"
 alias ports='lsof -i -P | grep -i "listen"'
-alias reload='source ~/.bash_profile'
+alias reload='exec -l $SHELL'
 alias sas="sass --style expanded --watch --sourcemap=none"
 alias search="sudo grep -nrilS"
 
