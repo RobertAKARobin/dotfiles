@@ -126,5 +126,6 @@
 		"attr-no-duplication": true,
 		"title-require": true
 	},
-	"workbench.activityBar.visible": true
+	"workbench.activityBar.visible": true,
+	"update.mode": "start"
 }
