@@ -44,7 +44,7 @@ function f() {
   local substring=$2
   local include=$3
 
-  local ignore_dirs=(node_modules jspm_packages .git tmp .venv "*vendor*")
+  local ignore_dirs=(node_modules jspm_packages .git tmp .venv "*vendor*" logs staticfiles)
   local exclude_dirs=$(wrap "--exclude-dir=% " ${ignore_dirs[@]})
   local find_path=$include
 
@@ -56,15 +56,15 @@ function f() {
   case "$dowhat" in
     # Look for substring in files, return file names
     # e.g. `f tx "foo bar" ./some_directory`
-    tx) c="fgrep -irl \"$substring\" . --include="./$include*" $exclude_dirs";;
+    tx) c="fgrep -iIrl \"$substring\" . --include="./$include*" $exclude_dirs";;
 
     # Look for substring in files, return matching lines 
     # e.g. `f ln "foo bar" ./some_directory`
-    ln) c="fgrep -ir \"$substring\" . --include="./$include*" $exclude_dirs";;
+    ln) c="fgrep -iIr \"$substring\" . --include="./$include*" $exclude_dirs";;
     
     # Look for regex in files, return file names
     # e.g. `f rx "foo b[ar]{2}" ./some_directory`
-    rx) c="fgrep -irl -E \"$substring\" . $include $exclude_dirs";;
+    rx) c="fgrep -iIrl -E \"$substring\" . $include $exclude_dirs";;
 
     # Look for regex in file names, return file names
     # e.g. `f fr "*\.ts" ./some_directory`
