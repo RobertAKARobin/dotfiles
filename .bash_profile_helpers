@@ -13,6 +13,7 @@ alias sas="sass --style expanded --watch --sourcemap=none"
 alias search="sudo grep -nrilS"
 
 export desk="$HOME/Desktop"
+export ORIGIN='LOCAL'
 export useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
 export w="$HOME/Programming/web"
 
@@ -45,6 +46,13 @@ function f() {
   local include=$3
 
   local ignore_dirs=(node_modules jspm_packages .git tmp .venv "*vendor*" logs staticfiles)
+
+  if [[ "$(is_git)" == "true" ]]; then
+    local git_root=$(git rev-parse --show-toplevel)
+    local gitignore="$git_root/$(git config --local --get --default .gitignore core.excludesFile)"
+    local ignore_dirs="$ignore_dirs $(cat $gitignore | sed -E 's/#.*//g')"
+  fi
+
   local exclude_dirs=$(wrap "--exclude-dir=% " ${ignore_dirs[@]})
   local find_path=$include
 
@@ -80,7 +88,7 @@ function f() {
     return
   fi
 
-  echo ">>> $c"
+  # echo ">>> $c"
   bash -c "$c"
 }
 
@@ -97,6 +105,10 @@ function figall(){
     output="$output$(figlet -f $font $1)${nl}${nl}"
   done <<< "$figlist"
   echo "$output" > $filename
+}
+
+function is_git() {
+  echo $((git rev-parse --is-inside-work-tree) 2>&1)
 }
 
 function git_branch(){
