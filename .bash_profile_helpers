@@ -133,6 +133,7 @@ function git_branch(){
 function g(){
   local abbv=$1
   local current_branch=$(git rev-parse --abbrev-ref HEAD)
+  local author=$(git config user.name)
   local c=()
   shift
   case "$abbv" in
@@ -192,9 +193,12 @@ function g(){
         ;;
     l)  c=(log --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
     lme)
-        local author=$(git config user.name)
         g l --author=$author
-        return;;
+        return
+        ;;
+    lame)
+        g l --author=$author --all
+        ;;
     lf) g l --follow $@; return;;
     la) g l --all $@; return;;
     laf)
