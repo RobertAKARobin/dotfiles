@@ -186,10 +186,11 @@ function g(){
         ;;
     h)
         remote=${1:-origin}
-        gitpfx='git@github.com:'
-        urlpfx='https://www.github.com/'
-        url=$(git remote get-url $remote | sed "s~$gitpfx~$urlpfx~" | sed "s~\.git\$~~")
+        url=$(git remote get-url $remote | sed -E 's/^.*git@//' | sed -E 's/\:[0-9]+//' | sed -E 's/github\.com\:/github.com\//' | sed -E 's/\.git$//')
+        url="https://$url"
+        echo $url
         chrome $url
+        return
         ;;
     l)  c=(log --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
     lme)
