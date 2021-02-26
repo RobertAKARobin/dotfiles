@@ -3,7 +3,6 @@
 	"editor.fontSize": 11,
 	"editor.wordWrap": "on",
 	"editor.scrollBeyondLastLine": false,
-	"window.zoomLevel": 0,
 	
 	// Whitespaces
 	"editor.renderWhitespace": "all",
@@ -127,5 +126,6 @@
 		"title-require": true
 	},
 	"workbench.activityBar.visible": true,
-	"update.mode": "start"
+	"update.mode": "start",
+	"solargraph.useBundler": false
 }

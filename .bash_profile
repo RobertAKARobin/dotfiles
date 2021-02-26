@@ -35,6 +35,10 @@ if command -v rbenv 1>/dev/null 2>&1; then
   eval "$(rbenv init -)"
 fi
 
+export RUBYOPT=$HOME/.rubyrc
+
+# Misc
+
 export MACPREFS_BACKUP_DIR="$HOME/Google Drive/Backup/Macprefs"
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
@@ -61,3 +65,4 @@ if type brew &>/dev/null; then
     done
   fi
 fi
+export PATH="/Users/rothomas/.ebcli-virtual-env/executables:$PATH"
