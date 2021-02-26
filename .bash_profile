@@ -19,7 +19,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Deno
-export PATH="/Users/rothomas/.deno/bin:$PATH"
+export PATH="/Users/$(whoami)/.deno/bin:$PATH"
 
 # Python
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -46,10 +46,10 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 # source "$HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/rothomas/google-cloud-sdk/path.bash.inc' ]; then . '/Users/rothomas/google-cloud-sdk/path.bash.inc'; fi
+if [ -f "/Users/$(whoami)/google-cloud-sdk/path.bash.inc" ]; then . "/Users/$(whoami)/google-cloud-sdk/path.bash.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/rothomas/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/rothomas/google-cloud-sdk/completion.bash.inc'; fi
+if [ -f "/Users/$(whoami)/google-cloud-sdk/completion.bash.inc" ]; then . "/Users/$(whoami)/google-cloud-sdk/completion.bash.inc"; fi
 
 # MacPorts
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
