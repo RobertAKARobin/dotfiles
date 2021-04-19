@@ -9,7 +9,6 @@
 	"editor.insertSpaces": true,
 	"editor.detectIndentation": true,
 	"files.insertFinalNewline": true,
-	"editor.trimAutoWhitespace": true,
 
 	// Appearance
 	"editor.fontWeight": "400",
@@ -126,6 +125,5 @@
 		"title-require": true
 	},
 	"workbench.activityBar.visible": true,
-	"update.mode": "start",
-	"solargraph.useBundler": false
+	"update.mode": "start"
 }

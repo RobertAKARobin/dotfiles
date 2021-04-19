@@ -29,3 +29,5 @@
 	prompt = true
 [pull]
 	rebase = false
+[http]
+	cookiefile = /Users/robertthoma/.gitcookies
