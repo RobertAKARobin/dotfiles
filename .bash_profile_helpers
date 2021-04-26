@@ -322,6 +322,12 @@ function sizeofs(){
   sizeof $1 | sort -h
 }
 
+function ssfmt() {
+  echo "Changing screenshot format to '$1'..."
+  defaults write com.apple.screencapture type $1
+  killall SystemUIServer
+}
+
 function targz(){
   local dir=$(dirname "$1")
   local base=$(basename "$1")
