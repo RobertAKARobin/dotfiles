@@ -12,11 +12,7 @@
 
 	// Appearance
 	"editor.fontWeight": "400",
-	"workbench.colorTheme": "Visual Studio Light",
-	"workbench.colorCustomizations": {
-		"editor.background": "#fffff9",
-		"sideBar.background": "#fffff0"
-	},
+	"workbench.colorTheme": "Visual Studio Dark",
 
 	// VSC-specific stuff
 	"editor.minimap.enabled": false,
@@ -125,5 +121,11 @@
 		"title-require": true
 	},
 	"workbench.activityBar.visible": true,
-	"update.mode": "start"
+	"update.mode": "start",
+	"workbench.editorAssociations": [
+		{
+			"viewType": "jupyter.notebook.ipynb",
+			"filenamePattern": "*.ipynb"
+		}
+	]
 }

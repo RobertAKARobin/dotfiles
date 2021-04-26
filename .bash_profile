@@ -66,3 +66,4 @@ if type brew &>/dev/null; then
   fi
 fi
 export PATH="/Users/rothomas/.ebcli-virtual-env/executables:$PATH"
+source "$HOME/.cargo/env"
