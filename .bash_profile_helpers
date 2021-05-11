@@ -15,7 +15,7 @@ alias search="sudo grep -nrilS"
 export desk="$HOME/Desktop"
 export gems="$(rbenv exec gem env | sed -n -e 's/.*- INSTALLATION DIRECTORY: //p')/gems"
 export ORIGIN='LOCAL'
-export useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
+export useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"
 export w="$HOME/Programming/web"
 
 games='/usr/share/emacs/22.1/lisp/play/'
