@@ -127,5 +127,7 @@
 			"viewType": "jupyter.notebook.ipynb",
 			"filenamePattern": "*.ipynb"
 		}
-	]
+	],
+	"gremlins.showInProblemPane": true,
+	"angular.experimental-ivy": true
 }
