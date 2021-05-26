@@ -23,8 +23,11 @@ export PATH="/Users/$(whoami)/.deno/bin:$PATH"
 
 # Python
 if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
 fi
+
 export PATH="$PATH:/Users/$(whoami)/.local/bin"
 export CLOUDSDK_PYTHON=/Users/$(whoami)/.pyenv/shims/python
 export PIPENV_VENV_IN_PROJECT=1
