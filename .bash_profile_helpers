@@ -51,7 +51,9 @@ function f() {
   if [[ "$(is_git)" == "true" ]]; then
     local git_root=$(git rev-parse --show-toplevel)
     local gitignore="$git_root/$(git config --local --get --default .gitignore core.excludesFile)"
-    local ignore_dirs="$ignore_dirs $(cat $gitignore | sed -E 's/#.*//g')"
+    if [[ -f $gitignore ]]; then
+      local ignore_dirs="$ignore_dirs $(cat $gitignore | sed -E 's/#.*//g')"
+    fi
   fi
 
   local exclude_dirs=$(wrap "--exclude-dir=% " ${ignore_dirs[@]})
