@@ -46,6 +46,21 @@
 	"workbench.editor.enablePreview": false,
 	"extensions.ignoreRecommendations": true,
 
+	"[html]": {
+		"editor.insertSpaces": false,
+		"editor.tabSize": 2,
+	},
+
+	"[xml]": {
+		"editor.insertSpaces": false,
+		"editor.tabSize": 2,
+	},
+
+	"[css]": {
+		"editor.insertSpaces": false,
+		"editor.tabSize": 2,
+	},
+
 	// Language-specific
 	"[javascript]": {
 		"editor.insertSpaces": true,
@@ -92,6 +107,7 @@
 		"*.html": "html",
 		"*.ejs": "html",
 		"*.jscad": "javascript",
+		"*.svg": "xml",
 	},
 	
 	"eslint.options": {
