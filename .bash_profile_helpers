@@ -43,7 +43,7 @@ function cbrew() {
 
 function f() {
   local dowhat=$1
-  local substring=$2
+  local substring=$(echo $2 | sed -E 's/\"/\\\"/g')
   local include=$3
 
   local ignore_dirs=(node_modules jspm_packages .git tmp .venv "*vendor*" logs staticfiles)
@@ -52,7 +52,7 @@ function f() {
     local git_root=$(git rev-parse --show-toplevel)
     local gitignore="$git_root/$(git config --local --get --default .gitignore core.excludesFile)"
     if [[ -f $gitignore ]]; then
-      local ignore_dirs="$ignore_dirs $(cat $gitignore | sed -E 's/#.*//g')"
+      local ignore_dirs="$ignore_dirs $(cat $gitignore | sed -E 's/[#\!].*//g')"
     fi
   fi
 
