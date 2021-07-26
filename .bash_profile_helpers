@@ -167,24 +167,10 @@ function g(){
           shift
         fi
 
-        if [[ -z $2 ]]; then
-          local base_branch=HEAD
-          local target_branch=$1
-          shift
-          shift
-        else
-          local base_branch=$1
-          local target_branch=$2
-          shift
-          shift
-        fi
+        local target_branch=$1
+        shift
 
-        if [[ -z $target_branch ]]; then
-          echo "Provide a target branch, dummy"
-          return
-        fi
-
-        local base_commit=$(git merge-base --all $base_branch $target_branch)
+        local base_commit=$(git merge-base --all HEAD $target_branch)
         c=(diff $flag $base_commit..$target_branch)
         ;;
     dbs)
