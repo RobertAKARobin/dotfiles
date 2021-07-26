@@ -176,7 +176,7 @@ function g(){
           local base_branch=$1
           local target_branch=$2
           shift
-          shfit
+          shift
         fi
 
         if [[ -z $target_branch ]]; then
