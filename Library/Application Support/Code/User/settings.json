@@ -107,6 +107,7 @@
 		"*.html": "html",
 		"*.ejs": "html",
 		"*.jscad": "javascript",
+		"*.js.snap": "html",
 		"*.svg": "xml",
 	},
 	
@@ -153,4 +154,5 @@
 	"typescript.updateImportsOnFileMove.enabled": "always",
 	"typescript.suggest.autoImports": false, 
 	"javascript.suggest.autoImports": false,
+	"security.workspace.trust.untrustedFiles": "open",
 }
