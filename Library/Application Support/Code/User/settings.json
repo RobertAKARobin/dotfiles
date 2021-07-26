@@ -139,20 +139,17 @@
 	},
 	"workbench.activityBar.visible": true,
 	"update.mode": "start",
-	"workbench.editorAssociations": [
-		{
-			"viewType": "jupyter.notebook.ipynb",
-			"filenamePattern": "*.ipynb"
-		},
-		{
-			"viewType": "jupyter-notebook",
-			"filenamePattern": "*.ipynb"
-		}
-	],
+	"workbench.editorAssociations": {
+		"*.ipynb": "jupyter-notebook"
+	},
 	"gremlins.showInProblemPane": true,
 	"angular.experimental-ivy": true,
 	"typescript.updateImportsOnFileMove.enabled": "always",
 	"typescript.suggest.autoImports": false, 
 	"javascript.suggest.autoImports": false,
+	"notebook.cellToolbarLocation": {
+		"default": "right",
+		"jupyter-notebook": "left"
+	},
 	"security.workspace.trust.untrustedFiles": "open",
 }
