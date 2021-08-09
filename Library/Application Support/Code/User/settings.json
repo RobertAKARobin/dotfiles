@@ -23,6 +23,7 @@
 	"javascript.suggestionActions.enabled": false,
 	"javascript.format.enable": true,
 	"editor.suggestOnTriggerCharacters": true,
+	"editor.acceptSuggestionOnCommitCharacter": false,
 	"editor.wordBasedSuggestions": false,
 	"editor.quickSuggestions": {
 		"other": false,
