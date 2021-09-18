@@ -57,6 +57,12 @@ if [ -f "/Users/$(whoami)/google-cloud-sdk/completion.bash.inc" ]; then . "/User
 # MacPorts
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
+# https://github.com/rsre/K40-Whisperer-macOS
+export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/tcl-tk/lib"
+export CPPFLAGS="-I/usr/local/opt/tcl-tk/include"
+export PKG_CONFIG_PATH="/usr/local/opt/tcl-tk/lib/pkgconfig"
+
 # Heroku
 if type brew &>/dev/null; then
   HOMEBREW_PREFIX="$(brew --prefix)"
