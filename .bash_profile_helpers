@@ -265,6 +265,20 @@ function g(){
         c=(commit -C ORIG_HEAD)
         ;;
     s)  c=(status);;
+    sa)
+        if [[ -z $1 ]]; then
+          c=(stash)
+        else
+          c=(stash push $1)
+        fi
+        shift
+        ;;
+    saa) c=(stash apply);;
+    sac) c=(stash clear);;
+    sh) c=(show $1:./$2)
+        shift
+        shift
+        ;;
     u)  # undo
         git reset --soft head~$1
         shift
@@ -277,10 +291,6 @@ function g(){
         c=(status)
         ;;
     UH) c=(reset --hard head~$1)
-        shift
-        ;;
-    sh) c=(show $1:./$2)
-        shift
         shift
         ;;
     x)  c=(clean -fd);;

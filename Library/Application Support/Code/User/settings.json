@@ -148,6 +148,7 @@
 	"typescript.updateImportsOnFileMove.enabled": "always",
 	"typescript.suggest.autoImports": false, 
 	"javascript.suggest.autoImports": false,
+	"vetur.completion.autoImport": false,
 	"notebook.cellToolbarLocation": {
 		"default": "right",
 		"jupyter-notebook": "left"
