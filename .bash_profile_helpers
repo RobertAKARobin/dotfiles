@@ -265,7 +265,7 @@ function g(){
         c=(commit -C ORIG_HEAD)
         ;;
     s)  c=(status);;
-    sa)
+    st)
         if [[ -z $1 ]]; then
           c=(stash)
         else
@@ -273,8 +273,8 @@ function g(){
         fi
         shift
         ;;
-    saa) c=(stash apply);;
-    sac) c=(stash clear);;
+    sta) c=(stash apply);;
+    stc) c=(stash clear);;
     sh) c=(show $1:./$2)
         shift
         shift
