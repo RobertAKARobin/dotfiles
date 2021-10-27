@@ -378,6 +378,11 @@ function targz(){
   mv $fp $dir
 }
 
+function venv() {
+  python -m venv .venv
+  source .venv/bin/activate
+}
+
 function wrap() {
   local wrapper=$1
   shift
