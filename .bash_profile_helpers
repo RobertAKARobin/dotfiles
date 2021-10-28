@@ -237,11 +237,11 @@ function g(){
     laf)
         g l --all --follow $2; return;;
     lc) c=(diff --name-only --diff-filter=U);; # List conflicted files
-    m)  c=(commit);;
-    mm) c=(commit -m);;
-    ma) c=(commit --amend);;
-    mA) c=(commit --amend -m);;
-    mC) c=(commit -C ORIG_HEAD);;
+    m)  c=(commit --no-verify);;
+    mm) c=(commit --no-verify -m);;
+    ma) c=(commit --no-verify --amend);;
+    mA) c=(commit --no-verify --amend -m);;
+    mC) c=(commit --no-verify -C ORIG_HEAD);;
     p)  c=(push);;
     pD) 
         local branch=$1
