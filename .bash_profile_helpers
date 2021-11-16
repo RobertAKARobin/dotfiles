@@ -212,7 +212,7 @@ function g(){
         c=(diff $hash..HEAD)
         ;;
     ds) c=(diff --stat);;
-    f)  c=(fetch);;
+    f)  c=(fetch --prune --all);;
     fn)
         git rev-list --all | xargs git grep -i "$@"
         return
