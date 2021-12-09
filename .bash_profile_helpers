@@ -47,7 +47,7 @@ function f() {
   local substring=$(echo $2 | sed -E 's/\"/\\\"/g')
   local include=$3
 
-  local ignore_dirs=(node_modules jspm_packages .git tmp .venv "*vendor*" logs staticfiles)
+  local ignore_dirs=(node_modules jspm_packages .git tmp .venv logs staticfiles)
 
   if [[ "$(is_git)" == "true" ]]; then
     local git_root=$(git rev-parse --show-toplevel)
@@ -92,7 +92,7 @@ function f() {
     return
   fi
 
-  # echo ">>> $c"
+  echo ">>> $c"
   bash -c "$c"
 }
 
