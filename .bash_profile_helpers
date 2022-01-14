@@ -331,6 +331,40 @@ function ll(){
   echo ""
 }
 
+function ngg() {
+  local APP_ROUTE="src/app/" # TODO: Calculate path
+  local HAS_NPX_NG="[ -e node_modules/.bin/ng ]"
+
+  if ! eval "$HAS_NPX_NG"; then
+    echo "Not ng project root"
+    return 1
+  fi
+
+  local abbv=$1
+  shift
+
+  local path=$1
+  shift
+  local path_trim=${path/$APP_ROUTE/}
+
+  local c=()
+  case "$abbv" in
+    mc)
+      npx ng generate module $path_trim && npx ng generate component $path_trim --skip-tests --style=scss $@
+      ;;
+    *)
+      echo "No :("
+      return 1
+      ;;
+  esac
+
+  local HAS_NPX_PRETTIER="[ -e node_modules/.bin/prettier ]"
+  if eval "$HAS_NPX_PRETTIER"; then
+    echo "prettier"
+    npx prettier -w $path
+  fi
+}
+
 function select_from(){
   local options=($1)
   local varname=$2
