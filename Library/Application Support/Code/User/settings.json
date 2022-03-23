@@ -60,6 +60,7 @@
 	"[css]": {
 		"editor.insertSpaces": false,
 		"editor.tabSize": 2,
+		"editor.defaultFormatter": "stylelint.vscode-stylelint",
 	},
 
 	// Language-specific
