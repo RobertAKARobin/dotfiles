@@ -265,6 +265,9 @@ function g(){
         git add .
         c=(commit -C ORIG_HEAD)
         ;;
+    rH)
+        c=(reset --hard "origin/$current_branch")
+        ;;
     s)  c=(status);;
     st)
         if [[ -z $1 ]]; then
