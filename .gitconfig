@@ -6,6 +6,7 @@
 	filemode = false
 	editor = vim
 	ignorecase = false
+	whitespace = -trailing-space,-space-before-tab,-indent-with-non-tab,-tab-in-indent,-cr-at-eol
 [credentials]
 	username = robertakarobin
 [credential]
