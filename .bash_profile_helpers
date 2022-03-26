@@ -136,7 +136,11 @@ function git_branch(){
 
 function g(){
   local abbv=$1
-  local current_branch=$(git rev-parse --abbrev-ref HEAD)
+  local git_dir=$(git rev-parse --git-dir 2> /dev/null)
+  local current_branch=''
+  if [[ $git_dir ]]; then
+    local current_branch=$(git rev-parse --abbrev-ref HEAD)
+  fi
   local author=$(git config user.name)
   local c=()
   shift
