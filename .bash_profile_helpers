@@ -244,6 +244,7 @@ function g(){
     lc) c=(diff --name-only --diff-filter=U);; # List conflicted files
     m)  c=(commit);;
     mm) c=(commit -m);;
+    MM) c=(commit --no-verify -m);;
     mme)
         c=(commit -m --allow-empty);;
     ma) c=(commit --amend);;
