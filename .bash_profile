@@ -34,8 +34,9 @@ export PIPENV_VENV_IN_PROJECT=1
 export PIPENV_IGNORE_VIRTUALENVS=1
 
 # Ruby
-if command -v rbenv 1>/dev/null 2>&1; then
+if command -v rbenv &> /dev/null; then
   eval "$(rbenv init -)"
+  export gems="$(rbenv exec gem env | sed -n -e 's/.*- INSTALLATION DIRECTORY: //p')/gems"
 fi
 
 export RUBYOPT=$HOME/.rubyrc
@@ -75,4 +76,7 @@ if type brew &>/dev/null; then
   fi
 fi
 export PATH="/Users/rothomas/.ebcli-virtual-env/executables:$PATH"
-source "$HOME/.cargo/env"
+
+if command -v rust &> /dev/null; then
+  source "$HOME/.cargo/env"
+fi
