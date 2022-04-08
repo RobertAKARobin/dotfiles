@@ -6,6 +6,7 @@ if [ -f ~/.bash_profile_private ]; then
 fi
 
 export PATH="/usr/local/sbin:$PATH" 
+export PATH="/opt/homebrew/bin:$PATH"
 
 # Git
 if [ -z "$BASH_COLOR" ]; then
