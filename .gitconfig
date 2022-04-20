@@ -32,3 +32,5 @@
 	rebase = false
 [http]
 	cookiefile = /Users/robertthoma/.gitcookies
+[init]
+	defaultBranch = main
