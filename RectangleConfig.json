@@ -185,7 +185,7 @@
       "modifierFlags" : 1572864
     },
     "larger" : {
-      "keyCode" : 125,
+      "keyCode" : 124,
       "modifierFlags" : 1835008
     },
     "leftHalf" : {
@@ -209,7 +209,7 @@
       "modifierFlags" : 786432
     },
     "smaller" : {
-      "keyCode" : 126,
+      "keyCode" : 123,
       "modifierFlags" : 1835008
     },
     "topHalf" : {
