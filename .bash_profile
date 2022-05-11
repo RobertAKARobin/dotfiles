@@ -38,7 +38,7 @@ export PATH="/Users/$(whoami)/.deno/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
   export CLOUDSDK_PYTHON=/Users/$(whoami)/.pyenv/shims/python
 fi
 
@@ -68,6 +68,10 @@ if [ -f "/Users/$(whoami)/google-cloud-sdk/completion.bash.inc" ]; then . "/User
 # export LDFLAGS="-L/usr/local/opt/tcl-tk/lib"
 # export CPPFLAGS="-I/usr/local/opt/tcl-tk/include"
 # export PKG_CONFIG_PATH="/usr/local/opt/tcl-tk/lib/pkgconfig"
+
+# OpenSSL
+export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
 
 # Rust
 if command -v rust &> /dev/null; then
