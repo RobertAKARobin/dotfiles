@@ -6,7 +6,8 @@
 	
 	// Whitespaces
 	"editor.renderWhitespace": "all",
-	"editor.insertSpaces": true,
+	"editor.insertSpaces": false,
+	"editor.tabSize": 2,
 	"editor.detectIndentation": true,
 	"files.insertFinalNewline": true,
 
@@ -47,32 +48,8 @@
 	"workbench.editor.enablePreview": false,
 	"extensions.ignoreRecommendations": true,
 
-	"[html]": {
-		"editor.insertSpaces": false,
-		"editor.tabSize": 2,
-	},
-
-	"[xml]": {
-		"editor.insertSpaces": false,
-		"editor.tabSize": 2,
-	},
-
 	"[css]": {
-		"editor.insertSpaces": false,
-		"editor.tabSize": 2,
 		"editor.defaultFormatter": "stylelint.vscode-stylelint",
-	},
-
-	// Language-specific
-	"[javascript]": {
-		"editor.insertSpaces": true,
-		"editor.tabSize": 2
-	},
-
-	"[json]": {
-		"editor.defaultFormatter": "vscode.json-language-features",
-		"editor.insertSpaces": true,
-		"editor.tabSize": 2
 	},
 
 	"[jsonc]": {
@@ -84,17 +61,7 @@
 		"editor.tabSize": 4
 	},
 
-	"[typescript]": {
-		"editor.insertSpaces": true,
-		"editor.tabSize": 2,
-	},
-
 	"[ruby]": {
-		"editor.insertSpaces": true,
-		"editor.tabSize": 2
-	},
-
-	"[scss]": {
 		"editor.insertSpaces": true,
 		"editor.tabSize": 2
 	},
@@ -142,7 +109,8 @@
 	"workbench.activityBar.visible": true,
 	"update.mode": "start",
 	"workbench.editorAssociations": {
-		"*.ipynb": "jupyter-notebook"
+		"*.ipynb": "jupyter-notebook",
+		"*.stl": "3dviewer.viewer"
 	},
 	"gremlins.showInProblemPane": true,
 	"angular.experimental-ivy": true,
