@@ -8,8 +8,9 @@ fi
 # Homebrew
 export PATH="/usr/local/sbin:$PATH" 
 export PATH="/opt/homebrew/bin:$PATH"
-eval "$(/opt/homebrew/bin/brew shellenv)"
 if type brew &>/dev/null; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+
   HOMEBREW_PREFIX="$(brew --prefix)"
   if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
     source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
@@ -18,6 +19,11 @@ if type brew &>/dev/null; then
       [[ -r "$COMPLETION" ]] && source "$COMPLETION"
     done
   fi
+
+  # OpenSSL
+  export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 fi
 
 # Git
@@ -49,7 +55,6 @@ export PIPENV_IGNORE_VIRTUALENVS=1
 # Ruby
 if command -v rbenv &> /dev/null; then
   eval "$(rbenv init -)"
-  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 fi
 
 # Misc
@@ -68,10 +73,6 @@ if [ -f "/Users/$(whoami)/google-cloud-sdk/completion.bash.inc" ]; then . "/User
 # export LDFLAGS="-L/usr/local/opt/tcl-tk/lib"
 # export CPPFLAGS="-I/usr/local/opt/tcl-tk/include"
 # export PKG_CONFIG_PATH="/usr/local/opt/tcl-tk/lib/pkgconfig"
-
-# OpenSSL
-export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
 
 # Rust
 if command -v rust &> /dev/null; then
