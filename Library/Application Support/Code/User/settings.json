@@ -10,6 +10,7 @@
 	"editor.tabSize": 2,
 	"editor.detectIndentation": true,
 	"files.insertFinalNewline": true,
+	"files.trimTrailingWhitespace": true,
 
 	// Appearance
 	"editor.fontWeight": "400",

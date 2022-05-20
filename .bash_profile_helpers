@@ -20,7 +20,7 @@ export w="$HOME/Programming/web"
 
 games='/usr/share/emacs/22.1/lisp/play/'
 
-function b64() { 
+function b64() {
   # Base 64 encode/decode
   # Encoce: b64 "Hello world"
   # Decode: b64 -d SGVsbG8gd29ybGQ=
@@ -69,10 +69,10 @@ function f() {
     # e.g. `f tx "foo bar" ./some_directory`
     tx) c="fgrep -iIrl \"$substring\" . --include="./$include*" $exclude_dirs";;
 
-    # Look for substring in files, return matching lines 
+    # Look for substring in files, return matching lines
     # e.g. `f ln "foo bar" ./some_directory`
     ln) c="fgrep -iIr \"$substring\" . --include="./$include*" $exclude_dirs";;
-    
+
     # Look for regex in files, return file names
     # e.g. `f rx "foo b[ar]{2}" ./some_directory`
     rx) c="fgrep -iIrl -E \"$substring\" . $include $exclude_dirs";;
@@ -146,7 +146,7 @@ function g(){
   case "$abbv" in
     a)  c=(add);;
     b)  c=(branch);;
-    bDD) # Delete all local branches except the current one 
+    bDD) # Delete all local branches except the current one
         git branch | grep -v \* | xargs git branch -D
         c=(branch)
         ;;
@@ -250,7 +250,7 @@ function g(){
     mA) c=(commit --amend -m);;
     mC) c=(commit -C ORIG_HEAD);;
     p)  c=(push);;
-    pD) 
+    pD)
         local branch=$1
         shift
         if [ -z $branch ]; then
@@ -259,6 +259,8 @@ function g(){
         c=(push --delete origin $branch)
         ;;
     pu) c=(push -u origin $current_branch);;
+    pl)
+        c=(pull --set-upstream origin $current_branch);;
     r)  c=(reset);;
     rc)
         local num_commits=$(git rev-list --count HEAD)
@@ -314,7 +316,7 @@ function g(){
     # Go to previous commit
     --) c=(checkout HEAD~);;
   esac
-  
+
   if [[ -z $c ]]; then
     c=$abbv
   fi
