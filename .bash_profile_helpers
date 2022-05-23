@@ -376,6 +376,47 @@ function ngg() {
   fi
 }
 
+function sc() {
+  local arg=$1
+  shift
+  case "$arg" in
+    all)
+      byobu ls -F "#{session_name}"
+      ;;
+    kill)
+      local sessions=($(sc all))
+      local sessions_length=${#sessions[@]}
+      if [[ $sessions_length == 0 ]]; then
+        return 1
+      fi
+      select_from "$(sc all)" session_name
+      byobu kill-session -t $session_name
+      ;;
+    up)
+      local sessions=($(sc all))
+      local sessions_length=${#sessions[@]}
+      case $sessions_length in
+        0)
+          echo "Session name?"
+          read session_name
+          byobu new -s $session_name
+          ;;
+        1)
+          local session_name=${sessions[0]}
+          byobu attach -t $session_name
+          ;;
+        *)
+          select_from "$(sc all)" session_name
+          byobu attach -t $session_name
+          ;;
+      esac
+      ;;
+    *)
+      byobu $arg $@
+      ;;
+  esac
+}
+
 function select_from(){
   local options=($1)
   local varname=$2
