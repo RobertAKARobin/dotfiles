@@ -110,6 +110,12 @@ function figall(){
   echo "$output" > $filename
 }
 
+# If google-chrome command doesn't exist, set it
+if ! command -v google-chrome &> /dev/null; then
+	# Opens specified website in Chrome
+	alias google-chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+fi
+
 function is_git() {
   echo $((git rev-parse --is-inside-work-tree) 2>&1)
 }
