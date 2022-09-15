@@ -3,7 +3,7 @@
 	"editor.fontSize": 11,
 	"editor.wordWrap": "on",
 	"editor.scrollBeyondLastLine": false,
-	
+
 	// Whitespaces
 	"editor.renderWhitespace": "all",
 	"editor.insertSpaces": false,
@@ -67,6 +67,14 @@
 		"editor.tabSize": 2
 	},
 
+	"[markdown]": {
+		"editor.unicodeHighlight.ambiguousCharacters": false,
+		"editor.unicodeHighlight.invisibleCharacters": false,
+		"editor.wordWrap": "on",
+		"editor.insertSpaces": true,
+		"editor.tabSize": 4
+	},
+
 	"css.validate": false,
 	"scss.validate": false,
 	"less.validate": false,
@@ -80,7 +88,7 @@
 		"*.js.snap": "html",
 		"*.svg": "xml",
 	},
-	
+
 	"eslint.options": {
 		"extensions": [".js", ".vue"]
 	},
@@ -116,7 +124,7 @@
 	"gremlins.showInProblemPane": true,
 	"angular.experimental-ivy": true,
 	"typescript.updateImportsOnFileMove.enabled": "always",
-	"typescript.suggest.autoImports": false, 
+	"typescript.suggest.autoImports": false,
 	"javascript.suggest.autoImports": false,
 	"vetur.completion.autoImport": false,
 	"notebook.cellToolbarLocation": {
@@ -124,4 +132,7 @@
 		"jupyter-notebook": "left"
 	},
 	"security.workspace.trust.untrustedFiles": "open",
+	"[json]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
 }
