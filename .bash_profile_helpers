@@ -264,7 +264,15 @@ function g(){
         fi
         c=(push --delete origin $branch)
         ;;
-    pu) c=(push -u origin $current_branch);;
+    pu)
+        local remote_branch=$1
+        shift
+        if [ -z $remote_branch ]; then
+          c=(push -u origin $current_branch)
+        else
+          c=(push -u origin $current_branch:$remote_branch)
+        fi
+        ;;
     pl)
         c=(pull --set-upstream origin $current_branch);;
     r)  c=(reset);;
