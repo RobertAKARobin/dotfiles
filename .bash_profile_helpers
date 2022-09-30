@@ -139,16 +139,26 @@ function git_branch(){
   fi
 }
 
+function gh_url(){
+  local gh_remote=${1:-origin}
+  local gh_url=$(git remote get-url $gh_remote | sed -E 's/^.*git@//' | sed -E 's/\:[0-9]+//' | sed -E 's/github\.com\:/github.com\//' | sed -E 's/\.git$//')
+  local gh_url="https://$gh_url"
+  echo $gh_url
+}
+
 function g(){
   local abbv=$1
+  shift
+
+  local author=$(git config user.name)
   local git_dir=$(git rev-parse --git-dir 2> /dev/null)
+
   local current_branch=''
   if [[ $git_dir ]]; then
     local current_branch=$(git rev-parse --abbrev-ref HEAD)
   fi
-  local author=$(git config user.name)
+
   local c=()
-  shift
   case "$abbv" in
     a)  c=(add);;
     b)  c=(branch);;
@@ -226,12 +236,7 @@ function g(){
         git rev-list --all | xargs git grep -i "$@"
         return
         ;;
-    h)
-        remote=${1:-origin}
-        url=$(git remote get-url $remote | sed -E 's/^.*git@//' | sed -E 's/\:[0-9]+//' | sed -E 's/github\.com\:/github.com\//' | sed -E 's/\.git$//')
-        url="https://$url"
-        echo $url
-        chrome $url
+    h)  chrome $(gh_url)
         return
         ;;
     l)  c=(log --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
@@ -267,6 +272,9 @@ function g(){
     pu) c=(push -u origin $current_branch);;
     pl)
         c=(pull --set-upstream origin $current_branch);;
+    pr) chrome "$(gh_url)/pull/new/$current_branch"
+        return
+        ;;
     r)  c=(reset);;
     rc)
         local num_commits=$(git rev-list --count HEAD)
