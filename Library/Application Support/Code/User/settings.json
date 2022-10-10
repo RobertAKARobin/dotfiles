@@ -67,6 +67,11 @@
 		"editor.tabSize": 2
 	},
 
+	"[shellscript]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2
+	},
+
 	"[markdown]": {
 		"editor.unicodeHighlight.ambiguousCharacters": false,
 		"editor.unicodeHighlight.invisibleCharacters": false,
