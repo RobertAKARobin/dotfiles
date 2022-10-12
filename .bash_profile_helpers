@@ -277,7 +277,14 @@ function g(){
         fi
         c=(push -u $remote $current_branch)
         ;;
-    puF) g pu $@ -f; return;;
+    puF)
+        local remote=$1
+        shift
+        if [ -z $remote ]; then
+            local remote=origin
+        fi
+        c=(push -u -f $remote $current_branch)
+        ;;
     pl)
         c=(pull --set-upstream origin $current_branch);;
     pr) chrome "$(gh_url)/pull/new/$current_branch"
