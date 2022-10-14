@@ -5,6 +5,7 @@
 !.bash_profile_local
 !.bash_profile_helpers
 !.byobu
+!.npmrc
 !.vimrc
 !.gemrc
 !.gitconfig
