@@ -53,10 +53,6 @@
 		"editor.defaultFormatter": "stylelint.vscode-stylelint",
 	},
 
-	"[jsonc]": {
-		"editor.defaultFormatter": "vscode.json-language-features"
-	},
-
 	"[python]": {
 		"editor.insertSpaces": true,
 		"editor.tabSize": 4
@@ -95,10 +91,12 @@
 	},
 
 	"eslint.options": {
-		"extensions": [".js", ".vue"]
+		"extensions": [".js", ".json", ".ts", ".vue"]
 	},
 	"eslint.validate": [
 		"javascript",
+		"json",
+		"jsonc",
 		"typescript",
 	],
 	"javascript.implicitProjectConfig.experimentalDecorators": true,
