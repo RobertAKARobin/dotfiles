@@ -91,12 +91,10 @@
 	},
 
 	"eslint.options": {
-		"extensions": [".js", ".json", ".ts", ".vue"]
+		"extensions": [".js", ".ts"]
 	},
 	"eslint.validate": [
 		"javascript",
-		"json",
-		"jsonc",
 		"typescript",
 	],
 	"javascript.implicitProjectConfig.experimentalDecorators": true,
@@ -140,5 +138,9 @@
 	},
 	"[typescript]": {
 		"editor.defaultFormatter": "vscode.typescript-language-features"
-	}
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"deno.lint": false
 }
