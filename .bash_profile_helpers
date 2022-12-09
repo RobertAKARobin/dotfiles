@@ -83,7 +83,7 @@ function f() {
 
     # Look for substring in file names, return file names
     # e.g. `f fi "foo" ./some_directory`
-    fi) c="find $find_path -iname "*$substring*" -print -o $(wrap "-path ./% -prune -o " ${ignore_dirs[@]}) -type f";;
+    fi) c="find -s $find_path -ipath "*$substring*" -print -o $(wrap "-path ./% -prune -o " ${ignore_dirs[@]}) -type f";;
   esac
 
   if [[ -z $c ]]; then
