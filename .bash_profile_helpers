@@ -339,7 +339,16 @@ function g(){
     X)  c=(clean -xfd);;
     # Go to next commit
     ++)
-        git log --reverse --pretty=%H | grep -A 1 $(git rev-parse HEAD) | tail -n1 | xargs git checkout
+        local target_branch=$1
+        shift
+        if [[ -z $target_branch ]]; then
+          echo "Specify a branch"
+          return
+        fi
+
+        local current_sha=$(git rev-parse HEAD)
+        local target_sha=$(git log $target_branch --reverse --pretty=%H | grep -A 1 $current_sha | tail -n1)
+        git checkout $target_sha
         return
         ;;
     # Go to previous commit
