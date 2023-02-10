@@ -75,7 +75,7 @@ function f() {
 
     # Look for regex in files, return file names
     # e.g. `f rx "foo b[ar]{2}" ./some_directory`
-    rx) c="fgrep -iIrl -E \"$substring\" . $include $exclude_dirs";;
+    rx) c="fgrep -iIrl -E \"$substring\" . --include="./$include*" $exclude_dirs";;
 
     # Look for regex in file names, return file names
     # e.g. `f fr "*\.ts" ./some_directory`
