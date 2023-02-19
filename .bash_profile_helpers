@@ -377,6 +377,17 @@ function happ(){
   heroku apps:destroy $1 --confirm $1
 }
 
+function hk() {
+  app=$1
+  shift
+  cmd=$1
+  shift
+
+  cmd="heroku $cmd --app $app $@"
+  echo $cmd
+  bash -c "$cmd"
+}
+
 function join_by() {
   local delimeter=$1
   shift
