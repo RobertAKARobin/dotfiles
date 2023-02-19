@@ -19,6 +19,7 @@ export useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/53
 export w="$HOME/Programming/web"
 
 games='/usr/share/emacs/22.1/lisp/play/'
+TAB=`echo -e "\t"`
 
 function b64() {
   # Base 64 encode/decode
