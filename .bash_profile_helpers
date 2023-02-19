@@ -21,7 +21,7 @@ export w="$HOME/Programming/web"
 games='/usr/share/emacs/22.1/lisp/play/'
 TAB=`echo -e "\t"`
 
-if [[ $OSTYPE=="msys" ]]; then
+if [[ $OSTYPE == "msys" ]]; then
   function pbcopy() {
     printf "$(</dev/stdin)" | cat > /dev/clipboard
   }
