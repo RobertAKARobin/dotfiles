@@ -21,6 +21,22 @@ export w="$HOME/Programming/web"
 games='/usr/share/emacs/22.1/lisp/play/'
 TAB=`echo -e "\t"`
 
+if [[ $OSTYPE=="msys" ]]; then
+  function pbcopy() {
+    printf "$(</dev/stdin)" | cat > /dev/clipboard
+  }
+
+  alias fregp="grep"
+  alias open="start"
+  export w="$HOME/source/repos"
+fi
+
+# If google-chrome command doesn't exist, set it
+if ! command -v google-chrome &> /dev/null; then
+	# Opens specified website in Chrome
+	alias google-chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+fi
+
 function b64() {
   # Base 64 encode/decode
   # Encoce: b64 "Hello world"
@@ -110,12 +126,6 @@ function figall(){
   done <<< "$figlist"
   echo "$output" > $filename
 }
-
-# If google-chrome command doesn't exist, set it
-if ! command -v google-chrome &> /dev/null; then
-	# Opens specified website in Chrome
-	alias google-chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-fi
 
 function is_git() {
   echo $((git rev-parse --is-inside-work-tree) 2>&1)
@@ -367,13 +377,24 @@ function happ(){
   heroku apps:destroy $1 --confirm $1
 }
 
+function join_by() {
+  local delimeter=$1
+  shift
+  output="$1"
+  shift
+  for item in $@; do
+    output="$output,$item"
+  done
+  echo $output
+}
+
 function lipsum() {
   local text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   echo -n $text | pbcopy
   echo "Copied!"
 }
 
-function ll(){
+function l(){
   echo ""
   echo "----------"
   ls -AF1 $1
@@ -509,11 +530,11 @@ function venv() {
   source .venv/bin/activate
 }
 
-function wrap() {
+function wrap() { # For each item, replace '%' with string
   local wrapper=$1
   shift
   local output=""
-  for item in "$@"; do
+  for item in $@; do
     output="$output${wrapper//%/$item}"
   done
   echo $output
