@@ -75,7 +75,7 @@ function f() {
     fi
   fi
 
-  local exclude=$(wrap "':!%' " "${exclude_list[@]}")
+  local exclude=$(wrap "':(exclude)%' " "${exclude_list[@]}")
 
   local find_path=$include
   if [[ -z $find_path ]]; then
@@ -94,7 +94,7 @@ function f() {
     # Look for regex in files, return file names
     # e.g. `f rx "foo b[ar]{2}" ./some_directory`
     rx) flags="-iIrl -E";;
-    
+
     *)
       echo "'$dowhat' isn't a thing. Did you want to use fd?"
       return
