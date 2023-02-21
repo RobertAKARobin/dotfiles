@@ -62,52 +62,45 @@ function f() {
   local dowhat=$1
   local substring=$(echo $2 | sed -E 's/\"/\\\"/g')
   local include=$3
+  local is_git="$(is_git)"
 
-  local ignore_dirs=(node_modules jspm_packages .git tmp .venv logs staticfiles)
+  local exclude_list=(node_modules jspm_packages .git tmp .venv logs staticfiles)
 
-  if [[ "$(is_git)" == "true" ]]; then
+  if [[ $is_git == "true" ]]; then
     local git_root=$(git rev-parse --show-toplevel)
     local gitignore="$git_root/$(git config --local --get --default .gitignore core.excludesFile)"
     if [[ -f $gitignore ]]; then
-      local ignore_dirs="$ignore_dirs $(cat $gitignore | sed -E 's/[#\!].*//g')"
+      gitignore=$(cat $gitignore | sed -E 's/[#\!].*//g')
+      exclude_list=("${exclude_list[@]}" $gitignore)
     fi
   fi
 
-  local exclude_dirs=$(wrap "--exclude-dir=% " ${ignore_dirs[@]})
-  local find_path=$include
+  local exclude=$(wrap "':!%' " "${exclude_list[@]}")
 
+  local find_path=$include
   if [[ -z $find_path ]]; then
-    local find_path="."
+    local find_path="./*"
   fi
 
-  local c=""
+  local flags=""
   case "$dowhat" in
     # Look for substring in files, return file names
     # e.g. `f tx "foo bar" ./some_directory`
-    tx) c="fgrep -iIrl \"$substring\" . --include="./$include*" $exclude_dirs";;
+    tx) flags="-iIrl";;
 
     # Look for substring in files, return matching lines
     # e.g. `f ln "foo bar" ./some_directory`
-    ln) c="fgrep -iIr \"$substring\" . --include="./$include*" $exclude_dirs";;
-
+    ln) flags="-iIr";;
     # Look for regex in files, return file names
     # e.g. `f rx "foo b[ar]{2}" ./some_directory`
-    rx) c="fgrep -iIrl -E \"$substring\" . --include="./$include*" $exclude_dirs";;
-
-    # Look for regex in file names, return file names
-    # e.g. `f fr "*\.ts" ./some_directory`
-    fr) c="find $find_path -name $substring -print -o $(wrap "-path ./% -prune -o " ${ignore_dirs[@]}) -type f";;
-
-    # Look for substring in file names, return file names
-    # e.g. `f fi "foo" ./some_directory`
-    fi) c="find -s $find_path -ipath "*$substring*" -print -o $(wrap "-path ./% -prune -o " ${ignore_dirs[@]}) -type f";;
+    rx) flags="-iIrl -E";;
+    
+    *)
+      echo "'$dowhat' isn't a thing. Did you want to use fd?"
+      return
   esac
 
-  if [[ -z $c ]]; then
-    echo "$dowhat isn't a thing."
-    return
-  fi
-
+  local c="git grep $flags --no-index --recurse-submodules \"$substring\" -- $find_path $exclude"
   echo ">>> $c"
   bash -c "$c"
 }
@@ -545,7 +538,7 @@ function wrap() { # For each item, replace '%' with string
   local wrapper=$1
   shift
   local output=""
-  for item in $@; do
+  for item in "${@}"; do
     output="$output${wrapper//%/$item}"
   done
   echo $output
