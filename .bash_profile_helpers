@@ -184,57 +184,73 @@ function g(){
         c=(cherry-pick $sha..$branch)
         shift
         ;;
-    d)  c=(diff);;
-    db) # What changed between where this branch and other branch diverged
-        if [[ $1 == "-s" ]]; then
-          local flag="--stat"
-          shift
-        fi
-
-        local target_branch=$1
-        shift
-
-        local base_commit=$(git merge-base --all HEAD $target_branch)
-        c=(diff $flag $base_commit..$target_branch)
+    d)
+        c=(diff)
+        OPTIND=1
+        local opt
+        while getopts "gsw" flag; do
+          opt=
+          case "${flag}" in
+            g) opt=--staged;;
+            s) opt=--stat;;
+            w) opt=--ignore-all-space;;
+          esac
+          if [[ ! -z $opt ]]; then
+            shift $(($OPTIND - 1))
+            c+=($opt)
+          fi
+        done
         ;;
-    dbs)
-        g db -s $@
-        return
-        ;;
-    dc) # What changed in the last n commits
-        if [[ $1 == "-s" ]]; then
-          local flag="--stat"
-          shift
-        fi
+    # db) # What changed between where this branch and other branch diverged
+    #     if [[ $1 == "-s" ]]; then
+    #       local flag="--stat"
+    #       shift
+    #     fi
 
-        if [[ -z $1 ]]; then
-          local commit=HEAD
-        else
-          local commit=$1
-          shift
-        fi
+    #     local target_branch=$1
+    #     shift
 
-        if [[ -z $1 ]]; then
-          local num_commits=1
-        else
-          local num_commits=$1
-          shift
-        fi
-        c=(diff $flag $commit~$num_commits..$commit)
-        ;;
-    dcs)
-        g dc -s $@
-        return
-        ;;
-    dg) c=(diff --staged);;
-    dgs)
-        c=(diff --staged --stat);;
+    #     local base_commit=$(git merge-base --all HEAD $target_branch)
+    #     c=(diff $flag $base_commit..$target_branch)
+    #     ;;
+    # dbs)
+    #     g db -s $@
+    #     return
+    #     ;;
+    # dc) # What changed in the last n commits
+    #     if [[ $1 == "-s" ]]; then
+    #       local flag="--stat"
+    #       shift
+    #     fi
+
+    #     if [[ -z $1 ]]; then
+    #       local commit=HEAD
+    #     else
+    #       local commit=$1
+    #       shift
+    #     fi
+
+    #     if [[ -z $1 ]]; then
+    #       local num_commits=1
+    #     else
+    #       local num_commits=$1
+    #       shift
+    #     fi
+    #     c=(diff $flag $commit~$num_commits..$commit)
+    #     ;;
+    # dcs)
+    #     g dc -s $@
+    #     return
+    #     ;;
+    # dg) c=(diff --staged);;
+    # dgs)
+    #     c=(diff --staged --stat);;
+    # ds) c=(diff --stat);;
     dnew) # Diff from my last commit
         local author=$(git config user.name)
         local hash=$(git log --author=$author -1 --pretty=%h)
         c=(diff $hash..HEAD)
         ;;
-    ds) c=(diff --stat);;
     f)  c=(fetch --prune --all);;
     fn)
         git rev-list --all | xargs git grep -i "$@"
