@@ -59,6 +59,8 @@ function cbrew() {
 }
 
 function f() {
+  set -o noglob
+
   local dowhat=$1
   local substring=$(echo $2 | sed -E 's/\"/\\\"/g')
   local include=$3
@@ -103,6 +105,8 @@ function f() {
   local c="git grep $flags --no-index --recurse-submodules \"$substring\" -- $find_path $exclude"
   echo ">>> $c"
   bash -c "$c"
+
+  set +o noglob
 }
 
 function figall(){
