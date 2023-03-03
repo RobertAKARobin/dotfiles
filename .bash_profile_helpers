@@ -306,7 +306,7 @@ function g(){
         local remote=$1
         shift
         if [ -z $remote ]; then
-            local remote=origin
+          remote=origin
         fi
         c=(push -u -f $remote $current_branch)
         ;;
@@ -392,9 +392,9 @@ function happ(){
 }
 
 function hk() {
-  app=$1
+  local app=$1
   shift
-  cmd=$1
+  local cmd=$1
   shift
 
   cmd="heroku $cmd --app $app $@"
