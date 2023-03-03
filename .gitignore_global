@@ -10,3 +10,4 @@ secrets.*
 *.css.map
 env.js*
 _files
+*.git

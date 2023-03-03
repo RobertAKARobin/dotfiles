@@ -64,7 +64,6 @@
 	// #region Languages
 	"css.validate": false,
 	"[css]": {
-		"editor.defaultFormatter": "stylelint.vscode-stylelint",
 		"editor.insertSpaces": false,
 		"editor.tabSize": 2
 	},
