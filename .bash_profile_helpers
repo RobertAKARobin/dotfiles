@@ -294,11 +294,28 @@ function g(){
         fi
         c=(push --delete origin $branch)
         ;;
+    pDD) # Delete all remote branches that don't match a local branch
+        local remote="${1:-origin}"
+        local branches_local=$(git branch | sed -E 's/\*//g')
+        local branch_local
+        local branches_remote=$(git branch -a | grep remotes\/$remote | sed -E "s/remotes\/$remote\///g")
+        local branch_remote
+        local branches=()
+        local branch
+        for branch_remote in $branches_remote; do
+          if ! in_list "$branches_local" "$branch_remote"; then
+            branches+=($branch_remote)
+          fi
+        done
+
+        local branch_str=$(join_by " " "${branches[@]}")
+        c=(push --delete $remote $branch_str)
+        ;;
     pu)
         local remote=$1
         shift
-        if [ -z $remote ]; then
-            local remote=origin
+        if [[ -z $remote ]]; then
+          remote=origin
         fi
         c=(push -u $remote $current_branch)
         ;;
@@ -402,15 +419,23 @@ function hk() {
   bash -c "$cmd"
 }
 
-function join_by() {
-  local delimeter=$1
-  shift
-  output="$1"
-  shift
-  for item in $@; do
-    output="$output,$item"
+function in_list() {
+  local list=$1
+  local target=$2
+  local item
+  for item in $list; do
+    if [[ "$item" == "$target" ]]; then
+      return 0
+    fi
   done
-  echo $output
+  return 1
+}
+
+function join_by() { # https://stackoverflow.com/a/17841619/2053389
+  local d=${1-} f=${2-}
+  if shift 2; then
+    printf %s "$f" "${@/#/$d}"
+  fi
 }
 
 function lipsum() {
