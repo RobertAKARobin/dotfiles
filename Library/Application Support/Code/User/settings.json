@@ -1,41 +1,57 @@
 {
-	// Text formatting
+	// #region Text formatting
 	"editor.fontSize": 11,
-	"editor.wordWrap": "on",
 	"editor.scrollBeyondLastLine": false,
+	"editor.wordWrap": "on",
+	// #endregion
 
-	// Whitespaces
-	"editor.renderWhitespace": "all",
-	"editor.insertSpaces": false,
-	"editor.tabSize": 2,
+	// #region Whitespaces
 	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"editor.renderWhitespace": "all",
+	"editor.tabSize": 2,
 	"files.insertFinalNewline": true,
 	"files.trimTrailingWhitespace": true,
+	// #endregion
 
-	// Appearance
+	// #region Appearance
 	"editor.fontWeight": "400",
-	"workbench.colorTheme": "Visual Studio Dark",
-
-	// VSC-specific stuff
 	"editor.minimap.enabled": false,
-	"workbench.startupEditor": "newUntitledFile",
+	"workbench.activityBar.visible": true,
+	"workbench.colorTheme": "Visual Studio Dark",
+	// #endregion
 
-	// Trying to disable most kinds of autosuggest
-	"workbench.tips.enabled": false,
-	"javascript.suggestionActions.enabled": false,
-	"javascript.format.enable": true,
-	"editor.suggestOnTriggerCharacters": true,
+	// #region VSC-specific stuff
+	"explorer.confirmDragAndDrop": false,
+	"extensions.ignoreRecommendations": true,
+	"security.workspace.trust.untrustedFiles": "open",
+	"settingsSync.ignoredSettings": [],
+	"update.mode": "start",
+	"workbench.editor.closeEmptyGroups": false,
+	"workbench.editor.enablePreviewFromQuickOpen": false,
+	"workbench.editor.enablePreview": false,
+	"workbench.startupEditor": "newUntitledFile",
+	// #endregion
+
+	// #region Trying to disable most kinds of autosuggest
 	"editor.acceptSuggestionOnCommitCharacter": false,
-	"editor.wordBasedSuggestions": false,
+	"editor.formatOnPaste": false,
+	"editor.formatOnSave": false,
+	"editor.formatOnType": false,
+	"editor.parameterHints.enabled": false,
 	"editor.quickSuggestions": {
 		"other": false,
 		"comments": false,
 		"strings": false
 	},
-  	"editor.parameterHints.enabled": false,
-	"explorer.confirmDragAndDrop": false,
+	"editor.suggestOnTriggerCharacters": false,
+	"editor.wordBasedSuggestions": false,
+	"html.autoClosingTags": false,
+	"javascript.suggestionActions.enabled": false,
+	"workbench.tips.enabled": false,
+	// #endregion
 
-	// Files to exclude
+	// #region Filesystem
 	"files.exclude": {
 		"**/.git": false,
 		"**/.svn": false,
@@ -43,28 +59,25 @@
 		"**/CVS": false,
 		"**/.DS_Store": false
 	},
-	"html.autoClosingTags": false,
-	"workbench.editor.closeEmptyGroups": false,
-	"workbench.editor.enablePreviewFromQuickOpen": false,
-	"workbench.editor.enablePreview": false,
-	"extensions.ignoreRecommendations": true,
+	// #endregion
 
+	// #region Languages
+	"css.validate": false,
 	"[css]": {
 		"editor.defaultFormatter": "stylelint.vscode-stylelint",
-	},
-
-	"[python]": {
-		"editor.insertSpaces": true,
-		"editor.tabSize": 4
-	},
-
-	"[ruby]": {
-		"editor.insertSpaces": true,
+		"editor.insertSpaces": false,
 		"editor.tabSize": 2
 	},
 
-	"[shellscript]": {
-		"editor.insertSpaces": true,
+	"[json]": {
+		"editor.defaultFormatter": "vscode.json-language-features",
+		"editor.insertSpaces": false,
+		"editor.tabSize": 2
+	},
+
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features",
+		"editor.insertSpaces": false,
 		"editor.tabSize": 2
 	},
 
@@ -72,14 +85,37 @@
 		"editor.unicodeHighlight.ambiguousCharacters": false,
 		"editor.unicodeHighlight.invisibleCharacters": false,
 		"editor.wordWrap": "on",
-		"editor.insertSpaces": true,
+		"editor.insertSpaces": false,
 		"editor.tabSize": 4
 	},
 
-	"css.validate": false,
+	"[python]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 4,
+	},
+
+	"[ruby]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2
+	},
+
 	"scss.validate": false,
-	"less.validate": false,
-	"stylelint.enable": false,
+	"[scss]": {
+		"editor.insertSpaces": false,
+		"editor.tabSize": 2
+	},
+
+	"[shellscript]": {
+		"editor.insertSpaces": false,
+		"editor.tabSize": 2
+	},
+
+	"[typescript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features",
+		"editor.insertSpaces": false,
+		"editor.tabSize": 2
+	},
+	// #endregion
 
 	"files.associations": {
 		"*.djt": "django-html",
@@ -90,57 +126,5 @@
 		"*.svg": "xml",
 	},
 
-	"eslint.options": {
-		"extensions": [".js", ".ts"]
-	},
-	"eslint.validate": [
-		"javascript",
-		"typescript",
-	],
-	"javascript.implicitProjectConfig.experimentalDecorators": true,
-	"explorer.compactFolders": false,
-	"beautify.options": {
-		"indent_level": 2,
-		"indent_with_tabs": false
-	},
-	"javascript.updateImportsOnFileMove.enabled": "always",
-	"htmlhint.options": {
-		"tagname-lowercase": true,
-		"attr-lowercase": false,
-		"attr-value-double-quotes": true,
-		"doctype-first": false,
-		"tag-pair": true,
-		"spec-char-escape": true,
-		"id-unique": true,
-		"src-not-empty": true,
-		"attr-no-duplication": true,
-		"title-require": true
-	},
-	"workbench.activityBar.visible": true,
-	"update.mode": "start",
-	"workbench.editorAssociations": {
-		"*.ipynb": "jupyter-notebook",
-		"*.stl": "3dviewer.viewer"
-	},
 	"gremlins.showInProblemPane": true,
-	"angular.experimental-ivy": true,
-	"typescript.updateImportsOnFileMove.enabled": "always",
-	"typescript.suggest.autoImports": false,
-	"javascript.suggest.autoImports": false,
-	"vetur.completion.autoImport": false,
-	"notebook.cellToolbarLocation": {
-		"default": "right",
-		"jupyter-notebook": "left"
-	},
-	"security.workspace.trust.untrustedFiles": "open",
-	"[json]": {
-		"editor.defaultFormatter": "vscode.json-language-features"
-	},
-	"[typescript]": {
-		"editor.defaultFormatter": "vscode.typescript-language-features"
-	},
-	"[jsonc]": {
-		"editor.defaultFormatter": "vscode.json-language-features"
-	},
-	"deno.lint": false
 }

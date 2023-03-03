@@ -9,6 +9,7 @@
 !.vimrc
 !.gemrc
 !.gitconfig
+!vscode-profiles
 !RectangleConfig.json
 !Library
 Library/*
