@@ -1,13 +1,13 @@
 #!/bin/bash
 
 alias bfg="java -jar ~/bfg.jar" # clears stuff from Git history, https://rtyley.github.io/bfg-repo-cleaner/
-alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias chrome="open -a 'Google Chrome.app'"
 alias dnsrefresh="sudo killall -HUP mDNSResponder"
 alias hs="http-server"
 alias jad="jade -Pw"
 alias jek="jekyll serve -w"
 alias json="jq"
-alias kiosk="chrome --kiosk --incognito --no-context-menu"
+alias kiosk="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --kiosk --incognito --no-context-menu"
 alias math="bc -l"
 alias ports='lsof -i -P | grep -i "listen"'
 alias reload='exec -l $SHELL'
