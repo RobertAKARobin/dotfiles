@@ -17,6 +17,7 @@
 	// #region Appearance
 	"editor.fontWeight": "400",
 	"editor.minimap.enabled": false,
+	"explorer.compactFolders": false,
 	"workbench.activityBar.visible": true,
 	"workbench.colorTheme": "Visual Studio Dark",
 	// #endregion
