@@ -78,3 +78,5 @@ if [ -f "/Users/$(whoami)/google-cloud-sdk/completion.bash.inc" ]; then . "/User
 if command -v rust &> /dev/null; then
   source "$HOME/.cargo/env"
 fi
+export DVM_DIR="/Users/robertthomas/.dvm"
+export PATH="$DVM_DIR/bin:$PATH"
