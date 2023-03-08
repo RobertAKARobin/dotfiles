@@ -298,7 +298,7 @@ function g(){
         local remote="${1:-origin}"
         local branches_local=$(git branch | sed -E 's/\*//g')
         local branch_local
-        local branches_remote=$(git branch -a | grep remotes\/$remote | sed -E "s/remotes\/$remote\///g")
+        local branches_remote=$(git branch -r | grep remotes\/$remote | sed -E "s/remotes\/$remote\///g")
         local branch_remote
         local branches=()
         local branch
@@ -307,6 +307,11 @@ function g(){
             branches+=($branch_remote)
           fi
         done
+
+				if [[ -z "$branches" ]]; then
+					echo "No branches to delete"
+					return
+				fi
 
         local branch_str=$(join_by " " "${branches[@]}")
         c=(push --delete $remote $branch_str)
