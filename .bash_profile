@@ -1,12 +1,12 @@
 #!/bin/bash
 
 source ~/.bash_profile_helpers
-if [ -f ~/.bash_profile_private ]; then 
+if [ -f ~/.bash_profile_private ]; then
   source ~/.bash_profile_private
 fi
 
 # Homebrew
-export PATH="/usr/local/sbin:$PATH" 
+export PATH="/usr/local/sbin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 if type brew &>/dev/null; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -36,6 +36,7 @@ export PS1="\[$BASH_COLOR\]  \d \t \w\$(git_branch)"$'\n\[\e[m\]\\$ '
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+eval "$(fnm env --use-on-cd)"
 
 # Deno
 export PATH="/Users/$(whoami)/.deno/bin:$PATH"
