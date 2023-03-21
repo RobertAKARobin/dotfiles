@@ -39,14 +39,14 @@
 	"editor.formatOnPaste": false,
 	"editor.formatOnSave": false,
 	"editor.formatOnType": false,
-	"editor.parameterHints.enabled": false,
+	"editor.parameterHints.enabled": true,
 	"editor.quickSuggestions": {
-		"other": false,
-		"comments": false,
-		"strings": false
+		"other": true,
+		"comments": true,
+		"strings": true
 	},
-	"editor.suggestOnTriggerCharacters": false,
-	"editor.wordBasedSuggestions": false,
+	"editor.suggestOnTriggerCharacters": true,
+	"editor.wordBasedSuggestions": true,
 	"html.autoClosingTags": false,
 	"javascript.suggestionActions.enabled": false,
 	"workbench.tips.enabled": false,
