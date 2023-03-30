@@ -41,14 +41,16 @@ if command -v fnm &> /dev/null; then
 fi
 
 # Deno
-export PATH="/Users/$(whoami)/.deno/bin:$PATH"
+export PATH="$HOME/.deno/bin:$PATH"
+export DVM_DIR="$HOME/.dvm"
+export PATH="$DVM_DIR/bin:$PATH"
 
 # Python pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
 	export PYENV_ROOT="$HOME/.pyenv"
 	export PATH="$PYENV_ROOT/bin:$PATH"
 	eval "$(pyenv init -)"
-	export CLOUDSDK_PYTHON=/Users/$(whoami)/.pyenv/shims/python
+	export CLOUDSDK_PYTHON="$HOME/.pyenv/shims/python"
 fi
 
 # Python pipenv
@@ -65,9 +67,9 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # Google Cloud
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f "/Users/$(whoami)/google-cloud-sdk/path.bash.inc" ]; then . "/Users/$(whoami)/google-cloud-sdk/path.bash.inc"; fi
+if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then . "$HOME/google-cloud-sdk/path.bash.inc"; fi
 # The next line enables shell command completion for gcloud.
-if [ -f "/Users/$(whoami)/google-cloud-sdk/completion.bash.inc" ]; then . "/Users/$(whoami)/google-cloud-sdk/completion.bash.inc"; fi
+if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then . "$HOME/google-cloud-sdk/completion.bash.inc"; fi
 
 # K40 Whisperer
 # https://github.com/rsre/K40-Whisperer-macOS
@@ -78,8 +80,7 @@ if [ -f "/Users/$(whoami)/google-cloud-sdk/completion.bash.inc" ]; then . "/User
 # export PKG_CONFIG_PATH="/usr/local/opt/tcl-tk/lib/pkgconfig"
 
 # Rust
+export PATH="$HOME/.cargo/bin:$PATH"
 if command -v rust &> /dev/null; then
 	source "$HOME/.cargo/env"
 fi
-export DVM_DIR="/Users/robertthomas/.dvm"
-export PATH="$DVM_DIR/bin:$PATH"
