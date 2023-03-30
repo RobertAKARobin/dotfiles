@@ -2,40 +2,40 @@
 
 source ~/.bash_profile_helpers
 if [ -f ~/.bash_profile_private ]; then
-  source ~/.bash_profile_private
+	source ~/.bash_profile_private
 fi
 
 # Homebrew
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 if type brew &>/dev/null; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+	eval "$(/opt/homebrew/bin/brew shellenv)"
 
-  HOMEBREW_PREFIX="$(brew --prefix)"
-  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
-    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-  else
-    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
-      [[ -r "$COMPLETION" ]] && source "$COMPLETION"
-    done
-  fi
+	HOMEBREW_PREFIX="$(brew --prefix)"
+	if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+		source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+	else
+		for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+			[[ -r "$COMPLETION" ]] && source "$COMPLETION"
+		done
+	fi
 
-  # OpenSSL
-  export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
-  export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
-  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+	# OpenSSL
+	export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
+	export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+	export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 fi
 
 # Git
 if [ -z "$BASH_COLOR" ]; then
-  BASH_COLOR="\e[33m"
+	BASH_COLOR="\e[33m"
 fi
 export PS1="\[$BASH_COLOR\]  \d \t \w\$(git_branch)"$'\n\[\e[m\]\\$ '
 
 # Node
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"	# This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"	# This loads nvm bash_completion
 if command -v fnm &> /dev/null; then
 	eval "$(fnm env --use-on-cd)"
 fi
@@ -45,10 +45,10 @@ export PATH="/Users/$(whoami)/.deno/bin:$PATH"
 
 # Python pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
-  export CLOUDSDK_PYTHON=/Users/$(whoami)/.pyenv/shims/python
+	export PYENV_ROOT="$HOME/.pyenv"
+	export PATH="$PYENV_ROOT/bin:$PATH"
+	eval "$(pyenv init -)"
+	export CLOUDSDK_PYTHON=/Users/$(whoami)/.pyenv/shims/python
 fi
 
 # Python pipenv
@@ -57,7 +57,7 @@ export PIPENV_IGNORE_VIRTUALENVS=1
 
 # Ruby
 if command -v rbenv &> /dev/null; then
-  eval "$(rbenv init -)"
+	eval "$(rbenv init -)"
 fi
 
 # Misc
@@ -79,7 +79,7 @@ if [ -f "/Users/$(whoami)/google-cloud-sdk/completion.bash.inc" ]; then . "/User
 
 # Rust
 if command -v rust &> /dev/null; then
-  source "$HOME/.cargo/env"
+	source "$HOME/.cargo/env"
 fi
 export DVM_DIR="/Users/robertthomas/.dvm"
 export PATH="$DVM_DIR/bin:$PATH"
