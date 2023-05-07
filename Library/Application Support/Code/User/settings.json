@@ -127,4 +127,9 @@
 	},
 
 	"gremlins.showInProblemPane": true,
+	"astro.html.completions.emmet": false,
+	"astro.css.completions.emmet": false,
+	"emmet.showAbbreviationSuggestions": false,
+	"emmet.optimizeStylesheetParsing": false,
+	"emmet.showExpandedAbbreviation": "never",
 }
