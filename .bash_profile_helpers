@@ -262,7 +262,11 @@ function g(){
 			c=(diff $hash..HEAD)
 			;;
 		f)
-			c=(fetch --prune --all);;
+			local remote=$1
+			if [[ -z $remote ]]; then
+				remote="origin"
+			fi
+			c=(fetch --prune $remote);;
 		fn)
 			git rev-list --all | xargs git grep -i "$@"
 			return
