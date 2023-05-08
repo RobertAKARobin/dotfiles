@@ -320,7 +320,7 @@ function g(){
 			local remote="${1:-origin}"
 			local branches_local=$(git branch | sed -E 's/\*//g')
 			local branch_local
-			local branches_remote=$(git branch -r | sed -E "s/$remote\///g")
+			local branches_remote=$(git branch -r | sed -E "s/$remote\///g" | sed -E "s/.* -> .*//g")
 			local branch_remote
 			local branches=()
 			local branch
