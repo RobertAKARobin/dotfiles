@@ -74,7 +74,7 @@ function f() {
 		local git_root=$(git rev-parse --show-toplevel)
 		local gitignore="$git_root/$(git config --local --get --default .gitignore core.excludesFile)"
 		if [[ -f $gitignore ]]; then
-			gitignore=$(cat $gitignore | sed -E 's/[#\!].*//g')
+			gitignore=$(cat $gitignore | sed -E 's/[#\!].*//g' | sed 's/\B\///g')
 			exclude_list=("${exclude_list[@]}" $gitignore)
 		fi
 	fi
