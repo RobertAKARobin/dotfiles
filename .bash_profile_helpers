@@ -519,6 +519,12 @@ function ngg() {
 	fi
 }
 
+function pingt() {
+	local dest=$1
+	local pong
+	ping -t $dest | while read pong; do echo "$(date): $pong"; done
+}
+
 function sc() {
 	local arg=$1
 	shift
