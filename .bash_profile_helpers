@@ -8,6 +8,7 @@ alias jad="jade -Pw"
 alias jek="jekyll serve -w"
 alias json="jq"
 alias kiosk="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --kiosk --incognito --no-context-menu"
+alias lando="~/lando-cli/bin/lando.js"
 alias math="bc -l"
 alias ports='lsof -i -P | grep -i "listen"'
 alias reload='exec -l $SHELL'
