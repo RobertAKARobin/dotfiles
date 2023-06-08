@@ -32,6 +32,9 @@ if [[ $OSTYPE == "msys" ]]; then
 	alias fregp="grep"
 	alias open="start"
 	export w="$HOME/source/repos"
+	export lx="//wsl$/Ubuntu/home/$(whoami)"
+elif [[ $OSTYPE == "linux-gnu" ]]; then
+	export w="/mnt/c/Users/$(whoami)/source/repos"
 fi
 
 # If google-chrome command doesn't exist, set it
