@@ -10,15 +10,11 @@
 !.gemrc
 !.gitconfig
 !RectangleConfig.json
-!Library
-Library/*
-!Library/Application\ Support
-Library/Application\ Support/*
-!Library/Application\ Support/Code
-Library/Application\ Support/Code/*
-!Library/Application\ Support/Code/User
-Library/Application\ Support/Code/User/*
-!Library/Application\ Support/Code/User/settings.json
+!.vscode
+.vscode/*
+!.vscode/User
+.vscode/User/*
+!.vscode/User/settings.json
 
 !Library/Preferences
 Library/Preferences/*

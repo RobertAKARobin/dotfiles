@@ -22,6 +22,7 @@ desk="$HOME/Desktop"
 games='/usr/share/emacs/22.1/lisp/play/'
 TAB=`echo -e "\t"`
 useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"
+vscode="$(which code)"
 w="$HOME/Programming/web"
 
 if [[ $OSTYPE == "msys" ]]; then
@@ -64,6 +65,10 @@ function cbrew() {
 	# Change brew permissions on corporate machine
 	sudo chown -R $(whoami) /usr/local/bin /usr/local/etc /usr/local/sbin /usr/local/share /usr/local/share/doc
 	chmod u+w /usr/local/bin /usr/local/etc /usr/local/sbin /usr/local/share /usr/local/share/doc
+}
+
+function code() {
+	command "$vscode" --user-data-dir ~/.vscode $@
 }
 
 function f() {

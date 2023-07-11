@@ -91,7 +91,7 @@
 
 	"[python]": {
 		"editor.insertSpaces": true,
-		"editor.tabSize": 4,
+		"editor.tabSize": 4
 	},
 
 	"[ruby]": {
@@ -123,7 +123,7 @@
 		"*.ejs": "html",
 		"*.jscad": "javascript",
 		"*.js.snap": "html",
-		"*.svg": "xml",
+		"*.svg": "xml"
 	},
 
 	"gremlins.showInProblemPane": true,
@@ -133,5 +133,5 @@
 	"emmet.optimizeStylesheetParsing": false,
 	"emmet.showExpandedAbbreviation": "never",
 	"npm.fetchOnlinePackageInfo": true,
-	"git.openRepositoryInParentFolders": "never",
+	"git.openRepositoryInParentFolders": "never"
 }
