@@ -133,5 +133,14 @@
 	"emmet.optimizeStylesheetParsing": false,
 	"emmet.showExpandedAbbreviation": "never",
 	"npm.fetchOnlinePackageInfo": true,
-	"git.openRepositoryInParentFolders": "never"
+	"git.openRepositoryInParentFolders": "never",
+	"terminal.integrated.defaultProfile.windows": "Git Bash",
+	"terminal.integrated.allowChords": false,
+	"terminal.integrated.altClickMovesCursor": false,
+	"terminal.integrated.fontSize": 12,
+	"terminal.integrated.rightClickBehavior": "default",
+	"terminal.integrated.tabStopWidth": 2,
+	"terminal.integrated.sendKeybindingsToShell": true,
+	"terminal.integrated.confirmOnExit": "hasChildProcesses",
+	"terminal.integrated.confirmOnKill": "always"
 }
