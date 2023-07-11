@@ -142,5 +142,6 @@
 	"terminal.integrated.tabStopWidth": 2,
 	"terminal.integrated.sendKeybindingsToShell": true,
 	"terminal.integrated.confirmOnExit": "hasChildProcesses",
-	"terminal.integrated.confirmOnKill": "always"
+	"terminal.integrated.confirmOnKill": "always",
+	"cSpell.enabled": false
 }
