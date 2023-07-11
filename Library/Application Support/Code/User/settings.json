@@ -132,4 +132,6 @@
 	"emmet.showAbbreviationSuggestions": false,
 	"emmet.optimizeStylesheetParsing": false,
 	"emmet.showExpandedAbbreviation": "never",
+	"npm.fetchOnlinePackageInfo": true,
+	"git.openRepositoryInParentFolders": "never",
 }
