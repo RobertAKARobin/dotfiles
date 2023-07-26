@@ -36,6 +36,8 @@
 
 	// #region Trying to disable most kinds of autosuggest
 	"editor.acceptSuggestionOnCommitCharacter": false,
+	"editor.autoClosingQuotes": "never",
+	"editor.autoClosingBrackets": "never",
 	"editor.formatOnPaste": false,
 	"editor.formatOnSave": false,
 	"editor.formatOnType": false,
@@ -68,6 +70,8 @@
 		"editor.insertSpaces": false,
 		"editor.tabSize": 2
 	},
+
+	"html.autoCreateQuotes": false,
 
 	"[json]": {
 		"editor.defaultFormatter": "vscode.json-language-features",
@@ -140,8 +144,15 @@
 	"terminal.integrated.fontSize": 12,
 	"terminal.integrated.rightClickBehavior": "default",
 	"terminal.integrated.tabStopWidth": 2,
-	"terminal.integrated.sendKeybindingsToShell": true,
 	"terminal.integrated.confirmOnExit": "hasChildProcesses",
 	"terminal.integrated.confirmOnKill": "always",
-	"cSpell.enabled": false
+	"cSpell.enabled": false,
+	"explorer.confirmDelete": false,
+	"markdown-pdf.format": "Letter",
+	"markdown-pdf.footerTemplate": "",
+	"markdown-pdf.headerTemplate": "",
+	"markdown-pdf.highlight": false,
+	"markdown-pdf.outputDirectory": "~",
+	"markdown-pdf.displayHeaderFooter": false,
+	"markdown-pdf.markdown-it-include.enable": false
 }
