@@ -37,7 +37,7 @@
 	// #region Trying to disable most kinds of autosuggest
 	"editor.acceptSuggestionOnCommitCharacter": false,
 	"editor.autoClosingQuotes": "never",
-	"editor.autoClosingBrackets": "never",
+	// "editor.autoClosingBrackets": "never", // I actually like this one
 	"editor.formatOnPaste": false,
 	"editor.formatOnSave": false,
 	"editor.formatOnType": false,
@@ -154,5 +154,6 @@
 	"markdown-pdf.highlight": false,
 	"markdown-pdf.outputDirectory": "~",
 	"markdown-pdf.displayHeaderFooter": false,
-	"markdown-pdf.markdown-it-include.enable": false
+	"markdown-pdf.markdown-it-include.enable": false,
+	"typescript.updateImportsOnFileMove.enabled": "never"
 }
