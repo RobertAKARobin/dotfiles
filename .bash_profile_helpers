@@ -244,8 +244,8 @@ function g(){
 				local commit=HEAD
 			else
 				local commit=$1
-				shift
 			fi
+			shift
 
 			if [[ -z $1 ]]; then
 				local num_commits=1
