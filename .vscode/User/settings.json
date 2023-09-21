@@ -73,6 +73,11 @@
 
 	"html.autoCreateQuotes": false,
 
+	"[javascript]": {
+		"editor.codeLens": true
+	},
+	"javascript.referencesCodeLens.enabled": true,
+
 	"[json]": {
 		"editor.defaultFormatter": "vscode.json-language-features",
 		"editor.insertSpaces": false,
@@ -115,10 +120,13 @@
 	},
 
 	"[typescript]": {
+		"editor.codeLens": true,
 		"editor.defaultFormatter": "vscode.typescript-language-features",
 		"editor.insertSpaces": false,
 		"editor.tabSize": 2
 	},
+	"typescript.referencesCodeLens.enabled": true,
+	"typescript.updateImportsOnFileMove.enabled": "never",
 	// #endregion
 
 	"files.associations": {
@@ -155,5 +163,4 @@
 	"markdown-pdf.outputDirectory": "~",
 	"markdown-pdf.displayHeaderFooter": false,
 	"markdown-pdf.markdown-it-include.enable": false,
-	"typescript.updateImportsOnFileMove.enabled": "never"
 }
