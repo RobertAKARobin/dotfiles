@@ -163,4 +163,6 @@
 	"markdown-pdf.outputDirectory": "~",
 	"markdown-pdf.displayHeaderFooter": false,
 	"markdown-pdf.markdown-it-include.enable": false,
+
+	"security.restrictUNCAccess": false // This is a security vulnerability!
 }
