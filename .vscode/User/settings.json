@@ -114,6 +114,11 @@
 		"editor.tabSize": 4
 	},
 
+	"[powershell]": {
+		"editor.insertSpaces": false,
+		"editor.tabSize": 4
+	},
+
 	"[python]": {
 		"editor.insertSpaces": true,
 		"editor.tabSize": 4
