@@ -1,4 +1,6 @@
 {
+	"security.restrictUNCAccess": false, // This is a security vulnerability!
+
 	// #region Text formatting
 	"editor.fontSize": 11,
 	"editor.scrollBeyondLastLine": false,
@@ -12,18 +14,19 @@
 	"editor.tabSize": 2,
 	"files.insertFinalNewline": true,
 	"files.trimTrailingWhitespace": true,
+	"gremlins.showInProblemPane": true,
 	// #endregion
 
 	// #region Appearance
 	"editor.fontWeight": "400",
 	"editor.minimap.enabled": false,
 	"explorer.compactFolders": false,
-	"workbench.activityBar.visible": true,
 	"workbench.colorTheme": "Visual Studio Dark",
 	// #endregion
 
-	// #region VSC-specific stuff
+	// #region VS UI stuff
 	"explorer.confirmDragAndDrop": false,
+	"explorer.confirmDelete": false,
 	"extensions.ignoreRecommendations": true,
 	"security.workspace.trust.untrustedFiles": "open",
 	"settingsSync.ignoredSettings": [],
@@ -43,15 +46,27 @@
 	"editor.formatOnType": false,
 	"editor.parameterHints.enabled": true,
 	"editor.quickSuggestions": {
-		"other": true,
-		"comments": true,
-		"strings": true
+		"other": "on",
+		"comments": "on",
+		"strings": "on"
 	},
 	"editor.suggestOnTriggerCharacters": true,
-	"editor.wordBasedSuggestions": true,
+	"editor.wordBasedSuggestions": "off",
 	"html.autoClosingTags": false,
-	"javascript.suggestionActions.enabled": false,
 	"workbench.tips.enabled": false,
+	// #endregion
+
+	// #region Terminal
+	"npm.fetchOnlinePackageInfo": true,
+	"git.openRepositoryInParentFolders": "never",
+	"terminal.integrated.defaultProfile.windows": "Git Bash",
+	"terminal.integrated.allowChords": false,
+	"terminal.integrated.altClickMovesCursor": false,
+	"terminal.integrated.fontSize": 12,
+	"terminal.integrated.rightClickBehavior": "default",
+	"terminal.integrated.tabStopWidth": 2,
+	"terminal.integrated.confirmOnExit": "hasChildProcesses",
+	"terminal.integrated.confirmOnKill": "always",
 	// #endregion
 
 	// #region Filesystem
@@ -77,6 +92,7 @@
 		"editor.codeLens": true
 	},
 	"javascript.referencesCodeLens.enabled": true,
+	"javascript.suggestionActions.enabled": false,
 
 	"[json]": {
 		"editor.defaultFormatter": "vscode.json-language-features",
@@ -138,24 +154,6 @@
 		"*.svg": "xml"
 	},
 
-	"gremlins.showInProblemPane": true,
-	"astro.html.completions.emmet": false,
-	"astro.css.completions.emmet": false,
-	"emmet.showAbbreviationSuggestions": false,
-	"emmet.optimizeStylesheetParsing": false,
-	"emmet.showExpandedAbbreviation": "never",
-	"npm.fetchOnlinePackageInfo": true,
-	"git.openRepositoryInParentFolders": "never",
-	"terminal.integrated.defaultProfile.windows": "Git Bash",
-	"terminal.integrated.allowChords": false,
-	"terminal.integrated.altClickMovesCursor": false,
-	"terminal.integrated.fontSize": 12,
-	"terminal.integrated.rightClickBehavior": "default",
-	"terminal.integrated.tabStopWidth": 2,
-	"terminal.integrated.confirmOnExit": "hasChildProcesses",
-	"terminal.integrated.confirmOnKill": "always",
-	"cSpell.enabled": false,
-	"explorer.confirmDelete": false,
 	"markdown-pdf.format": "Letter",
 	"markdown-pdf.footerTemplate": "",
 	"markdown-pdf.headerTemplate": "",
@@ -163,6 +161,4 @@
 	"markdown-pdf.outputDirectory": "~",
 	"markdown-pdf.displayHeaderFooter": false,
 	"markdown-pdf.markdown-it-include.enable": false,
-
-	"security.restrictUNCAccess": false // This is a security vulnerability!
 }
