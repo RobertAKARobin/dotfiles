@@ -20,6 +20,7 @@ export ORIGIN='LOCAL'
 
 desk="$HOME/Desktop"
 games='/usr/share/emacs/22.1/lisp/play/'
+git_format="%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"
 TAB=`echo -e "\t"`
 useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"
 vscode="$(which code)"
@@ -279,7 +280,8 @@ function g(){
 			return
 			;;
 		l)
-			c=(log --decorate --graph --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s");;
+			git log --decorate --graph --pretty=format:"$git_format"
+			;;
 		lme)
 			g l --author=$author
 			return
@@ -378,6 +380,9 @@ function g(){
 			;;
 		rH)
 			c=(reset --hard "origin/$current_branch");;
+		rl)
+			git reflog --pretty=format:"$git_format"
+			;;
 		s)
 			c=(status);;
 		st)
