@@ -161,4 +161,5 @@
 	"markdown-pdf.outputDirectory": "~",
 	"markdown-pdf.displayHeaderFooter": false,
 	"markdown-pdf.markdown-it-include.enable": false,
+	"terminal.integrated.enableMultiLinePasteWarning": false,
 }
