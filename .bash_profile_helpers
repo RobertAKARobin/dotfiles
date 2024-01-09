@@ -281,6 +281,7 @@ function g(){
 			;;
 		l)
 			git log --decorate --graph --pretty=format:"$git_format"
+			return
 			;;
 		lme)
 			g l --author=$author
@@ -290,11 +291,17 @@ function g(){
 			g l --author=$author --all
 			;;
 		lf)
-			g l --follow $@; return;;
+			g l --follow $@
+			return
+			;;
 		la)
-			g l --all $@; return;;
+			g l --all $@
+			return
+			;;
 		laf)
-			g l --all --follow $2; return;;
+			g l --all --follow $2
+			return
+			;;
 		lc)
 			c=(diff --name-only --diff-filter=U);; # List conflicted files
 		m)
