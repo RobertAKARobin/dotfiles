@@ -280,7 +280,7 @@ function g(){
 			return
 			;;
 		l)
-			git log --decorate --graph --pretty=format:"$git_format"
+			git log --graph --pretty=format:"$git_format"
 			return
 			;;
 		lme)
