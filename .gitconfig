@@ -32,3 +32,5 @@
 	defaultBranch = main
 [diff]
 	wsErrorHighlight = all
+[merge "ours"]
+	driver = true

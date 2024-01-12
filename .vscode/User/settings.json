@@ -167,4 +167,6 @@
 	"markdown-pdf.displayHeaderFooter": false,
 	"markdown-pdf.markdown-it-include.enable": false,
 	"terminal.integrated.enableMultiLinePasteWarning": false,
+
+	"lit-plugin.disable": true // Want the syntax highlighting, not the linting
 }
