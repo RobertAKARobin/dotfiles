@@ -15,6 +15,7 @@
 !.vscode/User
 .vscode/User/*
 !.vscode/User/settings.json
+!.vscode/User/keybindings.json
 
 !Library/Preferences
 Library/Preferences/*
