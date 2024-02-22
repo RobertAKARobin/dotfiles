@@ -1,10 +1,5 @@
 #!/bin/bash
 
-source ~/.bash_profile_helpers
-if [ -f ~/.bash_profile_private ]; then
-	source ~/.bash_profile_private
-fi
-
 # Homebrew
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
@@ -24,6 +19,27 @@ if type brew &>/dev/null; then
 	export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
 	export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
 	export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+fi
+
+check_bash_version() {
+	local version=$(echo $BASH_VERSION | head -c 1)
+	if [[ $version -lt 5 ]]; then
+		echo "Bash version is too low at $version; installing latest Bash..."
+		brew install bash
+		local bash_location="/opt/homebrew/bin/bash"
+		echo $bash_location | sudo tee -a /etc/shells
+		chsh -s $bash_location
+		sudo chsh -s $bash_location
+		echo "Restart the terminal"
+	fi
+}
+check_bash_version
+
+shopt -s globstar # https://stackoverflow.com/a/78041926/2053389
+
+source ~/.bash_profile_helpers
+if [ -f ~/.bash_profile_private ]; then
+	source ~/.bash_profile_private
 fi
 
 # Git
