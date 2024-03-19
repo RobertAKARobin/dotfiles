@@ -32,7 +32,7 @@
 	"settingsSync.ignoredSettings": [],
 	"update.mode": "start",
 	"workbench.editor.closeEmptyGroups": false,
-	"workbench.editor.enablePreviewFromQuickOpen": false,
+	"workbench.editor.enablePreviewFromQuickOpen": true,
 	"workbench.editor.enablePreview": false,
 	"workbench.startupEditor": "newUntitledFile",
 	// #endregion
@@ -63,6 +63,7 @@
 	"terminal.integrated.allowChords": false,
 	"terminal.integrated.altClickMovesCursor": false,
 	"terminal.integrated.fontSize": 12,
+	"terminal.integrated.enableMultiLinePasteWarning": "never",
 	"terminal.integrated.rightClickBehavior": "default",
 	"terminal.integrated.tabStopWidth": 2,
 	"terminal.integrated.confirmOnExit": "hasChildProcesses",
@@ -166,7 +167,8 @@
 	"markdown-pdf.outputDirectory": "~",
 	"markdown-pdf.displayHeaderFooter": false,
 	"markdown-pdf.markdown-it-include.enable": false,
-	"terminal.integrated.enableMultiLinePasteWarning": false,
 
-	"lit-plugin.disable": true // Want the syntax highlighting, not the linting
+	"lit-plugin.disable": true,
+
+	"diffEditor.useInlineViewWhenSpaceIsLimited": false // Want the syntax highlighting, not the linting
 }
