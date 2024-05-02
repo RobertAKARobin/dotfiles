@@ -20,6 +20,10 @@
 	// #region Appearance
 	"editor.fontWeight": "400",
 	"editor.minimap.enabled": false,
+	"explorer.autoRevealExclude": {
+		"**/bower_components": false,
+		"**/node_modules": false
+	},
 	"explorer.compactFolders": false,
 	"workbench.colorTheme": "Visual Studio Dark",
 	// #endregion
@@ -170,5 +174,6 @@
 
 	"lit-plugin.disable": true,
 
-	"diffEditor.useInlineViewWhenSpaceIsLimited": false // Want the syntax highlighting, not the linting
+	"diffEditor.useInlineViewWhenSpaceIsLimited": false, // Want the syntax highlighting, not the linting
+	"sftp.printDebugLog": true
 }
