@@ -276,7 +276,7 @@ function g(){
 			return
 			;;
 		h)
-			chrome $(gh_url)
+			chrome $(gh_url $@)
 			return
 			;;
 		l)
