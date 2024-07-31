@@ -269,8 +269,12 @@ function g(){
 			local remote=$1
 			if [[ -z $remote ]]; then
 				remote="origin"
+			else
+				shift
 			fi
 			c=(fetch --prune $remote);;
+		fa)
+			c=(fetch --prune --all);;
 		fn)
 			git rev-list --all | xargs git grep -i "$@"
 			return
