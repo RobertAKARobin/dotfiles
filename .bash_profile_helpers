@@ -11,6 +11,7 @@ alias kiosk="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --ki
 alias lando="~/lando-cli/bin/lando.js"
 alias math="bc -l"
 alias ports='lsof -i -P | grep -i "listen"'
+alias reinstall='rm -rf package-lock.json node_modules && npm i'
 alias reload='exec -l $SHELL'
 alias sas="sass --style expanded --watch --sourcemap=none"
 alias search="sudo grep -nrilS"
