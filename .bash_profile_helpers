@@ -545,6 +545,27 @@ function pingt() {
 	ping -t $dest | while read pong; do echo "$(date): $pong"; done
 }
 
+function rename() {
+	local match=$1
+	shift
+
+	local replace=$1
+	shift
+
+	local list=$@
+
+	for file in $list; do
+		output=${file/${match}/${replace}}
+
+		if [[ $file == $output ]]; then
+			echo "   $file"
+		else
+			echo "mv $file $output"
+			mv $file $output
+		fi
+	done
+}
+
 function sc() {
 	local arg=$1
 	shift
