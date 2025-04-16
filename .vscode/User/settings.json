@@ -39,6 +39,7 @@
 	"workbench.editor.enablePreviewFromQuickOpen": true,
 	"workbench.editor.enablePreview": false,
 	"workbench.startupEditor": "newUntitledFile",
+	"update.showReleaseNotes": false,
 	// #endregion
 
 	// #region Trying to disable most kinds of autosuggest
@@ -81,6 +82,19 @@
 		"**/.hg": false,
 		"**/CVS": false,
 		"**/.DS_Store": false
+	},
+	"files.associations": {
+		"*.djt": "django-html",
+		"*.html": "html",
+		"*.ejs": "html",
+		"*.jscad": "javascript",
+		"*.js.snap": "html",
+		"*.svg": "xml"
+	},
+	"workbench.editorAssociations": {
+		"{hexdiff}:/**/*.*": "hexEditor.hexedit",
+		"*.stl": "3dviewer.viewer",
+		"*.svg": "default"
 	},
 	// #endregion
 
@@ -153,16 +167,6 @@
 	},
 	"typescript.referencesCodeLens.enabled": true,
 	"typescript.updateImportsOnFileMove.enabled": "never",
-	// #endregion
-
-	"files.associations": {
-		"*.djt": "django-html",
-		"*.html": "html",
-		"*.ejs": "html",
-		"*.jscad": "javascript",
-		"*.js.snap": "html",
-		"*.svg": "xml"
-	},
 
 	"markdown-pdf.format": "Letter",
 	"markdown-pdf.footerTemplate": "",
@@ -172,8 +176,6 @@
 	"markdown-pdf.displayHeaderFooter": false,
 	"markdown-pdf.markdown-it-include.enable": false,
 
-	"lit-plugin.disable": true,
-
 	"diffEditor.useInlineViewWhenSpaceIsLimited": false, // Want the syntax highlighting, not the linting
-	"sftp.printDebugLog": true
+	// #endregion
 }

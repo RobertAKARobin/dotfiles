@@ -65,7 +65,7 @@ export PATH="$DVM_DIR/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
 	export PYENV_ROOT="$HOME/.pyenv"
 	export PATH="$PYENV_ROOT/bin:$PATH"
-	eval "$(pyenv init -)"
+	eval "$(pyenv init - bash)"
 
 	# Google Cloud
 	export CLOUDSDK_PYTHON="$HOME/.pyenv/shims/python"
