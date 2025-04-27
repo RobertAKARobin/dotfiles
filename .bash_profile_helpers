@@ -623,6 +623,26 @@ function select_from(){
 	eval $varname="$selection"
 }
 
+function sh3f(){
+	local input_dir=$(realpath $1)
+	local target_dir=$(realpath "$2")
+	local target_name=$3
+
+	if [[ -z $target_dir ]]; then
+		target_dir=$input_dir/..
+	fi
+
+	if [[ -z $target_name ]]; then
+		target_name=$(basename $input_dir)
+	fi
+
+	local target=$target_dir/$target_name.sh3f
+
+	zip -j "$target" $input_dir/*
+
+	echo $target
+}
+
 function sizeof(){
 	if [[ $1 == "." ]] || [[ -z "$1" ]]; then
 		du -hc -d 0 ./.[!.]* ./* 2>/dev/null
