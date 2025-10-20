@@ -19,6 +19,9 @@ alias search="sudo grep -nrilS"
 export GIT_REDIRECT_STDERR='2>&1'
 export ORIGIN='LOCAL'
 
+ln -sF "$HOME/Google Drive/My Drive" "$HOME/googledrive"
+drive="$HOME/googledrive"
+
 desk="$HOME/Desktop"
 games='/usr/share/emacs/22.1/lisp/play/'
 git_format="%C(yellow)%h%Creset %C(auto)%d%Creset %Cblue%ar%Creset %Cred%an%Creset %n%w(72,1,2)%s"
