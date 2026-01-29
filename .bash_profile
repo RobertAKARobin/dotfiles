@@ -80,6 +80,11 @@ if command -v rbenv &> /dev/null; then
 	eval "$(rbenv init -)"
 fi
 
+# Postgresql
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+# createuser -s postgres
+# createdb $(whoami)
+
 # Misc
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
