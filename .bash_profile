@@ -82,8 +82,14 @@ fi
 
 # Postgresql
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/postgresql@16/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/postgresql@16/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@16/lib/pkgconfig"
+# mkdir -p /opt/homebrew/opt/postgresql@14/lib/postgresql@14
+# ln -s /opt/homebrew/opt/postgresql@16/lib/libpq.5.dylib /opt/homebrew/opt/postgresql@14/lib/postgresql@14/libpq.5.dylib
 # createuser -s postgres
 # createdb $(whoami)
+# brew services start postgresql@16
 
 # Misc
 export BASH_SILENCE_DEPRECATION_WARNING=1
