@@ -18,7 +18,7 @@ if type brew &>/dev/null; then
 	# OpenSSL
 	export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
 	export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
-	export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+	export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
 fi
 
 check_bash_version() {

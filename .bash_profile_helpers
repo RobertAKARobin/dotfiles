@@ -66,6 +66,23 @@ function b64() {
 	echo $(pbpaste)
 }
 
+function brewfile() {
+	command brew bundle dump --force --describe --file=~/Brewfile
+}
+
+# Intercept brew commands to automatically update Brewfile
+function brew() {
+	command brew "$@"
+  local exit_code=$?
+
+  # Only update if the command was install, uninstall, or tap and it succeeded
+  if [[ $exit_code -eq 0 ]] && [[ "$1" =~ ^(doctor|install|uninstall|tap|untap)$ ]]; then
+		brewfile
+  fi
+
+  return $exit_code
+}
+
 function cbrew() {
 	# Change brew permissions on corporate machine
 	sudo chown -R $(whoami) /usr/local/bin /usr/local/etc /usr/local/sbin /usr/local/share /usr/local/share/doc
